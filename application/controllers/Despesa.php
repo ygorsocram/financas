@@ -11,15 +11,17 @@ class Despesa extends CI_Controller {
 	public function index()
 	{
 		$variaveis['despesas'] = $this->m_despesa->listagem();
-		$this->load->view('cabecalho');
+		$this->load->view('v_cabecalho');
 		$this->load->view('v_despesa', $variaveis);
-		$this->load->view('rodape');
+		$this->load->view('v_rodape');
 	}
 
 	public function cadastrar()
 	{
-		$this->load->view('cabecalho');
-		$this->load->view('cadastros/v_cadastro_despesa');
-		$this->load->view('rodape');
+		$variaveis['categorias'] = $this->m_despesa->categorias();
+		$variaveis['contas'] = $this->m_despesa->contas();
+		$this->load->view('v_cabecalho');
+		$this->load->view('cadastros/v_cadastro_despesa', $variaveis);
+		$this->load->view('v_rodape');
 	}
 }
