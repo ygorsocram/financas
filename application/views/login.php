@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Login</title>
+    <title>Finanças - Login</title>
 
     <!-- Bootstrap core CSS-->
     <link href="<?= base_url('include');?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
