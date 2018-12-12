@@ -121,7 +121,12 @@
             <span>Charts</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('despesa');?>">
+          <a class="nav-link" href="<?= base_url('transacao?id_tipo=1');?>">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Receitas</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('transacao?id_tipo=2');?>">
             <i class="fas fa-fw fa-table"></i>
             <span>Despesas</span></a>
         </li>
