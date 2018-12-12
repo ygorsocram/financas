@@ -115,20 +115,22 @@
             <a class="dropdown-item" href="blank.html">Blank Page</a>
           </div>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Transações</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" href="<?= base_url('transacao?id_tipo=1');?>">Receitas</a>
+            <a class="dropdown-item" href="<?= base_url('transacao?id_tipo=2');?>">Despesas</a>
+            <a class="dropdown-item" href="<?= base_url('cartao?id_tipo=3');?>">Cartão de Crédito</a>
+            <a class="dropdown-item" href="<?= base_url('transacao?id_tipo=4');?>">Transferencias</a>
+          </div>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="charts.html">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Charts</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('transacao?id_tipo=1');?>">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Receitas</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('transacao?id_tipo=2');?>">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Despesas</span></a>
         </li>
       </ul>
 

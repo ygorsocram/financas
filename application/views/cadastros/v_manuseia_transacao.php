@@ -3,10 +3,10 @@
             <li class="breadcrumb-item">
               <a href="<?= base_url('include');?>/inicio">Dashboard</a>
             </li>
-                <?php if($id_tipo== 1):?>
-                <li class="breadcrumb-item active">Nova Receita</li>
+                <?php if($id_transacao== 0):?>
+                <li class="breadcrumb-item active">Nova <?= $nome_tipo; ?></li>
                 <?php else: ?>
-                <li class="breadcrumb-item active">Nova Despesa</li>
+                <li class="breadcrumb-item active">Edita <?= $nome_tipo; ?></li>
                 <?php endif ?>
           </ol>
 
@@ -29,12 +29,14 @@
                         <input class="form-control proximo_campo" id="valor" name="valor" type="number" value= "<?= $valor; ?>" step="0.01" size="30" required>
                       </fieldset>
                   </div>
+                  <?php if($id_tipo != 3):?>
                       <div class="col-lg-1" id="manusear_despesa">
                           <fieldset class="form-group">
                             <label class="form-label" for="pago">Pago</label>
                             <input class="form-control proximo_campo" id="pago" name="pago" type="checkbox" size="5" <?= $pago; ?>>
                           </fieldset>
                       </div>
+                  <?php endif ?>
                   <div class="col-lg-3" id="manusear_despesa">
                       <fieldset class="form-group">
                         <label class="form-label" for="data">Data*</label>
@@ -55,12 +57,13 @@
 							             </select>
                           </fieldset>
                       </div>
+                    <?php if($id_tipo != 3):?>
                       <div class="col-lg-2" id="div_conta">
                           <fieldset class="form-group">
                             <label class="form-label" for="conta" id="conta">Conta*</label>
                             <select class="form-control proximo_campo uppercase" id="conta" name="conta">
                             <?php foreach($contas -> result() as $contas): ?>
-                              <?php if($categoria== $categorias->id_categoria):?>
+                              <?php if($conta== $contas->id_conta):?>
                                   <option value="<?= $contas->id_conta; ?>" selected> <?= $contas->nome; ?></option>
                               <?php else: ?>
                                   <option value="<?= $contas->id_conta; ?>"> <?= $contas->nome; ?></option>
@@ -69,6 +72,36 @@
 							             </select>
                           </fieldset>
                       </div>
+                  <?php else: ?>
+                      <div class="col-lg-2" id="div_cartao">
+                          <fieldset class="form-group">
+                            <label class="form-label" for="cartao" id="cartao">Cartao*</label>
+                            <select class="form-control proximo_campo uppercase" id="cartao" name="cartao">
+                            <?php foreach($cartoes -> result() as $cartoes): ?>
+                              <?php if($cartao== $cartoes->id_cartao):?>
+                                  <option value="<?= $cartoes->id_cartao; ?>" selected> <?= $cartoes->nome; ?></option>
+                              <?php else: ?>
+                                  <option value="<?= $cartoes->id_cartao; ?>"> <?= $cartoes->nome; ?></option>
+                              <?php endif ?>
+                            <?php endforeach; ?>
+							             </select>
+                          </fieldset>
+                      </div>
+                      <div class="col-lg-2" id="div_fatura">
+                          <fieldset class="form-group">
+                            <label class="form-label" for="fatura" id="fatura">Fatura*</label>
+                            <select class="form-control proximo_campo uppercase" id="fatura" name="fatura">
+                            <?php foreach($faturas -> result() as $faturas): ?>
+                              <?php if($fatura== $faturas->id_fatura):?>
+                                  <option value="<?= $faturas->id_fatura; ?>" selected> <?= $faturas->nome; ?></option>
+                              <?php else: ?>
+                                  <option value="<?= $faturas->id_fatura; ?>"> <?= $faturas->nome; ?></option>
+                              <?php endif ?>
+                            <?php endforeach; ?>
+							             </select>
+                          </fieldset>
+                      </div>
+                  <?php endif ?>
               		<div class="col-lg-50" id="manusear_despesa">
               				<fieldset class="form-group">
               					<label class="form-label" for="observacao">Observaçao</label>
