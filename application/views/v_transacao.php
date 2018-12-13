@@ -6,28 +6,6 @@
                 <li class="breadcrumb-item active"><?= $nome_tipo; ?></li>
           </ol>
 
-          <!-- Alteração dos meses
-          <ol class="breadcrumb">
-                <div class="card-header">Filtros</div>
-                <form action="<?= base_url('transacao/filtrar?id_tipo=1');?>" method="post">
-                  <div id="filtrar">
-                      <fieldset class="form-group">
-                        <label class="form-label" for="data_inicio">Data Início</label>
-                        <input class="form-control proximo_campo" id="data_inicio" name="data_inicio" type="date" value= "<?= $data_inicio; ?>" placeholder="Data" size="80">
-                      </fieldset>
-                  </div>
-                  <div id="filtrar">
-                      <fieldset class="form-group">
-                        <label class="form-label" for="data_fim">Data Fim</label>
-                        <input class="form-control proximo_campo" id="data_fim" name="data_fim" type="date" value= "<?= $data_fim; ?>" placeholder="Data" size="80">
-                      </fieldset>
-                  </div>
-                        <li>
-                            <button type="submit" class="btn btn-inline btn-success pull-right" id="filtrar">Filtrar</button>
-                        </li>
-                </form>
-          </ol> -->
-
           <!-- DataTables Example -->
           <div class="card mb-3">
             <div class="card-header">

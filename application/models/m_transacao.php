@@ -16,47 +16,18 @@ class m_transacao extends CI_Model {
 	}
 
 	public function listagem($id_tipo){
-				switch ($id_tipo) {
-					case '1':
-							return $this->db->query("SELECT t.id_transacao,
-			                                        t.data_cadastro,
-			                                        t.nome,
-			                                        t.valor,
-			                                        c.nome as categoria,
-																							t.pago
-			                                 FROM   transacoes t, categorias c
-																			 WHERE  t.id_categoria = c.id_categoria
-			                                 AND    c.id_tipo = $id_tipo
-			                                 ORDER BY t.data_cadastro");
-						break;
-					case '2':
-							return $this->db->query("SELECT t.id_transacao,
-			                                        t.data_cadastro,
-			                                        t.nome,
-			                                        t.valor,
-			                                        c.nome as categoria,
-																							t.pago
-			                                 FROM   transacoes t, categorias c
-																			 WHERE  t.id_categoria = c.id_categoria
-			                                 AND    c.id_tipo = $id_tipo
-																			 AND		t.id_fatura_cartao is null
-			                                 ORDER BY t.data_cadastro");
-						break;
-					case '3':
-							return $this->db->query("SELECT t.id_transacao,
-			                                        t.data_cadastro,
-			                                        t.nome,
-			                                        t.valor,
-			                                        c.nome as categoria,
-																							t.pago
-			                                 FROM   transacoes t, categorias c
-																			 WHERE  t.id_categoria = c.id_categoria
-			                                 AND    c.id_tipo = 2
-																			 AND		t.id_fatura_cartao is not null
-			                                 ORDER BY t.data_cadastro");
-						break;
+											return $this->db->query("SELECT t.id_transacao,
+							                                        t.data_cadastro,
+							                                        t.nome,
+							                                        t.valor,
+							                                        c.nome as categoria,
+																											t.pago
+							                                 FROM   transacoes t, categorias c
+																							 WHERE  t.id_categoria = c.id_categoria
+							                                 AND    c.id_tipo = $id_tipo
+																							 AND		t.id_fatura_cartao is null
+							                                 ORDER BY t.data_cadastro");
 				}
-		}
 
 	public function filtrar($id_tipo,$data_inicio,$data_fim){
 				return $this->db->query("SELECT t.id_transacao,
@@ -73,8 +44,6 @@ class m_transacao extends CI_Model {
 		}
 
 	public function categorias($id_tipo){
-			if ($id_tipo == 3) $id_tipo = 2;
-
 			return $this->db->query("SELECT id_categoria,
 																			 nome
 																FROM categorias
@@ -85,42 +54,6 @@ class m_transacao extends CI_Model {
 			return $this->db->query("SELECT id_conta,
 																			 nome
 																FROM contas");
-	}
-
-	public function cartoes(){
-			return $this->db->query("SELECT id_cartao,
-																			 nome
-																FROM cartoes");
-	}
-
-	public function faturas(){
-			return $this->db->query("SELECT f.id_fatura,
-	   																	CONCAT(c.nome,' - ',f.mes_referencia,'/',f.ano_referencia) as nome
-															 FROM faturas f, cartoes c
-															 WHERE f.id_cartao = c.id_cartao
-															 AND   f.paga = 'N'");
-	}
-
-	public function fatura_unica($id_fatura){
-			return $this->db->query("SELECT f.id_fatura,
-	   																	CONCAT(f.mes_referencia,'/',f.ano_referencia) as nome
-															 FROM faturas f, cartoes c
-															 WHERE f.id_cartao = c.id_cartao
-															 AND   f.paga = 'N'
-															 AND   f.id_fatura = $id_fatura");
-	}
-
-	public function fatura_id_cartao($id_fatura){
-			return $this->db->query("SELECT f.id_cartao
-															 FROM faturas f
-															 WHERE f.id_fatura = $id_fatura");
-	}
-
-	public function conta_cartao($id_cartao)
-	{
-			return $this->db->query("SELECT c.id_conta
-															 FROM cartoes c
-															 WHERE c.id_cartao = $id_cartao");
 	}
 
 	public function tags(){
@@ -170,4 +103,4 @@ class m_transacao extends CI_Model {
 			$this->db->where('id_transacao', $id);
 			$this->db->update('transacoes',$data);
 	}
-	}
+}

@@ -12,7 +12,7 @@ class Transacao extends CI_Controller {
 	{
 		$id_tipo = $_GET['id_tipo'];
 
-		$variaveis['transacoes'] = $this->m_transacao->listagem($id_tipo);
+		$variaveis['transacoes'] = $this->m_transacao->listagem($id_tipo,'');
 		$variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
 		$variaveis['id_tipo'] = $id_tipo;
 		$this->load->view('v_cabecalho');
@@ -29,7 +29,6 @@ class Transacao extends CI_Controller {
 		$variaveis['id_transacao'] = $id;
 		$variaveis['categorias'] = $this->m_transacao->categorias($id_tipo);
 		$variaveis['contas'] = $this->m_transacao->contas();
-		$variaveis['cartoes'] = $this->m_transacao->cartoes();
 		$variaveis['tags'] = $this->m_transacao->tags();
 		$variaveis['id_tipo'] = $id_tipo;
 		$variaveis['data'] = date("Y-m-d");
@@ -41,9 +40,6 @@ class Transacao extends CI_Controller {
 			$variaveis['data_cadastro'] = date("Y-m-d");
 			$variaveis['categoria'] = '';
 			$variaveis['conta'] = '';
-			$variaveis['cartao'] = '';
-			$variaveis['fatura'] = '';
-			$variaveis['faturas'] = $this->m_transacao->faturas();
 			$variaveis['observacao'] = '';
 		} else {
 			$transacao = $this->m_transacao->transacao($id);
@@ -59,12 +55,6 @@ class Transacao extends CI_Controller {
 			$variaveis['categoria'] = $transacao->row()->id_categoria;
 			$variaveis['conta'] = $transacao->row()->id_conta;
 			$variaveis['observacao'] = $transacao->row()->observacao;
-
-			if ($id_tipo == 3) {
-					$variaveis['cartao'] = $this->m_transacao->fatura_id_cartao($transacao->row()->id_fatura)->row()->id_cartao;
-					$variaveis['fatura'] = $transacao->row()->id_fatura;
-		 			$variaveis['faturas'] = $this->m_transacao->faturas();
-			}
 			}
 
 			$this->load->view('v_cabecalho');
@@ -82,13 +72,8 @@ class Transacao extends CI_Controller {
 		$pago = $this->input->post('pago');
 		$data = $this->input->post('data');
 		$categoria = $this->input->post('categoria');
-		$fatura = $this->input->post('fatura');
 		$conta = $this->input->post('conta');
 		$observacao = $this->input->post('observacao');
-
-		if ($id_tipo == 3) {
-			$conta = $this->m_transacao->conta_cartao($this->m_transacao->fatura_id_cartao($fatura)->row()->id_cartao)->row()->id_conta;
-		}
 
 		if ($pago) $pago = 'S';
 				  else $pago = 'N';
@@ -100,7 +85,6 @@ class Transacao extends CI_Controller {
 			'data_cadastro' => $data,
 			'id_categoria' => $categoria,
 			'id_conta' => $conta,
-			'id_fatura_cartao' => $fatura,
 			'observacao' => $observacao
 			);
 
@@ -111,7 +95,7 @@ class Transacao extends CI_Controller {
 		}
 
 		  $variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
-			$variaveis['transacoes'] = $this->m_transacao->listagem($id_tipo);
+			$variaveis['transacoes'] = $this->m_transacao->listagem($id_tipo,'');
 			$variaveis['id_tipo'] = $id_tipo;
 			$this->load->view('v_cabecalho');
 			$this->load->view('v_transacao', $variaveis);
@@ -127,7 +111,7 @@ class Transacao extends CI_Controller {
 		$id_tipo = $_GET['id_tipo'];
 
 		  $variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
-			$variaveis['transacoes'] = $this->m_transacao->listagem($id_tipo);
+			$variaveis['transacoes'] = $this->m_transacao->listagem($id_tipo,'');
 			$variaveis['id_tipo'] = $id_tipo;
 			$this->load->view('v_cabecalho');
 			$this->load->view('v_transacao', $variaveis);
@@ -143,7 +127,7 @@ class Transacao extends CI_Controller {
 		$id_tipo = $_GET['id_tipo'];
 
 		  $variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
-			$variaveis['transacoes'] = $this->m_transacao->listagem($id_tipo);
+			$variaveis['transacoes'] = $this->m_transacao->listagem($id_tipo,'');
 			$variaveis['id_tipo'] = $id_tipo;
 			$this->load->view('v_cabecalho');
 			$this->load->view('v_transacao', $variaveis);
@@ -159,7 +143,7 @@ class Transacao extends CI_Controller {
 		$id_tipo = $_GET['id_tipo'];
 
 		  $variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
-			$variaveis['transacoes'] = $this->m_transacao->listagem($id_tipo);
+			$variaveis['transacoes'] = $this->m_transacao->listagem($id_tipo,'');
 			$variaveis['id_tipo'] = $id_tipo;
 			$this->load->view('v_cabecalho');
 			$this->load->view('v_transacao', $variaveis);

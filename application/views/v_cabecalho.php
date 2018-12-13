@@ -123,7 +123,7 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <a class="dropdown-item" href="<?= base_url('transacao?id_tipo=1');?>">Receitas</a>
             <a class="dropdown-item" href="<?= base_url('transacao?id_tipo=2');?>">Despesas</a>
-            <a class="dropdown-item" href="<?= base_url('cartao?id_tipo=3');?>">Cartão de Crédito</a>
+            <a class="dropdown-item" href="<?= base_url('cartao');?>">Cartão de Crédito</a>
             <a class="dropdown-item" href="<?= base_url('transacao?id_tipo=4');?>">Transferencias</a>
           </div>
         </li>
