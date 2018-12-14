@@ -62,7 +62,8 @@ class m_cartao extends CI_Model {
 															 FROM faturas f, cartoes c
 															 WHERE f.id_cartao = c.id_cartao
 															 AND   f.paga = 'N'
-															 AND	 f.id_cartao = $id_cartao");
+															 AND	 f.id_cartao = $id_cartao
+															 ORDER BY f.id_fatura");
 	}
 
 	public function cartoes(){
