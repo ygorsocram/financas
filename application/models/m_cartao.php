@@ -101,7 +101,8 @@ class m_cartao extends CI_Model {
 	public function fatura_id_cartao($id_fatura){
 			return $this->db->query("SELECT f.id_cartao,
                                       f.dt_vencimento,
-                                      c.nome
+                                      c.nome,
+																			f.vlr_fatura
 															 FROM faturas f, cartoes c
 															 WHERE f.id_cartao = c.id_cartao
                                AND f.id_fatura = $id_fatura");

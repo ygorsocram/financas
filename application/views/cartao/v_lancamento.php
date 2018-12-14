@@ -11,8 +11,9 @@
               <div class="card-header">
                 <i class="fas fa-table"></i>
                 <?=$pagina?> : <?=$nome_fatura?> - Vencimento :  <?=$dt_vencimento?>
-              <a id="botao-novo" class="btn btn-success btn-sm" href="<?= base_url("cartao/manusear_estorno?id=0&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fa fa-plus"></i> Estorno</a>
+              <a id="botao-novo" class="btn btn-danger btn-sm" href="<?= base_url("cartao/manusear_estorno?id=0&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fa fa-minus"></i> Estorno</a>
               <a id="botao-novo" class="btn btn-success btn-sm" href="<?= base_url("cartao/manusear_cartao?id=0&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fa fa-plus"></i> Novo Lançamento</a>
+              <a id="botao-valor" class="btn btn-info btn-sm" href="<?= base_url("cartao/acessar_lancamento?&id_fatura={$id_fatura}")?>"><i></i><?=$valor_fatura?></a>
               </div>
             <div class="card-body">
               <div class="table-responsive">

@@ -4,3 +4,10 @@ a#botao-novo {
   float:right;
   margin-left: 10px;
 }
+
+a#botao-valor {
+  float:right;
+  margin-left: 10px;
+  margin-right: 180px;
+  font-size: 20px;
+}
