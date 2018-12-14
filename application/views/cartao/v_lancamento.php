@@ -11,7 +11,7 @@
               <div class="card-header">
                 <i class="fas fa-table"></i>
                 <?=$pagina?> : <?=$nome_fatura?> - Vencimento :  <?=$dt_vencimento?></div>
-              <a id="botao-novo" class="btn btn-success btn-sm" href="<?= base_url("cartao/manusear?id=0")?>"><i class="font-icon fa fa-plus"></i> Novo</a>
+              <a id="botao-novo" class="btn btn-success btn-sm" href="<?= base_url("cartao/manusear?id=0&id_cartao={$id_cartao}")?>"><i class="font-icon fa fa-plus"></i> Novo</a>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -31,8 +31,8 @@
                             <td><?= $lancamentos->valor; ?></td>
                             <td><?= $lancamentos->categoria; ?></td>
       								<td width="10px" id="funcoes">
-      									<a href="<?= base_url("cartao/manusear?id={$lancamentos->id_transacao}")?>">Alterar</a>
-                        <a href="<?= base_url("cartao/excluir?id={$lancamentos->id_transacao}&id_fatura={$lancamentos->id_fatura_cartao}")?>">Excluir</a>
+      									<a href="<?= base_url("cartao/manusear?id={$lancamentos->id_transacao}&id_cartao={$id_cartao}")?>">Alterar</a>
+                        <a href="<?= base_url("cartao/excluir?id={$lancamentos->id_transacao}&id_fatura={$lancamentos->id_fatura_cartao}&id_cartao={$id_cartao}")?>">Excluir</a>
                      </td>
       							</tr>
       							<?php endforeach; ?>

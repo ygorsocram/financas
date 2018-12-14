@@ -48,7 +48,7 @@ class m_cartao extends CI_Model {
 																WHERE id_tipo = 2");
 	}
 
-	public function faturas(){
+	public function faturas($id_cartao){
 
 			return $this->db->query("SELECT f.id_fatura,
 																			f.paga,
@@ -61,7 +61,8 @@ class m_cartao extends CI_Model {
 																			c.vlr_limite - c.vlr_aberto as vlr_limite_restante
 															 FROM faturas f, cartoes c
 															 WHERE f.id_cartao = c.id_cartao
-															 AND   f.paga = 'N'");
+															 AND   f.paga = 'N'
+															 AND	 f.id_cartao = $id_cartao");
 	}
 
 	public function cartoes(){

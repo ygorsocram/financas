@@ -15,7 +15,7 @@
 			<section class="box-typical box-panel mb-4" id="form_despesas">
         <div class="widget-container fluid-height">
           <div class="box-typical-body">
-            <form action="<?= base_url("cartao/gravar?id={$id_transacao}")?>" method="post">
+            <form action="<?= base_url("cartao/gravar?id={$id_transacao}&id_cartao={$id_cartao}")?>" method="post">
 				<div class="row">
               		<div class="col-lg-8" id="manusear_despesa">
               				<fieldset class="form-group">
@@ -38,7 +38,7 @@
                       <div class="col-lg-2" id="div_categoria">
                           <fieldset class="form-group">
                             <label class="form-label" for="categoria" id="categoria">Categoria*</label>
-                            <select class="form-control proximo_campo uppercase" id="catrgoria" name="categoria">
+                            <select class="form-control proximo_campo uppercase" id="categoria" name="categoria" onChange="dados(this.value);">
                             <?php foreach($categorias -> result() as $categorias): ?>
                               <?php if($categoria== $categorias->id_categoria):?>
                                   <option value="<?= $categorias->id_categoria; ?>" selected> <?= $categorias->nome; ?></option>

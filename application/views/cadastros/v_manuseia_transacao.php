@@ -44,7 +44,7 @@
                       <div class="col-lg-2" id="div_categoria">
                           <fieldset class="form-group">
                             <label class="form-label" for="categoria" id="categoria">Categoria*</label>
-                            <select class="form-control proximo_campo uppercase" id="catrgoria" name="categoria">
+                            <select class="form-control proximo_campo uppercase" id="categoria" name="categoria">
                             <?php foreach($categorias -> result() as $categorias): ?>
                               <?php if($categoria== $categorias->id_categoria):?>
                                   <option value="<?= $categorias->id_categoria; ?>" selected> <?= $categorias->nome; ?></option>
