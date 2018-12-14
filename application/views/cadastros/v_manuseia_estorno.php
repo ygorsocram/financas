@@ -4,9 +4,9 @@
               <a href="<?= base_url('inicio');?>">Dashboard</a>
             </li>
                 <?php if($id_transacao== 0):?>
-                <li class="breadcrumb-item active">Novo Lançamento de Cartão</li>
+                <li class="breadcrumb-item active">Novo Estorno</li>
                 <?php else: ?>
-                <li class="breadcrumb-item active">Edita Lançamento de Cartão</li>
+                <li class="breadcrumb-item active">Edita Estorno</li>
                 <?php endif ?>
           </ol>
 
@@ -39,13 +39,7 @@
                           <fieldset class="form-group">
                             <label class="form-label" for="categoria" id="categoria">Categoria*</label>
                             <select class="form-control proximo_campo uppercase" id="categoria" name="categoria" onChange="dados(this.value);">
-                            <?php foreach($categorias -> result() as $categorias): ?>
-                              <?php if($categoria== $categorias->id_categoria):?>
-                                  <option value="<?= $categorias->id_categoria; ?>" selected> <?= $categorias->nome; ?></option>
-                              <?php else: ?>
-                                  <option value="<?= $categorias->id_categoria; ?>"> <?= $categorias->nome; ?></option>
-                              <?php endif ?>
-                            <?php endforeach; ?>
+                                  <option value="19" selected>ESTORNO</option>
 							             </select>
                           </fieldset>
                       </div>

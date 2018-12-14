@@ -17,7 +17,7 @@ class Login extends CI_Controller {
 		$email = $this->input->post("usuario");
 		$senha = sha1($this->input->post("senha"));
 
-		echo $email.$senha;
+		//echo $email.$senha;
 
 		//Código sha1  da senha 123456 7c4a8d09ca3762af61e59520943dc26494f8941b
 		//O usuário no exemplo aqui será usuario@email.com.br

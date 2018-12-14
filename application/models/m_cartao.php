@@ -41,11 +41,11 @@ class m_cartao extends CI_Model {
 			$this->db->delete('transacoes');
 	}
 
-	public function listar_categorias(){
+	public function listar_categorias($id_tipo){
 			return $this->db->query("SELECT id_categoria,
 																			 nome
 																FROM categorias
-																WHERE id_tipo = 2");
+																WHERE id_tipo = $id_tipo");
 	}
 
 	public function faturas($id_cartao){
@@ -133,15 +133,13 @@ class m_cartao extends CI_Model {
 	}
 
 	public function valor_aberto_cartao($id_cartao){
-			$valor_aberto = $this->db->query("SELECT sum(valor) as valor_aberto
-															 FROM transacoes
-															 WHERE id_fatura_cartao in (SELECT id_fatura
-																													FROM faturas
-																													WHERE id_cartao = $id_cartao
-																													AND paga = 'N')");
+			$valor_aberto = $this->db->query("SELECT sum(vlr_fatura) as vlr_aberto
+																				FROM faturas
+																				WHERE id_cartao = $id_cartao
+																				AND paga = 'N'");
 
 		$data= array(
-			'vlr_aberto' => $valor_aberto->row()->valor_aberto
+			'vlr_aberto' => $valor_aberto->row()->vlr_aberto
 			);
 
 			$this->db->where('id_cartao', $id_cartao);
@@ -149,9 +147,25 @@ class m_cartao extends CI_Model {
 	}
 
 	public function valor_fatura($id_fatura){
-			$valor_fatura = $this->db->query("SELECT sum(valor) as valor_fatura
-															 FROM transacoes
-															 WHERE id_fatura_cartao = $id_fatura");
+			$valor_fatura = $this->db->query("SELECT CASE  WHEN valor_entrada>0
+			 																							 THEN valor_saida - valor_entrada
+		     																						 ELSE valor_saida
+																								END as valor_fatura
+																				FROM (SELECT id_fatura_cartao,
+			 																							 sum(valor) as valor_saida
+	  																					FROM transacoes
+	  																					WHERE id_fatura_cartao = $id_fatura
+      																				AND id_categoria in (SELECT id_categoria
+					       																									 FROM categorias
+                           																					WHERE id_tipo=2)) saida LEFT JOIN
+      																				(SELECT id_fatura_cartao,
+			 																								sum(valor) as valor_entrada
+       																				 FROM transacoes
+       																				 WHERE id_fatura_cartao = $id_fatura
+       																				 AND id_categoria in (SELECT id_categoria
+					        																									FROM categorias
+                            																				WHERE id_tipo=1)) entrada
+																				ON saida.id_fatura_cartao = entrada.id_fatura_cartao");
 
 		$data= array(
 			'vlr_fatura' => $valor_fatura->row()->valor_fatura
