@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Login</title>
+    <title>Sistema Gatão - Login</title>
 
     <!-- Bootstrap core CSS-->
 	<link href="<?= base_url('include/vendor/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
@@ -19,14 +19,12 @@
 
     <!-- Custom styles for this template-->
 	<link href="<?= base_url('include/css/sb-admin.css') ?>" rel="stylesheet">
-  <link href="<?= base_url('include/css/sistema.css') ?>" rel="stylesheet">
 
   </head>
 
   <body class="bg-dark">
 
     <div class="container">
-      <img src="<?= base_url('include');?>/img/aevb_logo.jpg" title="AEVB" id="logo_login">
       <div class="card card-login mx-auto mt-5">
         <div class="card-body">
           <form class="form-signin" role="form" method="post" action="<?= base_url('index.php/login/logar') ?>">
