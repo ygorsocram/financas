@@ -117,7 +117,7 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
+            <i class="fas fa-money-check-alt"></i>
             <span>Transações</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">

@@ -3,7 +3,7 @@
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright © Your Website 2018</span>
+              <span>Sistema para meu bb que eu amo do fundo do meu coração</span>
             </div>
           </div>
         </footer>
