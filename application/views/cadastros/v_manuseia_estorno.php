@@ -1,7 +1,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="<?= base_url('inicio');?>">Dashboard</a>
+              <a href="<?= base_url("cartao/acessar_lancamento?id_fatura={$id_fatura}");?>">Dashboard / Cartão de Crédito / Faturas / Lançamentos</a>
             </li>
                 <?php if($id_transacao== 0):?>
                 <li class="breadcrumb-item active">Novo Estorno</li>
