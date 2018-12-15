@@ -26,7 +26,7 @@
                     <?php foreach($cartoes -> result() as $cartoes): ?>
                     <tr>
                             <td><?= $cartoes->nome_cartao; ?></td>
-                            <td><?= $cartoes->vlr_aberto; ?></td>
+                            <td><?= $cartoes->vlr_cartao_aberto; ?></td>
                             <td><?= $cartoes->vlr_limite_restante; ?></td>
       								<td width="10px" id="funcoes">
                         <a href="<?= base_url("cartao/acessar_faturas?id_cartao={$cartoes->id_cartao}")?>"><i class="font-icon fas fa-sign-in-alt" title="Acessar" style="font-size:20px;"></i></a>

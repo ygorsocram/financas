@@ -9,12 +9,23 @@
             <!-- DataTables Example -->
             <div class="card mb-3">
               <div class="card-header">
-                <i class="fas fa-table"></i>
-                <?=$pagina?> : <?=$nome_fatura?> - Vencimento :  <?=$dt_vencimento?>
-              <a id="botao-novo" class="btn btn-danger btn-sm" href="<?= base_url("cartao/manusear_estorno?id=0&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fa fa-minus"></i> Estorno</a>
-              <a id="botao-novo" class="btn btn-success btn-sm" href="<?= base_url("cartao/manusear_cartao?id=0&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fa fa-plus"></i> Novo Lançamento</a>
-              <a id="botao-valor" class="btn btn-info btn-sm" href="<?= base_url("cartao/acessar_lancamento?&id_fatura={$id_fatura}")?>"><i></i><?=$valor_fatura?></a>
-              </div>
+                <table>
+                  <tr>
+                    <th>
+                      <i class="fas fa-table"></i>
+                      <?=$pagina?> : <?=$nome_fatura?> - Vencimento :  <?=$dt_vencimento?>
+                    </th>
+                    <th id="botao_valor" class="btn btn-info btn-sm" href="<?= base_url("cartao/acessar_lancamento?&id_fatura={$id_fatura}")?>" title="Valor Fatura"><?=$valor_fatura?>
+                      <a id="botao_valor" class="btn btn-warning btn-sm" href="<?= base_url("cartao/acessar_lancamento?&id_fatura={$id_fatura}")?>" title="Valor Fatura Aberto"><?=$valor_fatura_aberto?></a>
+                   </th>
+                    <th>
+                      <a id="botao_novo" class="btn btn-success btn-sm" href="<?= base_url("cartao/manusear_cartao?id=0&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fa fa-plus"></i> Novo Lançamento</a>
+                      <a id="botao_novo" class="btn btn-danger btn-sm" href="<?= base_url("cartao/manusear_estorno?id=0&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fa fa-minus"></i> Estorno</a>
+                      <a id="botao_novo" class="btn btn-primary btn-sm" href="<?= base_url("cartao/manusear_pagar_fatura?id=0&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fa fa-minus"></i> Pagar</a>
+                    </th>
+                </tr>
+              </table>
+            </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -37,6 +48,8 @@
       								<td id="funcoes">
                           <?php if($lancamentos->categoria == 'ESTORNO'):?>
       									       <a href="<?= base_url("cartao/manusear_estorno?id={$lancamentos->id_transacao}&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fab fa-autoprefixer" title="Alterar" style="font-size:20px;"></i></a>
+                          <?php elseif($lancamentos->categoria == 'PAGAMENTO CARTÃO' || $lancamentos->categoria == 'PAGAMENTO PARCIAL'): ?>
+      									       <a href="<?= base_url("cartao/manusear_pagar_fatura?id={$lancamentos->id_transacao}&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fab fa-autoprefixer" title="Alterar" style="font-size:20px;"></i></a>
                           <?php else: ?>
       									       <a href="<?= base_url("cartao/manusear_cartao?id={$lancamentos->id_transacao}&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fab fa-autoprefixer" title="Alterar" style="font-size:20px;"></i></a>
                           <?php endif ?>

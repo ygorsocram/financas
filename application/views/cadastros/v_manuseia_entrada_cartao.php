@@ -4,9 +4,9 @@
               <a href="<?= base_url("cartao/acessar_lancamento?id_fatura={$id_fatura}");?>">Dashboard / Cartão de Crédito / Faturas / Lançamentos</a>
             </li>
                 <?php if($id_transacao== 0):?>
-                <li class="breadcrumb-item active">Novo Estorno</li>
+                <li class="breadcrumb-item active">Novo <?= $nome_tela; ?></li>
                 <?php else: ?>
-                <li class="breadcrumb-item active">Edita Estorno</li>
+                <li class="breadcrumb-item active">Edita <?= $nome_tela; ?></li>
                 <?php endif ?>
           </ol>
 
@@ -39,7 +39,17 @@
                           <fieldset class="form-group">
                             <label class="form-label" for="categoria" id="categoria">Categoria*</label>
                             <select class="form-control proximo_campo uppercase" id="categoria" name="categoria" onChange="dados(this.value);">
-                                  <option value="19" selected>ESTORNO</option>
+                              <?php if($nome_tela== 'Estorno'):?>
+                                <option value="19" selected>ESTORNO</option>
+                                <?php else: ?>
+                            <?php foreach($categorias -> result() as $categorias): ?>
+                              <?php if($categoria== $categorias->id_categoria):?>
+                                  <option value="<?= $categorias->id_categoria; ?>" selected> <?= $categorias->nome; ?></option>
+                              <?php else: ?>
+                                  <option value="<?= $categorias->id_categoria; ?>"> <?= $categorias->nome; ?></option>
+                              <?php endif ?>
+                            <?php endforeach; ?>
+                              <?php endif ?>
 							             </select>
                           </fieldset>
                       </div>
