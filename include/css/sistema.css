@@ -11,3 +11,13 @@ a#botao-valor {
   margin-right: 180px;
   font-size: 20px;
 }
+
+//funções
+i#icone-funcao {
+  margin-left: 100px;
+}
+
+td#funcoes {
+  width: 100px;
+  text-align: center;
+}

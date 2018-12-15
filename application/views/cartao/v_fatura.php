@@ -25,11 +25,12 @@
                   </thead>
                   <tbody>
                     <?php foreach($faturas -> result() as $faturas): ?>
+                    <tr>
                             <td><?= $faturas->dt_vencimento; ?></td>
                             <td><?= $faturas->vlr_fatura; ?></td>
                             <td><?= $faturas->paga; ?></td>
-      								<td width="10px" id="funcoes">
-                        <a href="<?= base_url("cartao/acessar_lancamento?id_fatura={$faturas->id_fatura}")?>">Acessar</a>
+      								<td id="funcoes">
+                        <a href="<?= base_url("cartao/acessar_lancamento?id_fatura={$faturas->id_fatura}")?>"><i class="font-icon fas fa-sign-in-alt" title="Acessar" style="font-size:20px;"></i></a>
       								</td>
       							</tr>
       							<?php endforeach; ?>
