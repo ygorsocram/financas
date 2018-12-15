@@ -1,7 +1,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="<?= base_url('include');?>/inicio">Dashboard</a>
+              <a href="<?= base_url("transacao?id_tipo={$id_tipo}");?>">Dashboard / <?= $nome_tipo; ?></a>
             </li>
                 <?php if($id_transacao== 0):?>
                 <li class="breadcrumb-item active">Nova <?= $nome_tipo; ?></li>
