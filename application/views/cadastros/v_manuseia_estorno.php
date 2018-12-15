@@ -23,19 +23,19 @@
               					<input class="form-control proximo_campo" id="nome" name="nome" type="text" value= "<?= $nome; ?>" placeholder="Nome do lançamento de Cartão" size="40" required>
               				</fieldset>
               		</div>
-                  <div class="col-lg-2" id="manusear_despesa">
+                  <div class="col-lg-2" id="div_valor">
                       <fieldset class="form-group">
                         <label class="form-label" for="valor">Valor*</label>
                         <input class="form-control proximo_campo" id="valor" name="valor" type="number" value= "<?= $valor; ?>" step="0.01" size="30" required>
                       </fieldset>
                   </div>
-                  <div class="col-lg-3" id="manusear_despesa">
+                  <div class="col-lg-2" id="manusear_despesa">
                       <fieldset class="form-group">
                         <label class="form-label" for="data">Data*</label>
                         <input class="form-control proximo_campo" id="data" name="data" type="date" value= "<?= $data_cadastro; ?>" value = "<?= $data; ?>" placeholder="Data" size="80">
                       </fieldset>
                   </div>
-                      <div class="col-lg-2" id="div_categoria">
+                      <div class="col-lg-3" id="div_categoria">
                           <fieldset class="form-group">
                             <label class="form-label" for="categoria" id="categoria">Categoria*</label>
                             <select class="form-control proximo_campo uppercase" id="categoria" name="categoria" onChange="dados(this.value);">
