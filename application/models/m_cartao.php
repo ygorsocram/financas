@@ -168,7 +168,7 @@ class m_cartao extends CI_Model {
        																				 WHERE id_fatura_cartao = $id_fatura
        																				 AND id_categoria in (SELECT id_categoria
 					        																									FROM categorias
-                            																				WHERE id_tipo=1)) entrada
+                            																				WHERE id_tipo=4)) entrada
 																				ON saida.id_fatura_cartao = entrada.id_fatura_cartao");
 
 		$data= array(
