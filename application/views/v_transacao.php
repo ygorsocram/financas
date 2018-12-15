@@ -34,12 +34,12 @@
       								<td><?= $transacoes->categoria; ?></td>
       								<td width="10px" id="funcoes">
                           <?php if($transacoes->pago == 'S'):?>
-                            <a href="<?= base_url("transacao/cancelar_pagamento?id_tipo={$id_tipo}&id={$transacoes->id_transacao}")?>">Cancelar pagamento</a>
+                            <a href="<?= base_url("transacao/cancelar_pagamento?id_tipo={$id_tipo}&id={$transacoes->id_transacao}")?>"><i class="font-icon fas fa-undo" title="Cancelar Pagamento" style="font-size:20px; margin-right: 10px;"></i></a>
                           <?php else: ?>
-                            <a href="<?= base_url("transacao/pagar?id_tipo={$id_tipo}&id={$transacoes->id_transacao}")?>">Pagar</a>
+                            <a href="<?= base_url("transacao/pagar?id_tipo={$id_tipo}&id={$transacoes->id_transacao}")?>"><i class="font-icon fas fa-hand-holding-usd" title="Pagar" style="font-size:20px; margin-right: 10px;"></i></a>
                           <?php endif ?>
-      									<a href="<?= base_url("transacao/manusear?id_tipo={$id_tipo}&id={$transacoes->id_transacao}")?>">Alterar</a>
-                        <a href="<?= base_url("transacao/excluir?id_tipo={$id_tipo}&id={$transacoes->id_transacao}")?>">Excluir</a>
+      									<a href="<?= base_url("transacao/manusear?id_tipo={$id_tipo}&id={$transacoes->id_transacao}")?>"><i class="font-icon fab fa-autoprefixer" title="Alterar" style="font-size:20px;"></i></a>
+                        <a href="<?= base_url("transacao/excluir?id_tipo={$id_tipo}&id={$transacoes->id_transacao}")?>"><i class="font-icon fa fa-eraser" style="font-size:20px; margin-left: 10px;" title="Excluir"></i></a>
       								</td>
       							</tr>
       							<?php endforeach; ?>
