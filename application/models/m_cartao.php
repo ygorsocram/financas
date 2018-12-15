@@ -138,10 +138,9 @@ class m_cartao extends CI_Model {
 	}
 
 	public function valor_cartao_aberto($id_cartao){
-			$valor_cartao_aberto = $this->db->query("SELECT sum(vlr_fatura) as vlr_cartao_aberto
+			$valor_cartao_aberto = $this->db->query("SELECT sum(vlr_fatura_aberto) as vlr_cartao_aberto
 																				FROM faturas
-																				WHERE id_cartao = $id_cartao
-																				AND paga = 'N'");
+																				WHERE id_cartao = $id_cartao");
 
 		$data= array(
 			'vlr_cartao_aberto' => $valor_cartao_aberto->row()->vlr_cartao_aberto

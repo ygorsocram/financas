@@ -117,8 +117,8 @@ class Cartao extends MY_Controller {
 		}
 
       $this->m_cartao->valor_fatura($id_fatura);
-      $this->m_cartao->valor_cartao_aberto($id_cartao);
       $this->m_cartao->valor_fatura_aberto($id_fatura);
+      $this->m_cartao->valor_cartao_aberto($id_cartao);
 
 			$variaveis['lancamentos'] = $this->m_cartao->listagem($id_fatura);
 		  $variaveis['pagina'] = 'Lançamentos';
@@ -142,8 +142,8 @@ class Cartao extends MY_Controller {
 
 		  $this->m_cartao->excluir($transacao);
       $this->m_cartao->valor_fatura($id_fatura);
-      $this->m_cartao->valor_cartao_aberto($id_cartao);
       $this->m_cartao->valor_fatura_aberto($id_fatura);
+      $this->m_cartao->valor_cartao_aberto($id_cartao);
 
 			$variaveis['lancamentos'] = $this->m_cartao->listagem($id_fatura);
 		  $variaveis['pagina'] = 'Lançamentos';
