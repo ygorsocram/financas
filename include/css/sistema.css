@@ -1,5 +1,26 @@
 @charset "UTF-8";
 
+
+a#botao_voltar {
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 7px;
+  font-size: 15px;
+  color: white;
+}
+
+div#dados_cadastrais {
+  background-color: #e9ecef;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 2px;
+  padding-left: 100px;
+}
+
+div#div_observacao {
+  margin-left: 15px;
+}
+
 a#botao-novo {
   float:right;
   margin-left: 10px;
@@ -10,11 +31,6 @@ a#botao-valor {
   margin-left: 10px;
   margin-right: 180px;
   font-size: 20px;
-}
-
-//funções
-i#icone-funcao {
-  margin-left: 100px;
 }
 
 td#funcoes {

@@ -16,7 +16,7 @@
         <div class="widget-container fluid-height">
           <div class="box-typical-body">
             <form action="<?= base_url("transacao/gravar?id_tipo={$id_tipo}&id={$id_transacao}")?>" method="post">
-				<div class="row">
+				      <div id="dados_cadastrais" class="row">
               		<div class="col-lg-8" id="manusear_despesa">
               				<fieldset class="form-group">
               					<label class="form-label" for="nome">Nome*</label>
@@ -29,12 +29,6 @@
                         <input class="form-control proximo_campo" id="valor" name="valor" type="number" value= "<?= $valor; ?>" step="0.01" size="30" required>
                       </fieldset>
                   </div>
-                      <div class="col-lg-1" id="manusear_despesa">
-                          <fieldset class="form-group">
-                            <label class="form-label" for="pago">Pago</label>
-                            <input class="form-control proximo_campo" id="pago" name="pago" type="checkbox" size="5" <?= $pago; ?>>
-                          </fieldset>
-                      </div>
                   <div class="col-lg-3" id="manusear_despesa">
                       <fieldset class="form-group">
                         <label class="form-label" for="data">Data*</label>
@@ -55,7 +49,7 @@
 							             </select>
                           </fieldset>
                       </div>
-                      <div class="col-lg-2" id="div_conta">
+                      <div class="col-lg-3" id="div_conta">
                           <fieldset class="form-group">
                             <label class="form-label" for="conta" id="conta">Conta*</label>
                             <select class="form-control proximo_campo uppercase" id="conta" name="conta">
@@ -69,15 +63,23 @@
 							             </select>
                           </fieldset>
                       </div>
-              		<div class="col-lg-50" id="manusear_despesa">
+                      <div class="col-lg-1" id="manusear_despesa">
+                          <fieldset class="form-group">
+                            <label class="form-label" for="pago">Pago</label>
+                            <input class="form-control proximo_campo" id="pago" name="pago" type="checkbox" size="5" <?= $pago; ?>>
+                          </fieldset>
+                      </div>
+              		<div class="col-lg-50" id="div_observacao">
               				<fieldset class="form-group">
               					<label class="form-label" for="observacao">Observaçao</label>
-              					<input class="form-control proximo_campo" id="observacao" name="observacao" type="textarea" value= "<?= $observacao; ?>" placeholder="observacao" size="100">
+              					<input class="form-control proximo_campo" id="observacao" name="observacao" type="textarea" value= "<?= $observacao; ?>" placeholder="observacao" size="88">
               				</fieldset>
               		</div>
               	</div>
-                <a class="btn btn-info-outline" href="<?= base_url('transacao?id_tipo={$id_tipo}')?>"><i class="fa fa-arrow-left"></i>&nbsp;Voltar</a>
-                        <button type="submit" class="btn btn-inline btn-success pull-right" id="manusear_despesa">Gravar</button>
+                <div>
+                <a id="botao_voltar" class="btn btn-warning btn-sm" href="<?= base_url("transacao?id_tipo={$id_tipo}")?>"><i class="fa fa-arrow-left"></i>&nbsp;Voltar</a>
+                <button type="submit" class="btn btn-inline btn-success pull-right" id="manusear_despesa">Gravar</button>
+                </div>
       </form>
 			</div>
 		</section>

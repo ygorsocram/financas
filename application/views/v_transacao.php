@@ -10,9 +10,10 @@
           <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-table"></i>
-              <?= $nome_tipo; ?></div>
+              <?= $nome_tipo; ?>
               <a id="botao-novo" class="btn btn-success btn-sm" href="<?= base_url("transacao/manusear?id_tipo={$id_tipo}&id=0")?>"><i class="font-icon fa fa-plus"></i> Nova</a>
-            <div class="card-body">
+              </div>
+          <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>

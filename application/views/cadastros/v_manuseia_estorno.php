@@ -16,7 +16,7 @@
         <div class="widget-container fluid-height">
           <div class="box-typical-body">
             <form action="<?= base_url("cartao/gravar?id={$id_transacao}")?>" method="post">
-				<div class="row">
+				        <div id="dados_cadastrais" class="row">
               		<div class="col-lg-8" id="manusear_despesa">
               				<fieldset class="form-group">
               					<label class="form-label" for="nome">Nome*</label>
@@ -57,7 +57,7 @@
 							             </select>
                           </fieldset>
                       </div>
-                      <div class="col-lg-2" id="div_fatura">
+                      <div class="col-lg-3" id="div_fatura">
                           <fieldset class="form-group">
                             <label class="form-label" for="fatura" id="fatura">Fatura*</label>
                             <select class="form-control proximo_campo uppercase" id="fatura" name="fatura">
@@ -71,15 +71,15 @@
 							             </select>
                           </fieldset>
                       </div>
-              		<div class="col-lg-50" id="manusear_despesa">
+              		<div class="col-lg-50" id="div_observacao">
               				<fieldset class="form-group">
               					<label class="form-label" for="observacao">Observaçao</label>
-              					<input class="form-control proximo_campo" id="observacao" name="observacao" type="textarea" value= "<?= $observacao; ?>" placeholder="observacao" size="100">
+              					<input class="form-control proximo_campo" id="observacao" name="observacao" type="textarea" value= "<?= $observacao; ?>" placeholder="observacao" size="88">
               				</fieldset>
               		</div>
               	</div>
-                <a class="btn btn-info-outline" href="<?= base_url("cartao/acessar_lancamento?id_fatura={$id_fatura}")?>"><i class="fa fa-arrow-left"></i>&nbsp;Voltar</a>
-                        <button type="submit" class="btn btn-inline btn-success pull-right" id="manusear_despesa">Gravar</button>
+                <a id="botao_voltar" class="btn btn-warning btn-sm" href="<?= base_url("cartao/acessar_lancamento?id_fatura={$id_fatura}")?>"><i class="fa fa-arrow-left"></i>&nbsp;Voltar</a>
+               <button type="submit" class="btn btn-inline btn-success pull-right" id="manusear_despesa">Gravar</button>
       </form>
 			</div>
 		</section>
