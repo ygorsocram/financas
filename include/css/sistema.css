@@ -21,6 +21,10 @@ div#div_observacao {
   margin-left: 15px;
 }
 
+div#div_valor {
+  margin-right: 15px;
+}
+
 a#botao-novo {
   float:right;
   margin-left: 10px;
