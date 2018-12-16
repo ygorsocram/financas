@@ -17,7 +17,11 @@
                     </th>
                     <th id="botao_valor">
                       <a id="botao_valor" class="btn btn-info btn-sm" href="<?= base_url("transacao")?>" title="Valor total"><?=$valor_transacao_total?></a>
-                      <a id="botao_valor" class="btn btn-warning btn-sm" href="<?= base_url("transacao")?>" title="Valor Pago"><?=$valor_transacao_pago?></a>
+                      <?php if($nome_tipo == 'RECEITA'):?>
+                      <a id="botao_valor" class="btn btn-warning btn-sm" href="<?= base_url("transacao")?>" title="Valor Pago "><?=$valor_transacao_pago?></a>
+                      <?php else: ?>
+                      <a id="botao_valor" class="btn btn-warning btn-sm" href="<?= base_url("transacao")?>" title="Valor Recebido "><?=$valor_transacao_pago?></a>
+                      <?php endif ?>
                       <a id="botao_valor" class="btn btn-danger btn-sm" href="<?= base_url("transacao")?>" title="Valor Restante"><?=$valor_transacao_restante?></a>
                     </th>
                     <th>

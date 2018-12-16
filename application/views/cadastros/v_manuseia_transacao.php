@@ -65,7 +65,11 @@
                       </div>
                       <div class="col-lg-1" id="manusear_despesa">
                           <fieldset class="form-group">
-                            <label class="form-label" for="pago">Pago</label>
+                            <?php if($id_tipo == 1):?>
+                                <label class="form-label" for="pago">Recebido</label>
+                            <?php else: ?>
+                                <label class="form-label" for="pago">Pago</label>
+                            <?php endif ?>
                             <input class="form-control proximo_campo" id="pago" name="pago" type="checkbox" size="5" <?= $pago; ?>>
                           </fieldset>
                       </div>
