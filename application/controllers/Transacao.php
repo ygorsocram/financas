@@ -19,8 +19,8 @@ class Transacao extends MY_Controller {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
 		}else {
-				$data_inicio = '2018-12-01';
-				$data_fim = '2018-12-30';
+				$data_inicio = date("Y-m-01");
+				$data_fim = date("Y-m-t");
 		}
 
 		$valor_transacao_total = $this->m_transacao->somatorio_transacao($data_inicio,$data_fim,$id_tipo)->row()->valor;
@@ -100,8 +100,8 @@ class Transacao extends MY_Controller {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
 		}else {
-				$data_inicio = '2018-12-01';
-				$data_fim = '2018-12-30';
+				$data_inicio = date("Y-m-01");
+				$data_fim = date("Y-m-t");
 		}
 		$variaveis['data_inicio'] = $data_inicio;
 		$variaveis['data_fim'] = $data_fim;
@@ -163,8 +163,8 @@ class Transacao extends MY_Controller {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
 		}else {
-				$data_inicio = '2018-12-01';
-				$data_fim = '2018-12-30';
+				$data_inicio = date("Y-m-01");
+				$data_fim = date("Y-m-t");
 		}
 		$variaveis['data_inicio'] = $data_inicio;
 		$variaveis['data_fim'] = $data_fim;
@@ -203,8 +203,8 @@ class Transacao extends MY_Controller {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
 		}else {
-				$data_inicio = '2018-12-01';
-				$data_fim = '2018-12-30';
+				$data_inicio = date("Y-m-01");
+				$data_fim = date("Y-m-t");
 		}
 		$variaveis['data_inicio'] = $data_inicio;
 		$variaveis['data_fim'] = $data_fim;
@@ -243,8 +243,8 @@ class Transacao extends MY_Controller {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
 		}else {
-				$data_inicio = '2018-12-01';
-				$data_fim = '2018-12-30';
+				$data_inicio = date("Y-m-01");
+				$data_fim = date("Y-m-t");
 		}
 		$variaveis['data_inicio'] = $data_inicio;
 		$variaveis['data_fim'] = $data_fim;
