@@ -12,7 +12,11 @@ class Transacao extends MY_Controller {
 	{
 		$id_tipo = $_GET['id_tipo'];
 
-		if (isset($_POST['categoria'])) {
+		if (isset($_GET['categoria'])) {
+				$data_inicio = $_GET['data_inicio'];
+				$data_fim = $_GET['data_fim'];
+				$categoria = $_GET['categoria'];
+		}	elseif (isset($_POST['categoria'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
 				$categoria = $this->input->post('categoria');
@@ -22,8 +26,13 @@ class Transacao extends MY_Controller {
 				$categoria = 0;
 		}
 
-		$valor_transacao_total = $this->m_transacao->somatorio_transacao($data_inicio,$data_fim,$id_tipo)->row()->valor;
-		$valor_transacao_pago = $this->m_transacao->somatorio_transacao_paga($data_inicio,$data_fim,$id_tipo)->row()->valor;
+		if($categoria == 0){
+			$valor_transacao_total = $this->m_transacao->somatorio_transacao($data_inicio,$data_fim,$id_tipo)->row()->valor;
+			$valor_transacao_pago = $this->m_transacao->somatorio_transacao_paga($data_inicio,$data_fim,$id_tipo)->row()->valor;
+} else {
+			$valor_transacao_total = $this->m_transacao->somatorio_transacao_categoria($data_inicio,$data_fim,$id_tipo,$categoria)->row()->valor;
+			$valor_transacao_pago = $this->m_transacao->somatorio_transacao_paga_categoria($data_inicio,$data_fim,$id_tipo,$categoria)->row()->valor;
+}
 		$variaveis['valor_transacao_total'] = $valor_transacao_total;
 		if($valor_transacao_pago>0) {
  			$variaveis['valor_transacao_restante'] = $valor_transacao_total - $valor_transacao_pago;
@@ -98,7 +107,11 @@ class Transacao extends MY_Controller {
 		$id_tipo = $_GET['id_tipo'];
 		$id_transacao = $_GET['id'];
 
-		if (isset($_POST['data_inicio'])) {
+		if (isset($_GET['categoria'])) {
+				$data_inicio = $_GET['data_inicio'];
+				$data_fim = $_GET['data_fim'];
+				$categoria = $_GET['categoria'];
+		}	elseif (isset($_POST['categoria'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
 				$categoria = $this->input->post('categoria');
@@ -164,7 +177,11 @@ class Transacao extends MY_Controller {
 		$transacao = $_GET['id'];
 		$id_tipo = $_GET['id_tipo'];
 
-		if (isset($_POST['data_inicio'])) {
+			if (isset($_GET['categoria'])) {
+					$data_inicio = $_GET['data_inicio'];
+					$data_fim = $_GET['data_fim'];
+					$categoria = $_GET['categoria'];
+			}	elseif (isset($_POST['categoria'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
 				$categoria = $this->input->post('categoria');
@@ -205,7 +222,11 @@ class Transacao extends MY_Controller {
 		$transacao = $_GET['id'];
 		$id_tipo = $_GET['id_tipo'];
 
-		if (isset($_POST['categoria'])) {
+		if (isset($_GET['categoria'])) {
+				$data_inicio = $_GET['data_inicio'];
+				$data_fim = $_GET['data_fim'];
+				$categoria = $_GET['categoria'];
+		}	elseif (isset($_POST['categoria'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
 				$categoria = $this->input->post('categoria');
@@ -246,7 +267,11 @@ class Transacao extends MY_Controller {
 		$transacao = $_GET['id'];
 		$id_tipo = $_GET['id_tipo'];
 
-		if (isset($_POST['data_inicio'])) {
+		if (isset($_GET['categoria'])) {
+				$data_inicio = $_GET['data_inicio'];
+				$data_fim = $_GET['data_fim'];
+				$categoria = $_GET['categoria'];
+		}	elseif (isset($_POST['categoria'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
 				$categoria = $this->input->post('categoria');

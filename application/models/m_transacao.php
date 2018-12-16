@@ -30,6 +30,29 @@ class m_transacao extends CI_Model {
 																 AND   id_fatura_cartao is null");
 }
 
+	public function somatorio_transacao_categoria($data_inicio,$data_fim,$id_tipo,$categoria){
+				return $this->db->query("SELECT sum(valor) as valor
+																 FROM transacoes
+																 WHERE id_categoria in (SELECT id_categoria
+					   																						FROM	  categorias
+					   																						WHERE  id_tipo = $id_tipo)
+																 AND   data_cadastro between '$data_inicio' and '$data_fim'
+																 AND   id_fatura_cartao is null
+																 AND	 id_categoria = $categoria");
+}
+
+	public function somatorio_transacao_paga_categoria($data_inicio,$data_fim,$id_tipo,$categoria){
+				return $this->db->query("SELECT sum(valor) as valor
+																 FROM transacoes
+																 WHERE id_categoria in (SELECT id_categoria
+					   																						FROM	  categorias
+					   																						WHERE  id_tipo = $id_tipo)
+																 AND   data_cadastro between '$data_inicio' and '$data_fim'
+																 AND   pago = 'S'
+																 AND   id_fatura_cartao is null
+																 AND	 id_categoria = $categoria");
+}
+
 	public function nome_tipo($id_tipo){
 				return $this->db->query("SELECT nome
                                  FROM   tipos
