@@ -5,7 +5,11 @@ class m_conta extends CI_Model {
 
 	public function contas(){
 
-			return $this->db->query("SELECT *
+			return $this->db->query("SELECT id_conta,
+																			nome,
+																			vlr_saldo,
+																			vlr_pendente,
+																			vlr_saldo + vlr_pendente as vlr_restante
 																FROM contas c");
 	}
 
@@ -26,6 +30,7 @@ class m_conta extends CI_Model {
 																		 AND id_conta = $id_conta
 																		 AND pago = 'S'");
 
+//verifica se tem linhas senão coloca 0
 		if ($qvalor_entrada->rowCount = 0) $valor_entrada = 0;
 																else $valor_entrada = $qvalor_entrada->row()->valor_entrada;
 
@@ -64,6 +69,7 @@ class m_conta extends CI_Model {
 				    													 FROM cartoes
                     									 WHERE id_conta = $id_conta");
 
+//verifica se tem linhas senão coloca 0
 		if ($qvalor_entrada->rowCount = 0) $valor_entrada = 0;
 																else $valor_entrada = $qvalor_entrada->row()->valor_entrada;
 

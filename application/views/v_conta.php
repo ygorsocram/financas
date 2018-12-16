@@ -20,7 +20,8 @@
           <tr>
                     <th>Nome</th>
                     <th>Saldo</th>
-                    <th>Pendente</th>
+                    <th title="Todas as entradas não pagas - Todas as saidas não pagas (Despesas e Cartão)">Pendente</th>
+                    <th title="Se todas as entradas e saidas forem pagas ou recebidas seu saldo ficará nesse valor">Valor Esperado</th>
                     <th>Funções</th>
           </tr>
         </thead>
@@ -30,6 +31,7 @@
                   <td><?= $contas->nome; ?></td>
                   <td><?= $contas->vlr_saldo; ?></td>
                   <td><?= $contas->vlr_pendente; ?></td>
+                  <td><?= $contas->vlr_restante; ?></td>
             <td width="10px" id="funcoes">
               <a href="<?= base_url("conta/acessar_contas")?>"><i class="font-icon fas fa-sign-in-alt" title="Acessar" style="font-size:20px; margin-right: 10px;"></i></a>
       				<a href="<?= base_url("conta/manusear_contas?id={$contas->id_conta}")?>"><i class="font-icon fab fa-autoprefixer" title="Alterar" style="font-size:20px;"></i></a>
