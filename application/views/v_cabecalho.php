@@ -30,13 +30,13 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+      <a class="navbar-brand mr-1" href="index.html">Finanças</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
       </button>
 
-      <!-- Navbar Search -->
+      <!-- Navbar Search
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -46,9 +46,9 @@
             </button>
           </div>
         </div>
-      </form>
+      </form>-->
 
-      <!-- Navbar -->
+      <!-- Navbar
       <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -77,7 +77,7 @@
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user-circle fa-fw"></i>
-          </a>
+          </a>-->
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
             <a class="dropdown-item" href="#">Settings</a>
             <a class="dropdown-item" href="#">Activity Log</a>
@@ -94,12 +94,12 @@
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="<?= base_url('inicio');?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
           </a>
         </li>
-        <li class="nav-item dropdown">
+        <!--<li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-folder"></i>
             <span>Pages</span>
@@ -114,6 +114,11 @@
             <a class="dropdown-item" href="404.html">404 Page</a>
             <a class="dropdown-item" href="blank.html">Blank Page</a>
           </div>
+        </li>-->
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('cartao');?>">
+            <i class="far fa-credit-card"></i>
+            <span>Cartões de Créditos</span></a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -123,14 +128,27 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <a class="dropdown-item" href="<?= base_url('transacao?id_tipo=1');?>">Receitas</a>
             <a class="dropdown-item" href="<?= base_url('transacao?id_tipo=2');?>">Despesas</a>
-            <a class="dropdown-item" href="<?= base_url('cartao');?>">Cartão de Crédito</a>
-            <a class="dropdown-item" href="<?= base_url('transacao?id_tipo=4');?>">Transferencias</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
+          <a class="nav-link"  href="<?= base_url('contas');?>">
+            <i class="fas fa-university"></i>
+            <span>Contas</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('relatorios');?>">
+            <i class="fas fa-chart-bar"></i>
+            <span>Relatórios</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('orcamentos');?>">
+            <i class="fas fa-flag"></i>
+            <span>Orçamentos</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('categorias');?>">
+            <i class="fas fa-tags"></i>
+            <span>Categorias</span></a>
         </li>
       </ul>
 
