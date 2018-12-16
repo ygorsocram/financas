@@ -15,21 +15,41 @@
                       <i class="fas fa-table"></i>
                         <?= $nome_tipo; ?>
                     </th>
-                    <th id="botao_valor">
-                      <a id="botao_valor" class="btn btn-info btn-sm" href="<?= base_url("transacao")?>" title="Valor total"><?=$valor_transacao_total?></a>
+                    <th id="botao_valor_transacao" class="btn btn-info btn-sm" title="Valor total"><?=$valor_transacao_total?>
                       <?php if($nome_tipo == 'RECEITA'):?>
-                      <a id="botao_valor" class="btn btn-warning btn-sm" href="<?= base_url("transacao")?>" title="Valor Pago "><?=$valor_transacao_pago?></a>
+                      <a id="botao_valor_transacao" class="btn btn-warning btn-sm" title="Valor Pago "><?=$valor_transacao_pago?></a>
                       <?php else: ?>
-                      <a id="botao_valor" class="btn btn-warning btn-sm" href="<?= base_url("transacao")?>" title="Valor Recebido "><?=$valor_transacao_pago?></a>
+                      <a id="botao_valor_transacao" class="btn btn-warning btn-sm" title="Valor Recebido "><?=$valor_transacao_pago?></a>
                       <?php endif ?>
-                      <a id="botao_valor" class="btn btn-danger btn-sm" href="<?= base_url("transacao")?>" title="Valor Restante"><?=$valor_transacao_restante?></a>
+                      <a id="botao_valor_transacao" class="btn btn-danger btn-sm" title="Valor Restante"><?=$valor_transacao_restante?></a>
                     </th>
                     <th>
-                      <form action="<?= base_url("transacao?id_tipo={$id_tipo}")?>" method="post">
+                        <a id="botao_novo_transacao" class="btn btn-success btn-sm" href="<?= base_url("transacao/manusear?id_tipo={$id_tipo}&id=0")?>"><i class="font-icon fa fa-plus"></i> Nova</a>
+                    </th>
+                  </tr>
+                </table>
+              </div>
+              <div class="card-header">
+                      <form id="filtro_transacao" action="<?= base_url("transacao?id_tipo={$id_tipo}")?>" method="post">
                           <table>
                             <tr>
                               <th>
-                                <label class="form-label" for="data_inicio">Data Inicio</label>
+                                <label class="form-label" for="categoria">Categoria</label>
+                              </th>
+                              <th>
+                            <select class="form-control proximo_campo uppercase" id="categoria" name="categoria" onChange="dados(this.value);">
+                                  <option value="0" selected>Todas</option>
+                            <?php foreach($categorias -> result() as $categorias): ?>
+                              <?php if($categoria== $categorias->id_categoria):?>
+                                  <option value="<?= $categorias->id_categoria; ?>" selected> <?= $categorias->nome; ?></option>
+                              <?php else: ?>
+                                  <option value="<?= $categorias->id_categoria; ?>"> <?= $categorias->nome; ?></option>
+                              <?php endif ?>
+                            <?php endforeach; ?>
+							             </select>
+                              </th>
+                              <th>
+                                <label id="data_inicio" class="form-label" for="data_inicio">Data Inicio</label>
                               </th>
                               <th>
                                 <input class="form-control proximo_campo" id="data_inicio" name="data_inicio" type="date" value= "<?= $data_inicio; ?>" size="80">
@@ -47,13 +67,6 @@
                             </tr>
                           </table>
                       </form>
-                    </th>
-                    <th>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <a id="botao-novo" class="btn btn-success btn-sm" href="<?= base_url("transacao/manusear?id_tipo={$id_tipo}&id=0")?>"><i class="font-icon fa fa-plus"></i> Nova</a>
-                    </th>
-                  </tr>
-                </table>
               </div>
           <div class="card-body">
               <div class="table-responsive">

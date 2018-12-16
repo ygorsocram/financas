@@ -12,15 +12,14 @@ class Transacao extends MY_Controller {
 	{
 		$id_tipo = $_GET['id_tipo'];
 
-		if (isset($_GET['data_inicio'])) {
-				$data_inicio = $_GET['data_inicio'];
-				$data_fim = $_GET['data_fim'];
-		} elseif (isset($_POST['data_inicio'])) {
+		if (isset($_POST['categoria'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
+				$categoria = $this->input->post('categoria');
 		}else {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
+				$categoria = 0;
 		}
 
 		$valor_transacao_total = $this->m_transacao->somatorio_transacao($data_inicio,$data_fim,$id_tipo)->row()->valor;
@@ -34,11 +33,16 @@ class Transacao extends MY_Controller {
 			$variaveis['valor_transacao_pago'] = 0;
  		}
 
-		$variaveis['transacoes'] = $this->m_transacao->listagem($data_inicio,$data_fim,$id_tipo);
+		if ($categoria == 0) $variaveis['transacoes'] = $this->m_transacao->listagem($data_inicio,$data_fim,$id_tipo);
+									 else $variaveis['transacoes'] = $this->m_transacao->listagem_com_categoria($data_inicio,$data_fim,$id_tipo,$categoria);
+
 		$variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
 		$variaveis['id_tipo'] = $id_tipo;
 		$variaveis['data_inicio'] = $data_inicio;
 		$variaveis['data_fim'] = $data_fim;
+		$variaveis['categorias'] = $this->m_transacao->categorias($id_tipo);
+		$variaveis['categoria'] = $categoria;
+
 
 		$this->load->view('v_cabecalho');
 		$this->load->view('v_transacao', $variaveis);
@@ -54,6 +58,7 @@ class Transacao extends MY_Controller {
 		$variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
 		$variaveis['id_transacao'] = $id;
 		$variaveis['categorias'] = $this->m_transacao->categorias($id_tipo);
+		$variaveis['categoria'] = $categoria;
 		$variaveis['contas'] = $this->m_transacao->contas();
 		$variaveis['tags'] = $this->m_transacao->tags();
 		$variaveis['id_tipo'] = $id_tipo;
@@ -93,18 +98,19 @@ class Transacao extends MY_Controller {
 		$id_tipo = $_GET['id_tipo'];
 		$id_transacao = $_GET['id'];
 
-		if (isset($_GET['data_inicio'])) {
-				$data_inicio = $_GET['data_inicio'];
-				$data_fim = $_GET['data_fim'];
-		} elseif (isset($_POST['data_inicio'])) {
+		if (isset($_POST['data_inicio'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
+				$categoria = $this->input->post('categoria');
 		}else {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
+				$categoria = 0;
 		}
 		$variaveis['data_inicio'] = $data_inicio;
 		$variaveis['data_fim'] = $data_fim;
+		$variaveis['categorias'] = $this->m_transacao->categorias($id_tipo);
+		$variaveis['categoria'] = $categoria;
 
 		$nome = $this->input->post('nome');
 		$valor = $this->input->post('valor');
@@ -145,7 +151,8 @@ class Transacao extends MY_Controller {
  		}
 
 		  $variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
-			$variaveis['transacoes'] = $this->m_transacao->listagem($data_inicio,$data_fim,$id_tipo);
+		if ($categoria == 0) $variaveis['transacoes'] = $this->m_transacao->listagem($data_inicio,$data_fim,$id_tipo);
+									 else $variaveis['transacoes'] = $this->m_transacao->listagem_com_categoria($data_inicio,$data_fim,$id_tipo,$categoria);
 			$variaveis['id_tipo'] = $id_tipo;
 			$this->load->view('v_cabecalho');
 			$this->load->view('v_transacao', $variaveis);
@@ -155,23 +162,23 @@ class Transacao extends MY_Controller {
 	public function excluir()
 	{
 		$transacao = $_GET['id'];
+		$id_tipo = $_GET['id_tipo'];
 
-		if (isset($_GET['data_inicio'])) {
-				$data_inicio = $_GET['data_inicio'];
-				$data_fim = $_GET['data_fim'];
-		} elseif (isset($_POST['data_inicio'])) {
+		if (isset($_POST['data_inicio'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
+				$categoria = $this->input->post('categoria');
 		}else {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
+				$categoria = 0;
 		}
 		$variaveis['data_inicio'] = $data_inicio;
 		$variaveis['data_fim'] = $data_fim;
+		$variaveis['categorias'] = $this->m_transacao->categorias($id_tipo);
+		$variaveis['categoria'] = $categoria;
 
 		$this->m_transacao->excluir($transacao);
-
-		$id_tipo = $_GET['id_tipo'];
 
 		$valor_transacao_total = $this->m_transacao->somatorio_transacao($data_inicio,$data_fim,$id_tipo)->row()->valor;
 		$valor_transacao_pago = $this->m_transacao->somatorio_transacao_paga($data_inicio,$data_fim,$id_tipo)->row()->valor;
@@ -185,7 +192,8 @@ class Transacao extends MY_Controller {
  		}
 
 		  $variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
-			$variaveis['transacoes'] = $this->m_transacao->listagem($data_inicio,$data_fim,$id_tipo);
+		if ($categoria == 0) $variaveis['transacoes'] = $this->m_transacao->listagem($data_inicio,$data_fim,$id_tipo);
+									 else $variaveis['transacoes'] = $this->m_transacao->listagem_com_categoria($data_inicio,$data_fim,$id_tipo,$categoria);
 			$variaveis['id_tipo'] = $id_tipo;
 			$this->load->view('v_cabecalho');
 			$this->load->view('v_transacao', $variaveis);
@@ -195,23 +203,23 @@ class Transacao extends MY_Controller {
 	public function pagar()
 	{
 		$transacao = $_GET['id'];
+		$id_tipo = $_GET['id_tipo'];
 
-		if (isset($_GET['data_inicio'])) {
-				$data_inicio = $_GET['data_inicio'];
-				$data_fim = $_GET['data_fim'];
-		} elseif (isset($_POST['data_inicio'])) {
+		if (isset($_POST['categoria'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
+				$categoria = $this->input->post('categoria');
 		}else {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
+				$categoria = 0;
 		}
 		$variaveis['data_inicio'] = $data_inicio;
 		$variaveis['data_fim'] = $data_fim;
+		$variaveis['categorias'] = $this->m_transacao->categorias($id_tipo);
+		$variaveis['categoria'] = $categoria;
 
 		$this->m_transacao->pagar($transacao);
-
-		$id_tipo = $_GET['id_tipo'];
 
 		$valor_transacao_total = $this->m_transacao->somatorio_transacao($data_inicio,$data_fim,$id_tipo)->row()->valor;
 		$valor_transacao_pago = $this->m_transacao->somatorio_transacao_paga($data_inicio,$data_fim,$id_tipo)->row()->valor;
@@ -225,7 +233,8 @@ class Transacao extends MY_Controller {
  		}
 
 		  $variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
-			$variaveis['transacoes'] = $this->m_transacao->listagem($data_inicio,$data_fim,$id_tipo);
+		if ($categoria == 0) $variaveis['transacoes'] = $this->m_transacao->listagem($data_inicio,$data_fim,$id_tipo);
+									 else $variaveis['transacoes'] = $this->m_transacao->listagem_com_categoria($data_inicio,$data_fim,$id_tipo,$categoria);
 			$variaveis['id_tipo'] = $id_tipo;
 			$this->load->view('v_cabecalho');
 			$this->load->view('v_transacao', $variaveis);
@@ -235,23 +244,23 @@ class Transacao extends MY_Controller {
 	public function cancelar_pagamento()
 	{
 		$transacao = $_GET['id'];
+		$id_tipo = $_GET['id_tipo'];
 
-		if (isset($_GET['data_inicio'])) {
-				$data_inicio = $_GET['data_inicio'];
-				$data_fim = $_GET['data_fim'];
-		} elseif (isset($_POST['data_inicio'])) {
+		if (isset($_POST['data_inicio'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
+				$categoria = $this->input->post('categoria');
 		}else {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
+				$categoria = 0;
 		}
 		$variaveis['data_inicio'] = $data_inicio;
 		$variaveis['data_fim'] = $data_fim;
+		$variaveis['categorias'] = $this->m_transacao->categorias($id_tipo);
+		$variaveis['categoria'] = $categoria;
 
 		$this->m_transacao->cancelar_pagamento($transacao);
-
-		$id_tipo = $_GET['id_tipo'];
 
 		$valor_transacao_total = $this->m_transacao->somatorio_transacao($data_inicio,$data_fim,$id_tipo)->row()->valor;
 		$valor_transacao_pago = $this->m_transacao->somatorio_transacao_paga($data_inicio,$data_fim,$id_tipo)->row()->valor;
@@ -265,7 +274,8 @@ class Transacao extends MY_Controller {
  		}
 
 		  $variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
-			$variaveis['transacoes'] = $this->m_transacao->listagem($data_inicio,$data_fim,$id_tipo);
+		if ($categoria == 0) $variaveis['transacoes'] = $this->m_transacao->listagem($data_inicio,$data_fim,$id_tipo);
+									 else $variaveis['transacoes'] = $this->m_transacao->listagem_com_categoria($data_inicio,$data_fim,$id_tipo,$categoria);
 			$variaveis['id_tipo'] = $id_tipo;
 			$this->load->view('v_cabecalho');
 			$this->load->view('v_transacao', $variaveis);

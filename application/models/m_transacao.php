@@ -53,18 +53,22 @@ class m_transacao extends CI_Model {
 							                                 ORDER BY t.data_cadastro");
 				}
 
-	public function filtrar($id_tipo,$data_inicio,$data_fim){
+	public function listagem_com_categoria($data_inicio,$data_fim,$id_tipo,$id_categoria){
 				return $this->db->query("SELECT t.id_transacao,
-                                        t.data_cadastro,
-                                        t.nome,
-                                        t.valor,
-                                        c.nome as categoria,
+																				t.data_cadastro,
+																				t.nome,
+																				t.valor,
+																				c.nome as categoria,
+																				co.nome as conta,
 																				t.pago
-                                 FROM   transacoes t, categorias c
+																 FROM   transacoes t, categorias c, contas co
 																 WHERE  t.id_categoria = c.id_categoria
-                                 AND    c.id_tipo = $id_tipo
-																 AND		t.data_cadastro between $data_inicio and $data_fim
-                                 ORDER BY t.data_cadastro");
+																 AND    t.id_conta = co.id_conta
+																 AND    c.id_tipo = $id_tipo
+																 AND		t.id_fatura_cartao is null
+																 AND    data_cadastro between '$data_inicio' and '$data_fim'
+																 AND		t.id_categoria = $id_categoria
+																 ORDER BY t.data_cadastro");
 		}
 
 	public function categorias($id_tipo){
