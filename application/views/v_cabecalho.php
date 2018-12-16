@@ -131,22 +131,22 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link"  href="<?= base_url('contas');?>">
+          <a class="nav-link"  href="<?= base_url('conta');?>">
             <i class="fas fa-university"></i>
             <span>Contas</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('relatorios');?>">
+          <a class="nav-link" href="<?= base_url('relatorio');?>">
             <i class="fas fa-chart-bar"></i>
             <span>Relatórios</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('orcamentos');?>">
+          <a class="nav-link" href="<?= base_url('orcamento');?>">
             <i class="fas fa-flag"></i>
             <span>Orçamentos</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('categorias');?>">
+          <a class="nav-link" href="<?= base_url('categoria');?>">
             <i class="fas fa-tags"></i>
             <span>Categorias</span></a>
         </li>

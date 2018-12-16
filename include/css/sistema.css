@@ -27,7 +27,7 @@ div#div_valor {
 
 /* Botões das telas de lancamentos e transacoes */
 
-th#botao_novo {
+#botao_novo {
   float:right;
   margin-left: 10px;
 }
