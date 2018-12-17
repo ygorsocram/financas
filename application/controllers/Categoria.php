@@ -31,7 +31,7 @@ class Categoria extends MY_Controller {
 			$categoria = $this->m_categoria->listar_categoria($id_categoria);
 
 			$variaveis['nome'] = $categoria->row()->nome;
-			$variaveis['valor_orcamento'] = $categoria->row()->nome;
+			$variaveis['valor_orcamento'] = $categoria->row()->vlr_orcamento;
 			$variaveis['cor'] = $categoria->row()->cor;
 		}
 

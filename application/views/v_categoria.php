@@ -29,7 +29,7 @@
                             <td><?= $categorias->nome; ?></td>
                             <td><button style="background-color:<?= $categorias->cor; ?>" title="Cor"><i class="fas fa-table"></i></button></td>
       								<td width="10px" id="funcoes">
-                        <a href="<?= base_url("categoria/manusear?id_categoria={$categorias->id_categoria}&id_tipo=1")?>"><i class="font-icon fas fa-sign-in-alt" title="Acessar" style="font-size:20px;"></i></a>
+      				          <a href="<?= base_url("categoria/manusear?id_categoria={$categorias->id_categoria}&id_tipo=1")?>"><i class="font-icon fab fa-autoprefixer" title="Alterar" style="font-size:20px;"></i></a>
                         <a href="<?= base_url("categoria/excluir?id={$categorias->id_categoria}")?>"><i class="font-icon fa fa-eraser" style="font-size:20px; margin-left: 10px;" title="Excluir"></i></a>
       								</td>
       							</tr>
@@ -66,7 +66,7 @@
                             <td><?= $categorias->vlr_orcamento; ?></td>
                             <td><button style="background-color:<?= $categorias->cor; ?>" title="Cor"><i class="fas fa-table"></i></button></td>
       								<td width="10px" id="funcoes">
-                        <a href="<?= base_url("categoria/manusear?id_categoria={$categorias->id_categoria}&id_tipo=2")?>"><i class="font-icon fas fa-sign-in-alt" title="Acessar" style="font-size:20px;"></i></a>
+      				          <a href="<?= base_url("categoria/manusear?id_categoria={$categorias->id_categoria}&id_tipo=2")?>"><i class="font-icon fab fa-autoprefixer" title="Alterar" style="font-size:20px;"></i></a>
                         <a href="<?= base_url("categoria/excluir?id={$categorias->id_categoria}")?>"><i class="font-icon fa fa-eraser" style="font-size:20px; margin-left: 10px;" title="Excluir"></i></a>
       								</td>
       							</tr>
