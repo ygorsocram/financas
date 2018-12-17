@@ -68,3 +68,8 @@ form#filtro_transacao {
 label#data_inicio_relatorio {
   margin-left: 100px;
 }
+
+/* Css da categoria */
+a#botao_novo_categoria {
+  float: right;
+}

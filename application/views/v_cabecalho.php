@@ -151,11 +151,6 @@
             <span>Relatórios</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('orcamento');?>">
-            <i class="fas fa-flag"></i>
-            <span>Orçamentos</span></a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="<?= base_url('categoria');?>">
             <i class="fas fa-tags"></i>
             <span>Categorias</span></a>
