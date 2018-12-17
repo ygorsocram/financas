@@ -5,7 +5,7 @@ class Inicio extends MY_Controller {
 	public function index()
 	{
 		$this->load->view('v_cabecalho');
-		$this->load->view('v_relatorio');
+		$this->load->view('inicio');
 		$this->load->view('v_rodape');
 	}
 }

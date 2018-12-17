@@ -1,7 +1,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="<?= base_url('inicio');?>">Dashboard</a>
+              <a href="<?= base_url('Inicio');?>">Dashboard</a>
             </li>
                 <li class="breadcrumb-item active"><?= $nome_tipo; ?></li>
           </ol>
@@ -24,7 +24,7 @@
                       <a id="botao_valor_transacao" class="btn btn-danger btn-sm" title="Valor Restante"><?=$valor_transacao_restante?></a>
                     </th>
                     <th>
-                        <a id="botao_novo_transacao" class="btn btn-success btn-sm" href="<?= base_url("transacao/manusear?id_tipo={$id_tipo}&id=0")?>"><i class="font-icon fa fa-plus"></i> Nova</a>
+                        <a id="botao_novo_transacao" class="btn btn-success btn-sm" href="<?= base_url("transacao/manusear?id_tipo={$id_tipo}&id=0&data_inicio={$data_inicio}&data_fim={$data_fim}&categoria={$categoria}")?>"><i class="font-icon fa fa-plus"></i> Nova</a>
                     </th>
                   </tr>
                 </table>
@@ -96,8 +96,8 @@
                           <?php else: ?>
                             <a href="<?= base_url("transacao/pagar?id_tipo={$id_tipo}&id={$transacoes->id_transacao}&data_inicio={$data_inicio}&data_fim={$data_fim}&categoria={$categoria}")?>"><i class="font-icon fas fa-hand-holding-usd" title="Pagar" style="font-size:20px; margin-right: 10px;"></i></a>
                           <?php endif ?>
-      									<a href="<?= base_url("transacao/manusear?id_tipo={$id_tipo}&id={$transacoes->id_transacao}")?>"><i class="font-icon fab fa-autoprefixer" title="Alterar" style="font-size:20px;"></i></a>
-                        <a href="<?= base_url("transacao/excluir?id_tipo={$id_tipo}&id={$transacoes->id_transacao}")?>"><i class="font-icon fa fa-eraser" style="font-size:20px; margin-left: 10px;" title="Excluir"></i></a>
+      									<a href="<?= base_url("transacao/manusear?id_tipo={$id_tipo}&id={$transacoes->id_transacao}&data_inicio={$data_inicio}&data_fim={$data_fim}&categoria={$categoria}")?>"><i class="font-icon fab fa-autoprefixer" title="Alterar" style="font-size:20px;"></i></a>
+                        <a href="<?= base_url("transacao/excluir?id_tipo={$id_tipo}&id={$transacoes->id_transacao}&data_inicio={$data_inicio}&data_fim={$data_fim}&categoria={$categoria}")?>"><i class="font-icon fa fa-eraser" style="font-size:20px; margin-left: 10px;" title="Excluir"></i></a>
       								</td>
       							</tr>
       							<?php endforeach; ?>

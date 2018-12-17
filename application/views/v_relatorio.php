@@ -7,7 +7,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="<?= base_url('Relatorio');?>">Dashboard</a>
+              <a href="<?= base_url('Inicio');?>">Dashboard</a>
             </li>
           </ol>
           <div class="card mb-3">
