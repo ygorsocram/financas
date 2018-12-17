@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-
+/* Dados Cadastrais */
 a#botao_voltar {
   margin-left: 10px;
   margin-right: 10px;
@@ -25,19 +25,51 @@ div#div_valor {
   margin-right: 15px;
 }
 
-a#botao-novo {
+/* Botões das telas de lancamentos e transacoes */
+
+
+th#botao_valor {
   float:right;
-  margin-left: 10px;
+  margin-left: 80px;
+  margin-right: 70px;
+  font-size: 20px;
 }
 
-a#botao-valor {
-  float:right;
-  margin-left: 10px;
-  margin-right: 180px;
+a#botao_valor {
+  color: white;
+}
+
+th#botao_valor_transacao {
+  float: right;
+  margin-left: 350px;
+  margin-right: 350px;
   font-size: 20px;
+  color: white;
+}
+
+a#botao_valor_transacao {
+  color: white;
+}
+
+label#data_inicio {
+  margin-left: 10px;
 }
 
 td#funcoes {
   width: 100px;
   text-align: center;
+}
+
+form#filtro_transacao {
+  margin-left: 150px;
+}
+
+/* Css dos relatórios */
+label#data_inicio_relatorio {
+  margin-left: 100px;
+}
+
+/* Css da categoria */
+a#botao_novo_categoria {
+  float: right;
 }

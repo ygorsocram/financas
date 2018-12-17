@@ -19,7 +19,7 @@
                     <tr>
                               <th>Vencimento</th>
                               <th>Valor da Fatura</th>
-                              <th>Paga</th>
+                              <th>Valor aberto da Fatura</th>
                               <th>Função</th>
                     </tr>
                   </thead>
@@ -28,7 +28,7 @@
                     <tr>
                             <td><?= $faturas->dt_vencimento; ?></td>
                             <td><?= $faturas->vlr_fatura; ?></td>
-                            <td><?= $faturas->paga; ?></td>
+                            <td><?= $faturas->vlr_fatura_aberto; ?></td>
       								<td id="funcoes">
                         <a href="<?= base_url("cartao/acessar_lancamento?id_fatura={$faturas->id_fatura}")?>"><i class="font-icon fas fa-sign-in-alt" title="Acessar" style="font-size:20px;"></i></a>
       								</td>

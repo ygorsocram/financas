@@ -42,6 +42,7 @@ class Cartao extends MY_Controller {
 		$variaveis['pagina'] = 'Lançamentos';
 		$variaveis['id_fatura'] = $id_fatura;
 		$variaveis['valor_fatura'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->vlr_fatura;
+		$variaveis['valor_fatura_aberto'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->vlr_fatura_aberto;
 
 		$this->load->view('v_cabecalho');
 		$this->load->view('cartao/v_lancamento', $variaveis);
@@ -116,7 +117,8 @@ class Cartao extends MY_Controller {
 		}
 
       $this->m_cartao->valor_fatura($id_fatura);
-      $this->m_cartao->valor_aberto_cartao($id_cartao);
+      $this->m_cartao->valor_fatura_aberto($id_fatura);
+      $this->m_cartao->valor_cartao_aberto($id_cartao);
 
 			$variaveis['lancamentos'] = $this->m_cartao->listagem($id_fatura);
 		  $variaveis['pagina'] = 'Lançamentos';
@@ -125,6 +127,7 @@ class Cartao extends MY_Controller {
 		  $variaveis['id_cartao'] = $id_cartao;
 			$variaveis['id_fatura'] = $id_fatura;
 			$variaveis['valor_fatura'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->vlr_fatura;
+	  	$variaveis['valor_fatura_aberto'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->vlr_fatura_aberto;
 
 			$this->load->view('v_cabecalho');
 			$this->load->view('cartao/v_lancamento', $variaveis);
@@ -139,7 +142,8 @@ class Cartao extends MY_Controller {
 
 		  $this->m_cartao->excluir($transacao);
       $this->m_cartao->valor_fatura($id_fatura);
-      $this->m_cartao->valor_aberto_cartao($id_cartao);
+      $this->m_cartao->valor_fatura_aberto($id_fatura);
+      $this->m_cartao->valor_cartao_aberto($id_cartao);
 
 			$variaveis['lancamentos'] = $this->m_cartao->listagem($id_fatura);
 		  $variaveis['pagina'] = 'Lançamentos';
@@ -148,7 +152,7 @@ class Cartao extends MY_Controller {
 		  $variaveis['id_cartao'] = $id_cartao;
 			$variaveis['id_fatura'] = $id_fatura;
 			$variaveis['valor_fatura'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->vlr_fatura;
-
+		  $variaveis['valor_fatura_aberto'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->vlr_fatura_aberto;
 
 			$this->load->view('v_cabecalho');
 			$this->load->view('cartao/v_lancamento', $variaveis);
@@ -164,6 +168,7 @@ class Cartao extends MY_Controller {
 		$variaveis['id_transacao'] = $id;
 		$variaveis['cartoes'] = $this->m_cartao->listar_cartoes();
 		$variaveis['data'] = date("Y-m-d");
+		$variaveis['nome_tela'] = "Estorno";
 
 		if ($id == 0) {
 			$variaveis['nome'] = '';
@@ -188,7 +193,48 @@ class Cartao extends MY_Controller {
 			}
 
 			$this->load->view('v_cabecalho');
-			$this->load->view('cadastros/v_manuseia_estorno', $variaveis);
+			$this->load->view('cadastros/v_manuseia_entrada_cartao', $variaveis);
 			$this->load->view('v_rodape');
 	}
+
+public function manusear_pagar_fatura()
+{
+	$id = $_GET['id'];
+	$id_cartao = $_GET['id_cartao'];
+	$id_fatura = $_GET['id_fatura'];
+
+	$variaveis['id_transacao'] = $id;
+	$variaveis['cartoes'] = $this->m_cartao->listar_cartoes();
+	$variaveis['data'] = date("Y-m-d");
+	$variaveis['categorias'] = $this->m_cartao->listar_categorias('3');
+	$variaveis['nome_tela'] = "Pagamento de Fatura";
+
+	if ($id == 0) {
+		$dados_fatura = $this->m_cartao->fatura_id_cartao($id_fatura);
+
+		$variaveis['nome'] = 'PAGAMENTO DE FATURA';
+		$variaveis['valor'] = $dados_fatura->row()->vlr_fatura_aberto;
+		$variaveis['data_cadastro'] = date("Y-m-d");
+		$variaveis['categoria'] = '';
+		$variaveis['id_cartao'] = $id_cartao;
+		$variaveis['id_fatura'] = $id_fatura;
+		$variaveis['faturas'] = $this->m_cartao->faturas($id_cartao);
+		$variaveis['observacao'] = "REFERENTE À FATURA {$dados_fatura->row()->nome} COM VENCIMENTO {$dados_fatura->row()->dt_vencimento}";
+	} else {
+		$transacao = $this->m_cartao->transacao($id);
+
+		$variaveis['nome'] = $transacao->row()->nome;
+		$variaveis['valor'] = $transacao->row()->valor;
+		$variaveis['data_cadastro'] = $transacao->row()->data_cadastro;
+		$variaveis['categoria'] = $transacao->row()->id_categoria;
+		$variaveis['observacao'] = $transacao->row()->observacao;
+		$variaveis['id_cartao'] = $this->m_cartao->fatura_id_cartao($transacao->row()->id_fatura)->row()->id_cartao;
+		$variaveis['id_fatura'] = $transacao->row()->id_fatura;
+		$variaveis['faturas'] = $this->m_cartao->faturas($id_cartao);
+		}
+
+		$this->load->view('v_cabecalho');
+		$this->load->view('cadastros/v_manuseia_entrada_cartao', $variaveis);
+		$this->load->view('v_rodape');
+}
 }
