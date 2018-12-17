@@ -63,3 +63,8 @@ td#funcoes {
 form#filtro_transacao {
   margin-left: 150px;
 }
+
+/* Css dos relatórios */
+label#data_inicio_relatorio {
+  margin-left: 100px;
+}

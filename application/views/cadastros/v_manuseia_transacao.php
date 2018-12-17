@@ -15,7 +15,7 @@
 			<section class="box-typical box-panel mb-4" id="form_despesas">
         <div class="widget-container fluid-height">
           <div class="box-typical-body">
-            <form action="<?= base_url("transacao/gravar?id_tipo={$id_tipo}&id={$id_transacao}")?>" method="post">
+            <form action="<?= base_url("transacao/gravar?id_tipo={$id_tipo}&id={$id_transacao}&data_inicio={$data_inicio}&data_fim={$data_fim}")?>" method="post">
 				      <div id="dados_cadastrais" class="row">
               		<div class="col-lg-8" id="manusear_despesa">
               				<fieldset class="form-group">
@@ -32,7 +32,7 @@
                   <div class="col-lg-2" id="manusear_despesa">
                       <fieldset class="form-group">
                         <label class="form-label" for="data">Data*</label>
-                        <input class="form-control proximo_campo" id="data" name="data" type="date" value= "<?= $data_cadastro; ?>" value = "<?= $data; ?>" placeholder="Data" size="80">
+                        <input class="form-control proximo_campo" id="data" name="data" type="date" value= "<?= $data_cadastro; ?>" placeholder="Data" size="80">
                       </fieldset>
                   </div>
                       <div class="col-lg-3" id="div_categoria">
