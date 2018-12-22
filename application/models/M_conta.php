@@ -13,13 +13,14 @@ class m_conta extends CI_Model {
 																FROM contas c");
 	}
 
-	public function atualiza_saldo($id_conta){
+	public function atualiza_saldo($id_conta,$data_inicio,$data_fim){
 		$qvalor_entrada = $this->db->query("SELECT sum(valor) as valor_entrada
 																			 FROM transacoes
 																			 WHERE id_categoria in (SELECT id_categoria
 					   																									FROM categorias
 					   																									WHERE id_tipo = 1)
 																			 AND id_conta = $id_conta
+																			 AND data_cadastro BETWEEN '$data_inicio' and '$data_fim'
 																			 AND pago = 'S'");
 		$qvalor_saida = $this->db->query("SELECT sum(valor) as valor_saida
 																		 FROM transacoes
@@ -28,7 +29,15 @@ class m_conta extends CI_Model {
 																							   						WHERE id_tipo = 2
 																							   						AND id_fatura_cartao is null)
 																		 AND id_conta = $id_conta
+																		 AND data_cadastro BETWEEN '$data_inicio' and '$data_fim'
 																		 AND pago = 'S'");
+		$qvalor_pagamento = $this->db->query("SELECT sum(valor) as valor_pagamento
+																				FROM transacoes
+																				WHERE id_categoria in (SELECT id_categoria
+																				FROM categorias
+																				WHERE id_tipo = 3)
+																				AND id_conta = $id_conta
+																				AND data_cadastro between '$data_inicio' and '$data_fim'");
 
 //verifica se tem linhas senão coloca 0
 		if ($qvalor_entrada->rowCount = 0) $valor_entrada = 0;
@@ -37,7 +46,10 @@ class m_conta extends CI_Model {
 		if ($qvalor_saida->rowCount = 0) $valor_saida = 0;
 																else $valor_saida = $qvalor_saida->row()->valor_saida;
 
-		$total = $valor_entrada - $valor_saida;
+		if ($qvalor_pagamento->rowCount = 0) $valor_pagamento = 0;
+																else $valor_pagamento = $qvalor_pagamento->row()->valor_pagamento;
+
+		$total = $valor_entrada - $valor_saida - $valor_pagamento;
 
 		$data= array(
 			'vlr_saldo' => $total
@@ -47,13 +59,14 @@ class m_conta extends CI_Model {
 			$this->db->update('contas',$data);
 }
 
-	public function atualiza_pendente($id_conta){
+	public function atualiza_pendente($id_conta,$data_inicio,$data_fim){
 		$qvalor_entrada = $this->db->query("SELECT sum(valor) as valor_entrada
 																			 FROM transacoes
 																			 WHERE id_categoria in (SELECT id_categoria
 					   																									FROM categorias
 					   																									WHERE id_tipo = 1)
 																			 AND id_conta = $id_conta
+																		 	 AND data_cadastro BETWEEN '$data_inicio' and '$data_fim'
 																			 AND pago = 'N'");
 
 		$qvalor_saida = $this->db->query("SELECT sum(valor) as valor_saida
@@ -63,11 +76,15 @@ class m_conta extends CI_Model {
 																							   						WHERE id_tipo = 2
 																							   						AND id_fatura_cartao is null)
 																		 AND id_conta = $id_conta
+																		 AND data_cadastro BETWEEN '$data_inicio' and '$data_fim'
 																		 AND pago = 'N'");
 
-		$qvalor_cartao = $this->db->query("SELECT sum(vlr_cartao_aberto) as valor_cartao
-				    													 FROM cartoes
-                    									 WHERE id_conta = $id_conta");
+		$qvalor_cartao = $this->db->query("SELECT sum(vlr_fatura_aberto) as valor_cartao
+                                       FROM faturas
+                                       WHERE id_cartao in (SELECT id_cartao
+																			 										 FROM cartoes
+                                                           WHERE id_conta = $id_conta)
+																			AND dt_vencimento between '$data_inicio' and '$data_fim'");
 
 //verifica se tem linhas senão coloca 0
 		if ($qvalor_entrada->rowCount = 0) $valor_entrada = 0;

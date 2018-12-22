@@ -73,3 +73,7 @@ label#data_inicio_relatorio {
 a#botao_novo_categoria {
   float: right;
 }
+
+a#botao_novo_contas {
+  margin-left: 750px;
+}
