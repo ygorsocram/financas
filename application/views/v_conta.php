@@ -6,12 +6,39 @@
                 <li class="breadcrumb-item active">Contas</li>
           </ol>
 
+          <div class="card mb-3">
+            <div class="card-header">
+                      <form id="filtro_transacao" action="<?= base_url("conta")?>" method="post">
+                          <table>
+                            <tr>
+                              <th>
+                                <label id="data_inicio_relatorio" class="form-label" for="data_inicio">Data Inicio</label>
+                              </th>
+                              <th>
+                                <input class="form-control proximo_campo" id="data_inicio" name="data_inicio" type="date" value= "<?= $data_inicio; ?>" size="80">
+                              </th>
+                              <th>
+                                <label class="form-label" for="data_fim">&nbsp;&nbsp;Data Fim</label>
+                              </th>
+                              <th>
+                                <input class="form-control proximo_campo" id="data_fim" name="data_fim" type="date" value= "<?= $data_fim; ?>" size="80">
+                              </th>
+                              <th>
+                              &nbsp;
+                              <button type="submit" class="btn btn-success btn-sm" id="manusear_despesa"><i class="font-icon fas fa-search" title="Pesquisar"></i></button>
+                              </th>
+                            </tr>
+                          </table>
+                      </form>
+              </div>
+          </div>
+
       <!-- DataTables Example -->
       <div class="card mb-3">
         <div class="card-header">
           <i class="fas fa-table"></i>
           Contas
-          <a id="botao_novo" class="btn btn-success btn-sm" href="<?= base_url("conta/manusear_canta?id=0")?>"><i class="font-icon fa fa-plus"></i> Nova Conta</a>
+          <a id="botao_novo_categoria" class="btn btn-success btn-sm" href="<?= base_url("conta/manusear_canta?id=0")?>"><i class="font-icon fa fa-plus"></i> Nova Conta</a>
         </div>
   <div class="card-body">
     <div class="table-responsive">

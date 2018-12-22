@@ -10,13 +10,23 @@ class Conta extends MY_Controller {
 
 	public function index()
 	{
-		$variaveis['contas'] = $this->m_conta->contas();
+		if (isset($_POST['data_inicio'])) {
+				$data_inicio = $this->input->post('data_inicio');
+				$data_fim = $this->input->post('data_fim');
+		}else {
+				$data_inicio = date("Y-m-01");
+				$data_fim = date("Y-m-t");
+		}
 
 		$contas = $this->m_conta->contas();
 		foreach ($contas -> result() as $contas) {
-				$this->m_conta->atualiza_saldo($contas->id_conta);
-				$this->m_conta->atualiza_pendente($contas->id_conta);
+				$this->m_conta->atualiza_saldo($contas->id_conta,$data_inicio,$data_fim);
+				$this->m_conta->atualiza_pendente($contas->id_conta,$data_inicio,$data_fim);
 		}
+
+		$variaveis['data_inicio'] = $data_inicio;
+		$variaveis['data_fim'] = $data_fim;
+		$variaveis['contas'] = $this->m_conta->contas();
 
 		$this->load->view('v_cabecalho');
 		$this->load->view('v_conta', $variaveis);
