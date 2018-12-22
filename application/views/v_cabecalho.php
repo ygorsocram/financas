@@ -25,14 +25,8 @@
     <link href="<?= base_url('include');?>/css/sistema.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-      <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
-  <script href="<?= base_url('include');?>/morris/morris.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.js"></script>
-  <script src="<?= base_url('include');?>/morris/lib/example.js"></script>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.css">
   <link rel="stylesheet" href="<?= base_url('include');?>/morris/morris.css">
-    <script src="<?= base_url('include');?>/vendor/morrisjs/morris.min.js"></script>
 
   </head>
 
