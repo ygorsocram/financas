@@ -38,7 +38,6 @@ class m_relatorio extends CI_Model {
 																				GROUP BY id_categoria) t
 																	WHERE c.id_categoria = t.id_categoria
 																	AND c.id_tipo = 2
-																	AND c.vlr_orcamento is not null
 																	ORDER BY c.nome");
 		}
 
