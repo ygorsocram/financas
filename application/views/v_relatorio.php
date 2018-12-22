@@ -35,7 +35,7 @@
                           </table>
                       </form>
               </div>
-
+          </div>
           <!-- Gráfico de categorias-->
           <div class="card mb-3">
             <div class="card-header">
