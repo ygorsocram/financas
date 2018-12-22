@@ -25,6 +25,7 @@ class Relatorio extends MY_Controller {
 		$variaveis['transacoes'] = $this->m_relatorio->listagem($data_inicio,$data_fim);
 		$variaveis['somatorio_entrada'] = $this->m_relatorio->somatorio($data_inicio,$data_fim,1)->row()->valor;
 		$variaveis['somatorio_saida'] = $this->m_relatorio->somatorio($data_inicio,$data_fim,2)->row()->valor;
+		$variaveis['extrato_anual'] = $this->m_relatorio->extrato_anual($data_inicio);
 		$variaveis['data_inicio'] = $data_inicio;
 		$variaveis['data_fim'] = $data_fim;
 

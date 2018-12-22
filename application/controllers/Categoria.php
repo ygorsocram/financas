@@ -46,18 +46,20 @@ class Categoria extends MY_Controller {
 	public function gravar()
 	{
 		$id_categoria = $_GET['id'];
+		$id_tipo = $_GET['id_tipo'];
 
 		$nome = $this->input->post('nome');
 		$valor_orcamento = $this->input->post('valor_orcamento');
 		$cor = $this->input->post('cor');
 
 		$data= array(
+			'id_tipo' => $id_tipo,
 			'nome' => strtoupper($nome),
 			'vlr_orcamento' => $valor_orcamento,
 			'cor' => $cor,
 			);
 
-		if ($id_categoria ==0) {
+		if ($id_categoria == 0) {
 				$this->m_categoria->cadastrar($data);
 		} else {
 				$this->m_categoria->atualizar($data,$id_categoria);

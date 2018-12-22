@@ -85,7 +85,39 @@
           <div class="card mb-3">
             <div class="card-header">
             <i class="fas fa-table"></i>
-            Extrato
+            Extrato Anual
+              </div>
+          <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Mês referencia</th>
+                      <th>Mês</th>
+                      <th>Entradas</th>
+                      <th>Saídas</th>
+                      <th>Sobra</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+      							<?php foreach($extrato_anual -> result() as $extratos): ?>
+                    <tr>
+      								<td><?= $extratos->data_cadastro; ?></td>
+      								<td><?= $extratos->data; ?></td>
+      								<td><?= $extratos->valor_receita; ?></td>
+                      <td><?= $extratos->valor_despesa; ?></td>
+                      <td><?= $extratos->valor_sobra; ?></td>
+      							</tr>
+      							<?php endforeach; ?>
+      							</tbody>
+                </table>
+              </div>
+            </div>
+
+          <div class="card mb-3">
+            <div class="card-header">
+            <i class="fas fa-table"></i>
+            Extrato Mensal
               </div>
           <div class="card-body">
               <div class="table-responsive">
@@ -141,6 +173,14 @@
     <a class="scroll-to-top rounded" href="<?= base_url('include');?>/#page-top">
       <i class="fas fa-angle-up"></i>
     </a>
+
+<!-- Morrisjs-->
+  <script src="<?= base_url('include');?>/morris/jquery.min.js"></script>
+  <script src="<?= base_url('include');?>/morris/raphael-min.js"></script>
+  <script src="<?= base_url('include');?>/morris/morris.js"></script>
+  <script src="<?= base_url('include');?>/morris/prettify.min.js"></script>
+  <script src="<?= base_url('include');?>/morris/lib/example.js"></script>
+  <script src="<?= base_url('include');?>/vendor/morrisjs/morris.min.js"></script>
 
     <!-- Page level plugin JavaScript-->
     <script src="<?= base_url('include');?>/vendor/chart.js/Chart.min.js"></script>
@@ -224,8 +264,12 @@ var myLineChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 3000,
-          maxTicksLimit: 5
+          <?php if($somatorio_saida> $somatorio_entrada):?>
+            max: <?= $somatorio_saida+100;?>,
+          <?php else: ?>
+              max: <?= $somatorio_entrada+100; ?>,
+          <?php endif ?>
+          maxTicksLimit: 12
         },
         gridLines: {
           display: true
