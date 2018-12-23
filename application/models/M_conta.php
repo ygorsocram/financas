@@ -106,4 +106,11 @@ class m_conta extends CI_Model {
 	{
 			$this->db->insert('transacoes', $data);
 	}
+
+	public function atualizar($data,$id)
+	{
+
+			$this->db->where('id_transacao', $id);
+			$this->db->update('transacoes',$data);
+	}
 }

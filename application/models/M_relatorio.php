@@ -19,6 +19,7 @@ class m_relatorio extends CI_Model {
 																								 							 GROUP BY id_categoria) t
 																		 on c.id_categoria = t.id_categoria
 																	WHERE c.id_tipo = 2
+																	AND c.id_categoria not in (28,29)
 																	AND c.vlr_orcamento is not null
 																	ORDER BY c.nome");
 		}
@@ -38,6 +39,7 @@ class m_relatorio extends CI_Model {
 																				GROUP BY id_categoria) t
 																	WHERE c.id_categoria = t.id_categoria
 																	AND c.id_tipo = 2
+																	AND c.id_categoria not in (28,29)
 																	ORDER BY c.nome");
 		}
 
@@ -58,7 +60,8 @@ class m_relatorio extends CI_Model {
 																	 								categorias c
 																						WHERE t.id_categoria = c.id_categoria
 																						AND id_tipo =1
-																						AND t.data_cadastro between '2$data_inicio' and '$data_fim'
+AND c.id_categoria not in (28,29)
+																						AND t.data_cadastro between '$data_inicio' and '$data_fim'
 																			 			GROUP BY t.data_cadastro) receitas LEFT JOIN
 																						(SELECT t.data_cadastro,
 																										sum(valor) as valor_despesa
@@ -66,6 +69,7 @@ class m_relatorio extends CI_Model {
 																	 								categorias c
 																			 			 WHERE t.id_categoria = c.id_categoria
 																			 			 AND id_tipo =2
+AND c.id_categoria not in (28,29)
 																			 			 AND t.data_cadastro between '$data_inicio' and '$data_fim'
 																			 			 group by t.data_cadastro) despesas
 																						 on receitas.data_cadastro = despesas.data_cadastro
@@ -79,6 +83,7 @@ class m_relatorio extends CI_Model {
 																					 				 categorias c
 																							WHERE t.id_categoria = c.id_categoria
 																							AND id_tipo =1
+AND c.id_categoria not in (28,29)
 																							AND t.data_cadastro between '$data_inicio' and '$data_fim'
 																							group by t.data_cadastro) receitas RIGHT JOIN
 																						(SELECT t.data_cadastro, sum(valor) as valor_despesa
@@ -86,6 +91,7 @@ class m_relatorio extends CI_Model {
 																					 				categorias c
 																						 WHERE t.id_categoria = c.id_categoria
 																						 AND id_tipo =2
+AND c.id_categoria not in (28,29)
 																						 AND t.data_cadastro between '$data_inicio' and '$data_fim'
 																						 group by t.data_cadastro) despesas
 																						 on receitas.data_cadastro = despesas.data_cadastro) a
@@ -112,6 +118,7 @@ class m_relatorio extends CI_Model {
 					 categorias c
 			WHERE t.id_categoria = c.id_categoria
 			AND id_tipo =2
+AND c.id_categoria not in (28,29)
 			AND substr(data_cadastro,1,4) = substr('$data_inicio',1,4)
 			GROUP BY substr(data_cadastro,6,2)
 			ORDER BY substr(data_cadastro,6,2)");
@@ -130,6 +137,7 @@ class m_relatorio extends CI_Model {
 																							 WHERE  t.id_categoria = c.id_categoria
 																							 AND    t.id_conta = co.id_conta
 																							 and		c.id_tipo in (1,2)
+AND c.id_categoria not in (28,29)
 																							 AND    data_cadastro between '$data_inicio' and '$data_fim'
 							                                 ORDER BY t.data_cadastro");
 				}
@@ -139,6 +147,7 @@ class m_relatorio extends CI_Model {
 							                                 FROM   transacoes t, categorias c
 																							 WHERE  t.id_categoria = c.id_categoria
 																							 and		c.id_tipo = $id_tipo
+																							 AND c.id_categoria not in (28,29)
 																							 AND    data_cadastro between '$data_inicio' and '$data_fim'
 							                                 ORDER BY t.data_cadastro");
 				}
@@ -179,6 +188,7 @@ FROM transacoes t,
 	 categorias c
 WHERE t.id_categoria = c.id_categoria
 AND id_tipo =1
+AND c.id_categoria not in (28,29)
 AND substr(data_cadastro,1,4) = substr('$data_inicio',1,4)
 GROUP BY substr(data_cadastro,6,2)
 ORDER BY substr(data_cadastro,6,2)) receita
@@ -213,6 +223,7 @@ FROM transacoes t,
 	 categorias c
 WHERE t.id_categoria = c.id_categoria
 AND id_tipo =2
+AND c.id_categoria not in (28,29)
 AND substr(data_cadastro,1,4) = substr('$data_inicio',1,4)
 AND id_fatura_cartao is null
 GROUP BY substr(data_cadastro,6,2)
@@ -239,6 +250,7 @@ FROM transacoes t,
 WHERE t.id_categoria = c.id_categoria
 AND t.id_fatura_cartao = f.id_fatura
 AND id_tipo =2
+AND c.id_categoria not in (28,29)
 AND substr(f.dt_vencimento,1,4) = substr('$data_inicio',1,4)
 GROUP BY substr(dt_vencimento,6,2)
 ORDER BY substr(dt_vencimento,6,2)) despesa_cartao
@@ -271,6 +283,7 @@ FROM transacoes t,
 	 categorias c
 WHERE t.id_categoria = c.id_categoria
 AND id_tipo =2
+AND c.id_categoria not in (28,29)
 AND substr(data_cadastro,1,4) = substr('$data_inicio',1,4)
 AND id_fatura_cartao is null
 GROUP BY substr(data_cadastro,6,2)
@@ -297,6 +310,7 @@ FROM transacoes t,
 WHERE t.id_categoria = c.id_categoria
 AND t.id_fatura_cartao = f.id_fatura
 AND id_tipo =2
+AND c.id_categoria not in (28,29)
 AND substr(f.dt_vencimento,1,4) = substr('$data_inicio',1,4)
 GROUP BY substr(dt_vencimento,6,2)
 ORDER BY substr(dt_vencimento,6,2)) despesa_cartao
@@ -324,6 +338,7 @@ FROM transacoes t,
 	 categorias c
 WHERE t.id_categoria = c.id_categoria
 AND id_tipo =1
+AND c.id_categoria not in (28,29)
 AND substr(data_cadastro,1,4) = substr('$data_inicio',1,4)
 GROUP BY substr(data_cadastro,6,2)
 ORDER BY substr(data_cadastro,6,2)) receita
@@ -358,6 +373,7 @@ FROM transacoes t,
 	 categorias c
 WHERE t.id_categoria = c.id_categoria
 AND id_tipo =2
+AND c.id_categoria not in (28,29)
 AND substr(data_cadastro,1,4) = substr('$data_inicio',1,4)
 AND id_fatura_cartao is null
 GROUP BY substr(data_cadastro,6,2)
@@ -384,6 +400,7 @@ FROM transacoes t,
 WHERE t.id_categoria = c.id_categoria
 AND t.id_fatura_cartao = f.id_fatura
 AND id_tipo =2
+AND c.id_categoria not in (28,29)
 AND substr(f.dt_vencimento,1,4) = substr('$data_inicio',1,4)
 GROUP BY substr(dt_vencimento,6,2)
 ORDER BY substr(dt_vencimento,6,2)) despesa_cartao
@@ -416,6 +433,7 @@ FROM transacoes t,
 	 categorias c
 WHERE t.id_categoria = c.id_categoria
 AND id_tipo =2
+AND c.id_categoria not in (28,29)
 AND substr(data_cadastro,1,4) = substr('$data_inicio',1,4)
 AND id_fatura_cartao is null
 GROUP BY substr(data_cadastro,6,2)
@@ -442,6 +460,7 @@ FROM transacoes t,
 WHERE t.id_categoria = c.id_categoria
 AND t.id_fatura_cartao = f.id_fatura
 AND id_tipo =2
+AND c.id_categoria not in (28,29)
 AND substr(f.dt_vencimento,1,4) = substr('$data_inicio',1,4)
 GROUP BY substr(dt_vencimento,6,2)
 ORDER BY substr(dt_vencimento,6,2)) despesa_cartao
