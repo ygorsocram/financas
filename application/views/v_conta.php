@@ -44,10 +44,10 @@
                     </th>
                     <!--th>
                       <a id="botao_novo_contas" class="btn btn-success btn-sm" href="<?= base_url("conta/manusear_canta?id=0")?>"><i class="font-icon fa fa-plus"></i> Nova Conta</a>
-                    </th>
-                    <th>
-                      <a class="btn btn-success btn-sm" href="<?= base_url("conta/transferencia")?>"><i class="font-icon fa fa-plus"></i>Transferencia</a>
                     </th-->
+                    <th>
+                      <a id="botao_novo_contas" class="btn btn-success btn-sm" href="<?= base_url("conta/manusear_transferencia?id=0")?>"><i class="font-icon fa fa-plus"></i> Transferencia</a>
+                    </th>
                   </tr>
                 </table>
         </div>

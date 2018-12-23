@@ -91,14 +91,18 @@
       								<td><?= $transacoes->categoria; ?></td>
                       <td><?= $transacoes->conta; ?></td>
       								<td width="10px" id="funcoes">
-                          <?php if($transacoes->pago == 'S'):?>
-                            <a href="<?= base_url("transacao/cancelar_pagamento?id_tipo={$id_tipo}&id={$transacoes->id_transacao}&data_inicio={$data_inicio}&data_fim={$data_fim}&categoria={$categoria}")?>"><i class="font-icon fas fa-undo" title="Cancelar Pagamento" style="font-size:20px; margin-right: 10px;"></i></a>
+                          <?php if($transacoes->categoria == 'TRANSFERENCIA ENTRADA' || $transacoes->categoria == 'TRANSFERENCIA SAIDA'):?>
+                          <a>função futura</a>
                           <?php else: ?>
-                            <a href="<?= base_url("transacao/pagar?id_tipo={$id_tipo}&id={$transacoes->id_transacao}&data_inicio={$data_inicio}&data_fim={$data_fim}&categoria={$categoria}")?>"><i class="font-icon fas fa-hand-holding-usd" title="Pagar" style="font-size:20px; margin-right: 10px;"></i></a>
-                          <?php endif ?>
+                              <?php if($transacoes->pago == 'S'):?>
+                                <a href="<?= base_url("transacao/cancelar_pagamento?id_tipo={$id_tipo}&id={$transacoes->id_transacao}&data_inicio={$data_inicio}&data_fim={$data_fim}&categoria={$categoria}")?>"><i class="font-icon fas fa-undo" title="Cancelar Pagamento" style="font-size:20px; margin-right: 10px;"></i></a>
+                              <?php else: ?>
+                                <a href="<?= base_url("transacao/pagar?id_tipo={$id_tipo}&id={$transacoes->id_transacao}&data_inicio={$data_inicio}&data_fim={$data_fim}&categoria={$categoria}")?>"><i class="font-icon fas fa-hand-holding-usd" title="Pagar" style="font-size:20px; margin-right: 10px;"></i></a>
+                              <?php endif ?>
       									<a href="<?= base_url("transacao/manusear?id_tipo={$id_tipo}&id={$transacoes->id_transacao}&data_inicio={$data_inicio}&data_fim={$data_fim}&categoria={$categoria}")?>"><i class="font-icon fab fa-autoprefixer" title="Alterar" style="font-size:20px;"></i></a>
                         <a href="<?= base_url("transacao/excluir?id_tipo={$id_tipo}&id={$transacoes->id_transacao}&data_inicio={$data_inicio}&data_fim={$data_fim}&categoria={$categoria}")?>"><i class="font-icon fa fa-eraser" style="font-size:20px; margin-left: 10px;" title="Excluir"></i></a>
       								</td>
+                        <?php endif ?>
       							</tr>
       							<?php endforeach; ?>
       							</tbody>
