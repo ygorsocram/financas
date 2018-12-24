@@ -102,9 +102,16 @@ class m_conta extends CI_Model {
 			$this->db->update('contas',$data);
 }
 
-	public function cadastrar($data)
+	public function cadastrar_transferencia($data)
 	{
 			$this->db->insert('transacoes', $data);
+
+			return $this->db->insert_id();
+	}
+
+	public function cadastrar($data,$table)
+	{
+			$this->db->insert($table, $data);
 	}
 
 	public function atualizar($data,$id)
@@ -112,5 +119,29 @@ class m_conta extends CI_Model {
 
 			$this->db->where('id_transacao', $id);
 			$this->db->update('transacoes',$data);
+	}
+
+	public function excluir($id,$table,$campo)
+	{
+			$this->db->where($campo, $id);
+			$this->db->delete($table);
+	}
+
+	public function transacao($id_transacao){
+				return $this->db->query("SELECT *
+                                 FROM   transacoes t left join faturas f on t.id_fatura_cartao = f.id_fatura
+																 WHERE  id_transacao = $id_transacao");
+	}
+
+	public function transferencia($id_transacao,$id_tipo){
+				if ($id_tipo==1) {
+									return $this->db->query("SELECT id_saida,id_transferencia
+					                                 FROM   transferencia_transacao
+																					 WHERE  id_entrada = $id_transacao");
+				} else {
+									return $this->db->query("SELECT id_entrada,id_transferenc
+					                                 FROM   transferencia_transacao
+																					 WHERE  id_saida = $id_transacao");
+				}
 	}
 }
