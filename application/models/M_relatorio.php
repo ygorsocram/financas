@@ -137,7 +137,6 @@ AND c.id_categoria not in (28,29)
 																							 WHERE  t.id_categoria = c.id_categoria
 																							 AND    t.id_conta = co.id_conta
 																							 and		c.id_tipo in (1,2)
-AND c.id_categoria not in (28,29)
 																							 AND    data_cadastro between '$data_inicio' and '$data_fim'
 							                                 ORDER BY t.data_cadastro");
 				}

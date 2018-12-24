@@ -9,6 +9,7 @@
             <li class="breadcrumb-item">
               <a href="<?= base_url('Inicio');?>">Dashboard</a>
             </li>
+            <li class="breadcrumb-item active">Relatórios</li>
           </ol>
           <div class="card mb-3">
             <div class="card-header">
@@ -36,15 +37,6 @@
                       </form>
               </div>
           </div>
-          <!-- Gráfico de categorias-->
-          <div class="card mb-3">
-            <div class="card-header">
-              <i class="fas fa-chart-area"></i>
-              Categorias</div>
-            <div class="card-body">
-              <div id="grafico_categoria"></div>
-            </div>
-        </div>
 
           <!-- Gráfico de gastos por dia-->
           <div class="card mb-3">
@@ -82,12 +74,12 @@
             </div>
           </div>
 
-          <div class="card mb-3">
-            <div class="card-header">
+            <div class="card mb-3">
+              <div class="card-header">
             <i class="fas fa-table"></i>
             Extrato Anual
               </div>
-          <div class="card-body">
+            <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
@@ -113,55 +105,8 @@
                 </table>
               </div>
             </div>
-
-          <div class="card mb-3">
-            <div class="card-header">
-            <i class="fas fa-table"></i>
-            Extrato Mensal
-              </div>
-          <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Data</th>
-                      <th>Nome</th>
-                      <th>Categoria</th>
-                      <th>Conta</th>
-                      <th>Entradas</th>
-                      <th>Saídas</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-      							<?php foreach($transacoes -> result() as $transacoes): ?>
-      								<td><?= $transacoes->data_cadastro; ?></td>
-      								<td><?= $transacoes->nome; ?></td>
-                      <td><?= $transacoes->categoria; ?></td>
-                      <td><?= $transacoes->conta; ?></td>
-                      <?php if($transacoes->id_tipo == '1'):?>
-      								    <td><?= $transacoes->valor; ?></td>
-                          <td>0.00</td>
-                      <?php else: ?>
-      								    <td>0.00</td>
-                          <td><?= $transacoes->valor; ?></td>
-                      <?php endif ?>
-      							</tr>
-      							<?php endforeach; ?>
-      							</tbody>
-                    <tfoot>
-                      <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td>Somatorio</td>
-                          <td><?= $somatorio_entrada; ?></td>
-                          <td><?= $somatorio_saida; ?></td>
-                      </tr>
-                    </tfoot>
-                </table>
-              </div>
-            </div>
-        </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
 
       </div>
       <!-- /.content-wrapper -->
@@ -187,24 +132,6 @@
 
     <!-- Demo scripts for this page-->
     <script src="<?= base_url('include');?>/js/demo/chart-bar-demo.js"></script>
-
-    <!-- Relatorio de categorias-->
-    <script>
-        new Morris.Bar({
-          element: 'grafico_categoria',
-          data: [
-          <?php foreach($categorias -> result() as $categorias): ?>
-                  {x: '<?= $categorias->nome; ?>', y: <?= $categorias->valor; ?>, a: <?= $categorias->valor_orcamento; ?>},
-          <?php endforeach; ?>
-          ],
-          xkey: 'x',
-          ykeys: ['y', 'a'],
-          labels: ['Valor Gasto', 'Meta'],
-          xLabelAngle: 30
-        }).on('click', function(i, row){
-          console.log(i, row);
-        });
-    </script>
 
     <!-- Relatorio de Balanco Diário-->
     <script>
