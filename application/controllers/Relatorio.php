@@ -18,11 +18,9 @@ class Relatorio extends MY_Controller {
 				$data_fim = date("Y-m-t");
 		}
 
-		$variaveis['categorias'] = $this->m_relatorio->listar_categorias($data_inicio,$data_fim);
 		$variaveis['categorias_valor'] = $this->m_relatorio->listar_categorias_com_valor($data_inicio,$data_fim);
 		$variaveis['balancos'] = $this->m_relatorio->listar_balanco($data_inicio,$data_fim);
 		$variaveis['despesas_ano'] = $this->m_relatorio->despesas_por_ano($data_inicio);
-		$variaveis['transacoes'] = $this->m_relatorio->listagem($data_inicio,$data_fim);
 		$variaveis['somatorio_entrada'] = $this->m_relatorio->somatorio($data_inicio,$data_fim,1)->row()->valor;
 		$variaveis['somatorio_saida'] = $this->m_relatorio->somatorio($data_inicio,$data_fim,2)->row()->valor;
 		$variaveis['extrato_anual'] = $this->m_relatorio->extrato_anual($data_inicio);

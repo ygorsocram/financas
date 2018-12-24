@@ -52,6 +52,9 @@ class Categoria extends MY_Controller {
 		$valor_orcamento = $this->input->post('valor_orcamento');
 		$cor = $this->input->post('cor');
 
+		if ($valor_orcamento>0)  $valor_orcamento;
+												else $valor_orcamento = null;
+
 		$data= array(
 			'id_tipo' => $id_tipo,
 			'nome' => strtoupper($nome),
