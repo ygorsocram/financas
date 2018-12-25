@@ -21,7 +21,7 @@ class Conta extends MY_Controller {
 		$contas = $this->m_conta->contas();
 		foreach ($contas -> result() as $contas) {
 				$this->m_conta->atualiza_saldo($contas->id_conta);
-				$this->m_conta->atualiza_pendente($contas->id_conta);
+				$this->m_conta->atualiza_pendente($contas->id_conta,$data_inicio,$data_fim);
 		}
 
 		$variaveis['data_inicio'] = $data_inicio;
