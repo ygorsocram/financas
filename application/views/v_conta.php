@@ -6,7 +6,7 @@
                 <li class="breadcrumb-item active">Contas</li>
           </ol>
 
-          <!--div class="card mb-3">
+          <div class="card mb-3">
             <div class="card-header">
                       <form id="filtro_transacao" action="<?= base_url("conta")?>" method="post">
                           <table>
@@ -31,7 +31,7 @@
                           </table>
                       </form>
               </div>
-          </div-->
+          </div>
 
       <!-- DataTables Example -->
       <div class="card mb-3">
