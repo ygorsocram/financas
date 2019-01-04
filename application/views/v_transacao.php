@@ -9,26 +9,24 @@
           <!-- DataTables Example -->
           <div class="card mb-3">
             <div class="card-header">
-                <table>
-                  <tr>
-                    <th>
+			<div class="row">
+			<div class="col-lg-12">
                       <i class="fas fa-table"></i>
                         <?= $nome_tipo; ?>
-                    </th>
-                    <th id="botao_valor_transacao" class="btn btn-info btn-sm" title="Valor total"><?=$valor_transacao_total?>
+                    <div id="botao_valor_transacao" class="btn btn-info btn-sm" title="Valor total"><?=$valor_transacao_total?>
                       <?php if($nome_tipo == 'RECEITA'):?>
                       <a id="botao_valor_transacao" class="btn btn-warning btn-sm" title="Valor Pago "><?=$valor_transacao_pago?></a>
                       <?php else: ?>
                       <a id="botao_valor_transacao" class="btn btn-warning btn-sm" title="Valor Recebido "><?=$valor_transacao_pago?></a>
                       <?php endif ?>
                       <a id="botao_valor_transacao" class="btn btn-danger btn-sm" title="Valor Restante"><?=$valor_transacao_restante?></a>
-                    </th>
-                    <th>
-                        <a id="botao_novo_transacao" class="btn btn-success btn-sm" href="<?= base_url("transacao/manusear?id_tipo={$id_tipo}&id=0&data_inicio={$data_inicio}&data_fim={$data_fim}&categoria={$categoria}")?>"><i class="font-icon fa fa-plus"></i> Nova</a>
-                    </th>
-                  </tr>
-                </table>
+                    </div>
+                        <a class="btn btn-success btn-sm float-right" href="<?= base_url("transacao/manusear?id_tipo={$id_tipo}&id=0&data_inicio={$data_inicio}&data_fim={$data_fim}&categoria={$categoria}")?>"><i class="font-icon fa fa-plus"></i> Nova</a>
               </div>
+			                </div>
+              </div>
+              </div>
+
               <div class="card-header">
                       <form id="filtro_transacao" action="<?= base_url("transacao?id_tipo={$id_tipo}")?>" method="post">
                           <table>

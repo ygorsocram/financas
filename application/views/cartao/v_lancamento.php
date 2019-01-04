@@ -9,23 +9,23 @@
             <!-- DataTables Example -->
             <div class="card mb-3">
               <div class="card-header">
-                <table>
-                  <tr>
-                    <th>
+                <div class="row">
+                  <div class="col-lg-12">
                       <i class="fas fa-table"></i>
                       <?=$pagina?> : <?=$nome_fatura?> - Vencimento :  <?=$dt_vencimento?>
-                    </th>
-                    <th id="botao_valor" class="btn btn-info btn-sm" href="<?= base_url("cartao/acessar_lancamento?&id_fatura={$id_fatura}")?>" title="Valor Fatura"><?=$valor_fatura?>
-                      <a id="botao_valor" class="btn btn-warning btn-sm" href="<?= base_url("cartao/acessar_lancamento?&id_fatura={$id_fatura}")?>" title="Valor Fatura Aberto"><?=$valor_fatura_aberto?></a>
-                   </th>
-                    <th>
-                      <a id="botao_novo" class="btn btn-success btn-sm" href="<?= base_url("cartao/manusear_cartao?id=0&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fa fa-plus"></i> Novo Lançamento</a>
-                      <a id="botao_novo" class="btn btn-danger btn-sm" href="<?= base_url("cartao/manusear_estorno?id=0&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fa fa-minus"></i> Estorno</a>
-                      <a id="botao_novo" class="btn btn-primary btn-sm" href="<?= base_url("cartao/manusear_pagar_fatura?id=0&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fa fa-minus"></i> Pagar</a>
-                    </th>
-                </tr>
-              </table>
+                    <div id="botao_valor_transacao" class="btn btn-info btn-sm" href="<?= base_url("cartao/acessar_lancamento?&id_fatura={$id_fatura}")?>" title="Valor Fatura"><?=$valor_fatura?>
+                      <a id="botao_valor_transacao" class="btn btn-warning btn-sm" href="<?= base_url("cartao/acessar_lancamento?&id_fatura={$id_fatura}")?>" title="Valor Fatura Aberto"><?=$valor_fatura_aberto?></a>
+                   </div>
+                   <div class ="float-right">
+                      <a id="botao_novo_cabecalho" class="btn btn-success btn-sm" href="<?= base_url("cartao/manusear_cartao?id=0&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fa fa-plus"></i> Novo Lançamento</a>
+                      <a id="botao_novo_cabecalho" class="btn btn-danger btn-sm" href="<?= base_url("cartao/manusear_estorno?id=0&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fa fa-minus"></i> Estorno</a>
+                      <a id="botao_novo_cabecalho" class="btn btn-primary btn-sm" href="<?= base_url("cartao/manusear_pagar_fatura?id=0&id_cartao={$id_cartao}&id_fatura={$id_fatura}")?>"><i class="font-icon fa fa-minus"></i> Pagar</a>
+                    </div>
             </div>
+                        </div>
+            </div>
+
+
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

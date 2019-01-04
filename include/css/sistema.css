@@ -39,8 +39,8 @@ a#botao_valor {
   color: white;
 }
 
-th#botao_valor_transacao {
-  float: right;
+div#botao_valor_transacao {
+  float: center;
   margin-left: 350px;
   margin-right: 350px;
   font-size: 20px;
@@ -62,6 +62,10 @@ td#funcoes {
 
 form#filtro_transacao {
   margin-left: 150px;
+}
+
+a#botao_novo_cabecalho {
+  margin: 2px;
 }
 
 /* Css dos relatórios */
