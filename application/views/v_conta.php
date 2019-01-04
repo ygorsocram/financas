@@ -36,21 +36,18 @@
       <!-- DataTables Example -->
       <div class="card mb-3">
         <div class="card-header">
-                <table>
-                  <tr>
-                    <th>
+                <div class="row">
+      <div class="col-lg-12">
                       <i class="fas fa-table"></i>
                       Contas
-                    </th>
                     <!--th>
-                      <a id="botao_novo_contas" class="btn btn-success btn-sm" href="<?= base_url("conta/manusear_canta?id=0")?>"><i class="font-icon fa fa-plus"></i> Nova Conta</a>
+                      <a id="botao_novo_contas" class="btn btn-success btn-sm" href="<?= base_url("conta/manusear_conta?id=0")?>"><i class="font-icon fa fa-plus"></i> Nova Conta</a>
                     </th-->
-                    <th>
-                      <a id="botao_novo_contas" class="btn btn-success btn-sm" href="<?= base_url("conta/manusear_transferencia?id_tipo=0&id=0")?>"><i class="font-icon fa fa-plus"></i> Transferencia</a>
-                    </th>
-                  </tr>
-                </table>
+                      <a id="botao_novo_contas" class="btn btn-success btn-sm float-right" href="<?= base_url("conta/manusear_transferencia?id_tipo=0&id=0")?>"><i class="font-icon fa fa-plus"></i> Transferencia</a>
         </div>
+                </div>
+        </div>
+
   <div class="card-body">
     <div class="table-responsive">
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
