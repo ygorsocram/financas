@@ -23,9 +23,24 @@ class m_cartao extends CI_Model {
 																 WHERE  id_transacao = $id_transacao");
 	}
 
-	public function cadastrar($data)
+
+	public function lista_parcela_transacao($id_parcela_transacao){
+				return $this->db->query("SELECT *
+                                 FROM   parcela_transacao 
+								 WHERE  id_parcela_transacao = $id_parcela_transacao");
+	}
+
+	public function lista_transacoes_parcela_transacao($id_parcela_transacao){
+				return $this->db->query("SELECT *
+                                 FROM   transacoes 
+								 WHERE  id_parcela_transacao = $id_parcela_transacao");
+	}
+
+	public function cadastrar($data,$tabela)
 	{
-			$this->db->insert('transacoes', $data);
+			$this->db->insert($tabela, $data);
+
+			return $this->db->insert_id();
 	}
 
 	public function atualizar($data,$id)

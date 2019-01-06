@@ -63,6 +63,7 @@ class Cartao extends MY_Controller {
 		if ($id == 0) {
 			$variaveis['nome'] = '';
 			$variaveis['valor'] = '';
+			$variaveis['parcela'] = '1';
 			$variaveis['data_cadastro'] = date("Y-m-d");
 			$variaveis['categoria'] = '';
 			$variaveis['id_cartao'] = $id_cartao;
@@ -74,6 +75,7 @@ class Cartao extends MY_Controller {
 
 			$variaveis['nome'] = $transacao->row()->nome;
 			$variaveis['valor'] = $transacao->row()->valor;
+			$variaveis['parcela'] = $this->m_cartao->lista_parcela_transacao($transacao->row()->id_parcela_transacao)->row()->parcelas;
 			$variaveis['data_cadastro'] = $transacao->row()->data_cadastro;
 			$variaveis['categoria'] = $transacao->row()->id_categoria;
 			$variaveis['observacao'] = $transacao->row()->observacao;
@@ -94,15 +96,29 @@ class Cartao extends MY_Controller {
 		$id_cartao = $this->input->post('cartao');
 		$nome = $this->input->post('nome');
 		$valor = $this->input->post('valor');
+		$parcela = $this->input->post('parcela');
 		$data = $this->input->post('data');
 		$categoria = $this->input->post('categoria');
 		$id_fatura = $this->input->post('fatura');
 		$observacao = $this->input->post('observacao');
 		$conta = $this->m_cartao->conta_cartao($id_cartao)->row()->id_conta;
 
-		$data= array(
-			'nome' => strtoupper($nome),
-			'valor' => $valor,
+		if ($id_transacao!=0) {
+				$parcela = 1;
+		}
+
+		$div = round($valor/$parcela,2);
+
+//dar inicio a divisão da fatura
+		$valor_inicial = $div + ($valor-($div*$parcela));
+		$valor_arredondado = $div;
+			
+		if ($id_transacao ==0) $nome_alt = strtoupper($nome)." 1/".$parcela;
+						  else $nome_alt = strtoupper($nome);
+//inserir primeira parcela
+		$dados= array(
+			'nome' => $nome_alt,
+			'valor' => $valor_inicial,
 			'data_cadastro' => $data,
 			'id_categoria' => $categoria,
 			'id_conta' => $conta,
@@ -111,13 +127,61 @@ class Cartao extends MY_Controller {
 			);
 
 		if ($id_transacao ==0) {
-				$this->m_cartao->cadastrar($data);
+				$id_nova_transacao = $this->m_cartao->cadastrar($dados,'transacoes');
+
+				if ($parcela>1) {
+					$dados2 = array(
+					'parcelas' => $parcela
+					);
+					$id_parcela_transacao = $this->m_cartao->cadastrar($dados2,'parcela_transacao');
+
+
+					$dados3 = array(
+						'id_parcela_transacao' => $id_parcela_transacao
+					);
+					$this->m_cartao->atualizar($dados3,$id_nova_transacao);
+				}
 		} else {
-				$this->m_cartao->atualizar($data,$id_transacao);
+				$this->m_cartao->atualizar($dados,$id_transacao);
 		}
 
-      $this->m_cartao->valor_fatura($id_fatura);
-      $this->m_cartao->valor_fatura_aberto($id_fatura);
+		$this->m_cartao->valor_fatura($id_fatura);
+    	$this->m_cartao->valor_fatura_aberto($id_fatura);
+
+//inserir outras parcelas
+		if ($parcela>1) {
+			$parcela_contador = $parcela;
+			$contador = 1;
+			$faturas = $this->m_cartao->faturas($id_cartao);
+
+			foreach($faturas -> result() as $faturas){
+				if ($id_fatura<$faturas->id_fatura) {
+					if ($parcela_contador>1) {
+								$parcela_contador = $parcela_contador-1;
+								$contador = $contador+1;
+
+								$dados= array(
+								'nome' => strtoupper($nome)." ".$contador."/".$parcela,
+								'valor' => $valor_arredondado,
+								'data_cadastro' => $data,
+								'id_categoria' => $categoria,
+								'id_conta' => $conta,
+								'id_fatura_cartao' => $faturas->id_fatura,
+								'observacao' => strtoupper($observacao),
+								'id_parcela_transacao' => $id_parcela_transacao
+								);
+
+								if ($id_transacao ==0) {
+										$this->m_cartao->cadastrar($dados,'transacoes');
+								}
+
+								$this->m_cartao->valor_fatura($faturas->id_fatura);
+      							$this->m_cartao->valor_fatura_aberto($faturas->id_fatura);
+					}
+				}
+			}
+		}
+
       $this->m_cartao->valor_cartao_aberto($id_cartao);
 
 			$variaveis['lancamentos'] = $this->m_cartao->listagem($id_fatura);
@@ -140,7 +204,14 @@ class Cartao extends MY_Controller {
 		$id_fatura = $_GET['id_fatura'];
 		$id_cartao = $_GET['id_cartao'];
 
-		  $this->m_cartao->excluir($transacao);
+		$lista_transacao = $this->m_cartao->transacao($transacao);
+		$id_parcela_transacao = $lista_transacao->row()->id_parcela_transacao;
+		$transacoes = $this->m_cartao->lista_transacoes_parcela_transacao($id_parcela_transacao);
+
+		foreach($transacoes -> result() as $transacoes){
+			$this->m_cartao->excluir($transacoes->id_transacao);
+		}
+
       $this->m_cartao->valor_fatura($id_fatura);
       $this->m_cartao->valor_fatura_aberto($id_fatura);
       $this->m_cartao->valor_cartao_aberto($id_cartao);

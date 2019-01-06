@@ -17,7 +17,7 @@
           <div class="box-typical-body">
             <form action="<?= base_url("cartao/gravar?id={$id_transacao}")?>" method="post">
 				      <div id="dados_cadastrais" class="row">
-              		<div class="col-lg-8" id="manusear_despesa">
+              		<div class="col-lg-6" id="manusear_despesa">
               				<fieldset class="form-group">
               					<label class="form-label" for="nome">Nome*</label>
               					<input class="form-control proximo_campo" id="nome" name="nome" type="text" value= "<?= $nome; ?>" placeholder="Nome do lançamento de Cartão" size="40" required>
@@ -27,6 +27,17 @@
                       <fieldset class="form-group">
                         <label class="form-label" for="valor">Valor*</label>
                         <input class="form-control proximo_campo" id="valor" name="valor" type="number" value= "<?= $valor; ?>" step="0.01" size="30" required>
+                      </fieldset>
+                  </div>
+                  <div id="div_valor" class="col-lg-2">
+                      <fieldset class="form-group">
+                        <label class="form-label" for="parcela">Parcelas*</label>
+                        <input class="form-control proximo_campo" id="parcela" name="parcela" type="number" value= "<?= $parcela; ?>" step="1" size="30" required 
+                        <?php if($id_transacao!= 0):?>
+                          disabled>
+                        <?php else: ?>
+                          >
+                        <?php endif ?>
                       </fieldset>
                   </div>
                   <div class="col-lg-2" id="manusear_despesa">
