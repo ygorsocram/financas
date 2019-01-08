@@ -81,3 +81,9 @@ a#botao_novo_categoria {
 a#botao_novo_contas {
   margin-left: 750px;
 }
+
+/* Css do cabeçalho */
+
+a#logout {
+  float: right;
+}
