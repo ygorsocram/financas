@@ -153,17 +153,21 @@ class Cartao extends MY_Controller {
 			$parcela_contador = $parcela;
 			$contador = 1;
 			$faturas = $this->m_cartao->faturas($id_cartao);
+			$data_contador = $data;
 
 			foreach($faturas -> result() as $faturas){
 				if ($id_fatura<$faturas->id_fatura) {
 					if ($parcela_contador>1) {
 								$parcela_contador = $parcela_contador-1;
 								$contador = $contador+1;
+								$data_contador = new DateTime($data_contador);
+								$data_contador->add(new DateInterval('P'.'1'.'M'));
+								$data_contador = $data_contador->format('Y-m-d');
 
 								$dados= array(
 								'nome' => strtoupper($nome)." ".$contador."/".$parcela,
 								'valor' => $valor_arredondado,
-								'data_cadastro' => $data,
+								'data_cadastro' => $data_contador,
 								'id_categoria' => $categoria,
 								'id_conta' => $conta,
 								'id_fatura_cartao' => $faturas->id_fatura,

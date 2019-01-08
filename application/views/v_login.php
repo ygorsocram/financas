@@ -12,6 +12,7 @@
     <title>Sistema Gatão - Login</title>
 
     <!-- Bootstrap core CSS-->
+  <link href="<?= base_url('include');?>/css/login.css" rel="stylesheet">
 	<link href="<?= base_url('include/vendor/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
@@ -24,37 +25,26 @@
 
   <body class="bg-dark">
 
-    <div class="container">
-      <div class="card card-login mx-auto mt-5">
-        <div class="card-body">
+<div class="container">
+  <div class="login-container">
+            <div id="output"></div>
+            <div class="avatar">
+              <img class="profile-img" src="<?= base_url('include');?>/img/logo.jpg"
+                    alt="">
+            </div>
+            <div class="form-box">
           <form class="form-signin" role="form" method="post" action="<?= base_url('index.php/login/logar') ?>">
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="text" id="usuario" class="form-control" placeholder="Seu Usuario" required="required" autofocus="autofocus" name="usuario">
-                <label for="usuario">Usuario</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="password" id="senha" class="form-control" placeholder="Sua senha" required="required" name="senha">
-                <label for="inputPassword">Senha</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="remember-me">
-                  Remember Password
-                </label>
-              </div>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Fazer login</button>
+                <input type="text" id="usuario" class="form-control" placeholder="Usuario" required="required" autofocus="autofocus" name="usuario">
+                <input type="password" id="senha" class="form-control" placeholder="senha" required="required" name="senha">
+             <button class="btn btn-info btn-block login" type="submit">Fazer login</button>
           </form>
+            </div>
         </div>
-      </div>
-    </div>
+        
+</div>
 
     <!-- Bootstrap core JavaScript-->
+    <script src="<?= base_url('include');?>/js/login.js"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
