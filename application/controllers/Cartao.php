@@ -103,7 +103,7 @@ class Cartao extends MY_Controller {
 		$observacao = $this->input->post('observacao');
 		$conta = $this->m_cartao->conta_cartao($id_cartao)->row()->id_conta;
 
-		if ($id_transacao!=0) {
+		if ($parcela == '') {
 				$parcela = 1;
 		}
 
@@ -113,7 +113,7 @@ class Cartao extends MY_Controller {
 		$valor_inicial = $div + ($valor-($div*$parcela));
 		$valor_arredondado = $div;
 			
-		if ($id_transacao ==0) $nome_alt = strtoupper($nome)." 1/".$parcela;
+		if ($parcela!=1) $nome_alt = strtoupper($nome)." 1/".$parcela;
 						  else $nome_alt = strtoupper($nome);
 //inserir primeira parcela
 		$dados= array(
@@ -210,14 +210,21 @@ class Cartao extends MY_Controller {
 
 		$lista_transacao = $this->m_cartao->transacao($transacao);
 		$id_parcela_transacao = $lista_transacao->row()->id_parcela_transacao;
-		$transacoes = $this->m_cartao->lista_transacoes_parcela_transacao($id_parcela_transacao);
-
-		foreach($transacoes -> result() as $transacoes){
-			$this->m_cartao->excluir($transacoes->id_transacao);
+		$id_fatura_cartao = $lista_transacao->row()->id_fatura_cartao;
+		
+		if($id_parcela_transacao != '') {
+			$transacoes = $this->m_cartao->lista_transacoes_parcela_transacao($id_parcela_transacao);
+			foreach($transacoes -> result() as $transacoes){
+				$this->m_cartao->excluir($transacoes->id_transacao);
+				$this->m_cartao->valor_fatura($transacoes->id_fatura_cartao);
+      			$this->m_cartao->valor_fatura_aberto($transacoes->id_fatura_cartao);
+			}
+		} else {
+			$this->m_cartao->excluir($transacao);
+			$this->m_cartao->valor_fatura($id_fatura_cartao);
+      		$this->m_cartao->valor_fatura_aberto($id_fatura_cartao);
 		}
-
-      $this->m_cartao->valor_fatura($id_fatura);
-      $this->m_cartao->valor_fatura_aberto($id_fatura);
+		
       $this->m_cartao->valor_cartao_aberto($id_cartao);
 
 			$variaveis['lancamentos'] = $this->m_cartao->listagem($id_fatura);
