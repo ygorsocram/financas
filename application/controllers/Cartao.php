@@ -17,6 +17,59 @@ class Cartao extends MY_Controller {
 		$this->load->view('v_rodape');
   }
 
+  	public function manuseia_dados_cartao()
+	{
+		$id_cartao = $_GET['id_cartao'];
+		$cartoes = $this->m_cartao->lista_cartao($id_cartao);
+
+		$variaveis['id_cartao'] = $id_cartao;
+		$variaveis['nome'] = $cartoes->row()->nome;
+		$variaveis['dia_fechamento'] = $cartoes->row()->dia_fechamento;
+		$variaveis['dia_pagamento'] = $cartoes->row()->dia_pagamento;
+		$variaveis['valor_limite'] = $cartoes->row()->vlr_limite;
+		$variaveis['bandeira'] = $cartoes->row()->id_bandeira;
+		$variaveis['conta'] = $cartoes->row()->id_conta;
+		$variaveis['bandeiras'] = $this->m_cartao->bandeiras();
+		$variaveis['contas'] = $this->m_cartao->contas() ;
+
+		$this->load->view('v_cabecalho');
+		$this->load->view('cadastros/v_manuseia_cadastro_cartao', $variaveis);
+		$this->load->view('v_rodape');
+  }
+
+  	public function gravar_dados_cartao()
+	{
+		$id_cartao = $_GET['id'];
+
+		$nome = $this->input->post('nome');
+		$dia_fechamento = $this->input->post('dia_fechamento');
+		$dia_pagamento = $this->input->post('dia_pagamento');
+		$valor_limite = $this->input->post('valor_limite');
+		$bandeira = $this->input->post('bandeira');
+		$conta = $this->input->post('conta');
+		
+		$dados= array(
+			'nome' => $nome,
+			'vlr_limite' => $valor_limite,
+			'dia_fechamento' => $dia_fechamento,
+			'dia_pagamento' => $dia_pagamento,
+			'id_bandeira' => $bandeira,
+			'id_conta' => $conta
+			);
+
+		if ($id_cartao == 0) {
+				$id_nova_transacao = $this->m_cartao->cadastrar($dados,'cartoes');
+			} else {
+				$this->m_cartao->atualizar($dados,'id_cartao',$id_cartao,'cartoes');
+			}
+
+		$variaveis['cartoes'] = $this->m_cartao->cartoes();
+		$variaveis['pagina'] = 'Cartões de Crédito';
+		$this->load->view('v_cabecalho');
+		$this->load->view('cartao/v_cartao', $variaveis);
+		$this->load->view('v_rodape');
+	}
+
 	public function acessar_faturas()
 	{
 		$id_cartao = $_GET['id_cartao'];
@@ -139,10 +192,10 @@ class Cartao extends MY_Controller {
 					$dados3 = array(
 						'id_parcela_transacao' => $id_parcela_transacao
 					);
-					$this->m_cartao->atualizar($dados3,$id_nova_transacao);
+					$this->m_cartao->atualizar($dados3,'id_transacao',$id_nova_transacao,'transacoes');
 				}
 		} else {
-				$this->m_cartao->atualizar($dados,$id_transacao);
+				$this->m_cartao->atualizar($dados,'id_transacao',$id_transacao,'transacoes');
 		}
 
 		$this->m_cartao->valor_fatura($id_fatura);

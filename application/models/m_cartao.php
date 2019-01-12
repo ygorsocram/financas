@@ -43,11 +43,11 @@ class m_cartao extends CI_Model {
 			return $this->db->insert_id();
 	}
 
-	public function atualizar($data,$id)
+	public function atualizar($data,$desc_id,$id,$table)
 	{
 
-			$this->db->where('id_transacao', $id);
-			$this->db->update('transacoes',$data);
+			$this->db->where($desc_id, $id);
+			$this->db->update($table,$data);
 	}
 
 	public function excluir($id)
@@ -90,6 +90,24 @@ class m_cartao extends CI_Model {
 	   																	vlr_cartao_aberto,
        																vlr_limite - vlr_cartao_aberto as vlr_limite_restante
 																FROM cartoes c");
+	}
+
+	public function bandeiras(){
+
+			return $this->db->query("SELECT *
+									 FROM bandeiras");
+	}
+
+		public function contas(){
+
+			return $this->db->query("SELECT *
+									 FROM contas");
+	}
+
+		public function lista_cartao($id_cartao){
+			return $this->db->query("SELECT *
+															 FROM cartoes c
+															 WHERE id_cartao = $id_cartao");
 	}
 
 	public function lista_fatura($id_cartao){
