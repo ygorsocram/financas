@@ -192,10 +192,10 @@ class Cartao extends MY_Controller {
 					$dados3 = array(
 						'id_parcela_transacao' => $id_parcela_transacao
 					);
-					$this->m_cartao->atualizar($dados3,'id_transacao',$id_nova_transacao,'transacoes');
+					$this->m_cartao->atualizar($dados3,$id_nova_transacao);
 				}
 		} else {
-				$this->m_cartao->atualizar($dados,'id_transacao',$id_transacao,'transacoes');
+				$this->m_cartao->atualizar($dados,$id_transacao);
 		}
 
 		$this->m_cartao->valor_fatura($id_fatura);
