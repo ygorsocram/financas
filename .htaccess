@@ -1,13 +1,8 @@
 RewriteEngine On
-RewriteBase /financas
+RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteRule ^(.*)$ /index.php?/$1 [L]
-RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
-# If we don't have mod_rewrite installed, all 404's
-# can be sent to index.php, and everything works as normal.
-# Submitted by: ElliotHaughin
+RewriteRule ^(.*)$ /financas/index.php?url=$1 [QSA,L]
+
 
 ErrorDocument 404 /index.php
-
-#Add line 2 and replace on # lines 3, 7
