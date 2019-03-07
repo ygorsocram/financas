@@ -17,9 +17,8 @@ class Cartao extends MY_Controller {
 		$this->load->view('v_rodape');
   }
 
-  	public function manuseia_dados_cartao()
+  	public function manuseia_dados_cartao($id_cartao)
 	{
-		$id_cartao = $_GET['id_cartao'];
 		$cartoes = $this->m_cartao->lista_cartao($id_cartao);
 
 		$variaveis['id_cartao'] = $id_cartao;
@@ -37,10 +36,8 @@ class Cartao extends MY_Controller {
 		$this->load->view('v_rodape');
   }
 
-  	public function gravar_dados_cartao()
+  	public function gravar_dados_cartao($id_cartao)
 	{
-		$id_cartao = $_GET['id'];
-
 		$nome = $this->input->post('nome');
 		$dia_fechamento = $this->input->post('dia_fechamento');
 		$dia_pagamento = $this->input->post('dia_pagamento');
@@ -63,17 +60,11 @@ class Cartao extends MY_Controller {
 				$this->m_cartao->atualizar($dados,'id_cartao',$id_cartao,'cartoes');
 			}
 
-		$variaveis['cartoes'] = $this->m_cartao->cartoes();
-		$variaveis['pagina'] = 'Cartões de Crédito';
-		$this->load->view('v_cabecalho');
-		$this->load->view('cartao/v_cartao', $variaveis);
-		$this->load->view('v_rodape');
+		redirect('cartao');
 	}
 
-	public function acessar_faturas()
+	public function acessar_faturas($id_cartao)
 	{
-		$id_cartao = $_GET['id_cartao'];
-
 		$variaveis['faturas'] = $this->m_cartao->lista_fatura($id_cartao);
 		$variaveis['nome_fatura'] = $this->m_cartao->nome_fatura($id_cartao)->row()->nome_fatura;
 		$variaveis['pagina'] = 'Faturas';
@@ -84,10 +75,8 @@ class Cartao extends MY_Controller {
 		$this->load->view('v_rodape');
   }
 
-	public function acessar_lancamento()
+	public function acessar_lancamento($id_fatura)
 	{
-		$id_fatura = $_GET['id_fatura'];
-
 		$variaveis['lancamentos'] = $this->m_cartao->listagem($id_fatura);
 		$variaveis['dt_vencimento'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->dt_vencimento;
 		$variaveis['nome_fatura'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->nome;
@@ -102,12 +91,8 @@ class Cartao extends MY_Controller {
 		$this->load->view('v_rodape');
 	}
 
-	public function manusear_cartao()
+	public function manusear_cartao($id,$id_cartao,$id_fatura)
 	{
-		$id = $_GET['id'];
-		$id_cartao = $_GET['id_cartao'];
-		$id_fatura = $_GET['id_fatura'];
-
 		$variaveis['id_transacao'] = $id;
 		$variaveis['categorias'] = $this->m_cartao->listar_categorias('2');
 		$variaveis['cartoes'] = $this->m_cartao->listar_cartoes();
@@ -142,10 +127,8 @@ class Cartao extends MY_Controller {
 			$this->load->view('v_rodape');
 	}
 
-	public function gravar()
+	public function gravar($id_transacao)
 	{
-		$id_transacao = $_GET['id'];
-
 		$id_cartao = $this->input->post('cartao');
 		$nome = $this->input->post('nome');
 		$valor = $this->input->post('valor');
@@ -182,7 +165,7 @@ class Cartao extends MY_Controller {
 		if ($id_transacao ==0) {
 				$id_nova_transacao = $this->m_cartao->cadastrar($dados,'transacoes');
 
-				if ($parcela>1) {
+				//if ($parcela>1) {
 					$dados2 = array(
 					'parcelas' => $parcela
 					);
@@ -192,10 +175,10 @@ class Cartao extends MY_Controller {
 					$dados3 = array(
 						'id_parcela_transacao' => $id_parcela_transacao
 					);
-					$this->m_cartao->atualizar($dados3,$id_nova_transacao);
-				}
+					$this->m_cartao->atualizar($dados3,'id_transacao',$id_nova_transacao,'transacoes');
+				//}
 		} else {
-				$this->m_cartao->atualizar($dados,$id_transacao);
+				$this->m_cartao->atualizar($dados,'id_transacao',$id_transacao,'transacoes');
 		}
 
 		$this->m_cartao->valor_fatura($id_fatura);
@@ -255,12 +238,8 @@ class Cartao extends MY_Controller {
 			$this->load->view('v_rodape');
 	}
 
-	public function excluir()
+	public function excluir($transacao,$id_fatura,$id_cartao)
 	{
-		$transacao = $_GET['id'];
-		$id_fatura = $_GET['id_fatura'];
-		$id_cartao = $_GET['id_cartao'];
-
 		$lista_transacao = $this->m_cartao->transacao($transacao);
 		$id_parcela_transacao = $lista_transacao->row()->id_parcela_transacao;
 		$id_fatura_cartao = $lista_transacao->row()->id_fatura_cartao;
@@ -294,12 +273,8 @@ class Cartao extends MY_Controller {
 			$this->load->view('v_rodape');
 	}
 
-	public function manusear_estorno()
+	public function manusear_estorno($id,$id_cartao,$id_fatura)
 	{
-		$id = $_GET['id'];
-		$id_cartao = $_GET['id_cartao'];
-		$id_fatura = $_GET['id_fatura'];
-
 		$variaveis['id_transacao'] = $id;
 		$variaveis['cartoes'] = $this->m_cartao->listar_cartoes();
 		$variaveis['data'] = date("Y-m-d");
@@ -332,12 +307,8 @@ class Cartao extends MY_Controller {
 			$this->load->view('v_rodape');
 	}
 
-public function manusear_pagar_fatura()
+public function manusear_pagar_fatura($id,$id_cartao,$id_fatura)
 {
-	$id = $_GET['id'];
-	$id_cartao = $_GET['id_cartao'];
-	$id_fatura = $_GET['id_fatura'];
-
 	$variaveis['id_transacao'] = $id;
 	$variaveis['cartoes'] = $this->m_cartao->listar_cartoes();
 	$variaveis['data'] = date("Y-m-d");

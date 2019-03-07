@@ -43,11 +43,11 @@ class m_cartao extends CI_Model {
 			return $this->db->insert_id();
 	}
 
-	public function atualizar($data,$id)
+	public function atualizar($data,$desc_id,$id,$table)
 	{
 
-			$this->db->where('id_transacao', $id);
-			$this->db->update('transacoes',$data);
+			$this->db->where($desc_id, $id);
+			$this->db->update($table,$data);
 	}
 
 	public function excluir($id)

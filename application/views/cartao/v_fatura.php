@@ -30,7 +30,7 @@
                             <td><?= $faturas->vlr_fatura; ?></td>
                             <td><?= $faturas->vlr_fatura_aberto; ?></td>
       								<td id="funcoes">
-                        <a href="<?= base_url("cartao/acessar_lancamento?id_fatura={$faturas->id_fatura}")?>"><i class="font-icon fas fa-sign-in-alt" title="Acessar" style="font-size:20px;"></i></a>
+                        <a href="<?= base_url("cartao/acessar_lancamento/{$faturas->id_fatura}")?>"><i class="font-icon fas fa-sign-in-alt" title="Acessar" style="font-size:20px;"></i></a>
       								</td>
       							</tr>
       							<?php endforeach; ?>

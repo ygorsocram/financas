@@ -1,7 +1,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="<?= base_url("cartao/acessar_lancamento?id_fatura={$id_fatura}");?>">Dashboard / Cartão de Crédito / Faturas / Lançamentos</a>
+              <a href="<?= base_url("cartao/acessar_lancamento/{$id_fatura}");?>">Dashboard / Cartão de Crédito / Faturas / Lançamentos</a>
             </li>
                 <?php if($id_transacao== 0):?>
                 <li class="breadcrumb-item active">Novo Lançamento de Cartão</li>
@@ -15,7 +15,7 @@
 			<section class="box-typical box-panel mb-4" id="form_despesas">
         <div class="widget-container fluid-height">
           <div class="box-typical-body">
-            <form action="<?= base_url("cartao/gravar?id={$id_transacao}")?>" method="post">
+            <form action="<?= base_url("cartao/gravar/{$id_transacao}")?>" method="post">
 				      <div id="dados_cadastrais" class="row">
               		<div class="col-lg-6" id="manusear_despesa">
               				<fieldset class="form-group">
@@ -95,7 +95,7 @@
               				</fieldset>
               		</div>
               	</div>
-                <a id="botao_voltar" class="btn btn-warning btn-sm" href="<?= base_url("cartao/acessar_lancamento?id_fatura={$id_fatura}")?>"><i class="fa fa-arrow-left"></i>&nbsp;Voltar</a>
+                <a id="botao_voltar" class="btn btn-warning btn-sm" href="<?= base_url("cartao/acessar_lancamento/{$id_fatura}")?>"><i class="fa fa-arrow-left"></i>&nbsp;Voltar</a>
                 <button type="submit" class="btn btn-inline btn-success pull-right" id="manusear_despesa">Gravar</button>
       </form>
 			</div>
