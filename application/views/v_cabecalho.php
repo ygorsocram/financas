@@ -151,7 +151,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url('login/logout');?>">
-            <i class="fas fa-tags"></i>
+            <i class="fas fa-sign-out-alt"></i>
             <span>Sair do sistema</span></a>
         </li>
       </ul>
