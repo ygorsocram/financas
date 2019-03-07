@@ -8,9 +8,9 @@ class Transacao extends MY_Controller {
 	$this->load->model('m_transacao');
 	}
 
-	public function index($id_tipo,$data_inicio,$data_fim,$categoria)
+	public function index($id_tipo)
 	{
-		if !(isset($categoria) {
+		if (!isset($categoria)) {
 			if (isset($_POST['categoria'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
@@ -19,6 +19,7 @@ class Transacao extends MY_Controller {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
 				$categoria = 0;
+			}
 		}
 
 		if($categoria == 0){
@@ -96,7 +97,7 @@ class Transacao extends MY_Controller {
 
 	public function gravar($id_tipo,$id_transacao,$data_inicio,$data_fim,$categoria)
 	{
-		if !(isset($data_inicio) {
+		if (!isset($data_inicio)) {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
 				$categoria = 0;
@@ -156,7 +157,7 @@ class Transacao extends MY_Controller {
 
 	public function excluir($transacao,$id_tipo,$data_inicio,$data_fim,$categoria)
 	{
-			if !(isset($data_inicio) {
+			if (!isset($data_inicio)) {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
 				$categoria = 0;
@@ -190,7 +191,7 @@ class Transacao extends MY_Controller {
 
 	public function pagar($transacao,$id_tipo,$data_inicio,$data_fim,$categoria)
 	{
-		if !(isset($categoria) {
+		if (!isset($categoria)) {
 			if (isset($_POST['categoria'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
@@ -199,7 +200,9 @@ class Transacao extends MY_Controller {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
 				$categoria = 0;
+			}
 		}
+
 		$variaveis['data_inicio'] = $data_inicio;
 		$variaveis['data_fim'] = $data_fim;
 		$variaveis['categorias'] = $this->m_transacao->categorias($id_tipo);
@@ -229,7 +232,7 @@ class Transacao extends MY_Controller {
 
 	public function cancelar_pagamento($transacao,$id_tipo,$data_inicio,$data_fim,$categoria)
 	{
-		if !(isset($categoria) {
+		if (!isset($categoria)) {
 			if (isset($_POST['categoria'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
@@ -238,6 +241,7 @@ class Transacao extends MY_Controller {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
 				$categoria = 0;
+			}
 		}
 		$variaveis['data_inicio'] = $data_inicio;
 		$variaveis['data_fim'] = $data_fim;

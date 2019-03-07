@@ -28,7 +28,7 @@
               </div>
 
               <div class="card-header">
-                      <form id="filtro_transacao" action="<?= base_url("transacao/{$id_tipo}")?>" method="post">
+                      <form id="filtro_transacao" action="<?= base_url("transacao/index/{$id_tipo}")?>" method="post">
                           <table>
                             <tr>
                               <th>

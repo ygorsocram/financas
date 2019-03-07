@@ -11,12 +11,12 @@ class Conta extends MY_Controller {
 	public function index()
 	{
 		if (isset($_POST['data_inicio'])) {
-				$data_inicio = $this->input->post('data_inicio');
-				$data_fim = $this->input->post('data_fim');
-		}else {
-				$data_inicio = date("Y-m-01");
-				$data_fim = date("Y-m-t");
-		}
+			$data_inicio = $this->input->post('data_inicio');
+			$data_fim = $this->input->post('data_fim');
+		} else {
+			$data_inicio = date("Y-m-01");
+			$data_fim = date("Y-m-t");
+			}
 
 		$contas = $this->m_conta->contas();
 		foreach ($contas -> result() as $contas) {
@@ -167,7 +167,7 @@ class Conta extends MY_Controller {
 
 	public function excluir($id_transacao,$id_tipo,$data_inicio,$data_fim,$categoria)
 	{
-			if !(isset($data_inicio) {
+			if (!isset($data_inicio)) {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
 				$categoria = 0;

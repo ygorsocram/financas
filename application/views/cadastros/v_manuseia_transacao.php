@@ -1,7 +1,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="<?= base_url("transacao?id_tipo={$id_tipo}");?>">Dashboard / <?= $nome_tipo; ?></a>
+              <a href="<?= base_url("transacao/{$id_tipo}");?>">Dashboard / <?= $nome_tipo; ?></a>
             </li>
                 <?php if($id_transacao== 0):?>
                 <li class="breadcrumb-item active">Nova <?= $nome_tipo; ?></li>
@@ -15,7 +15,7 @@
 			<section class="box-typical box-panel mb-4" id="form_despesas">
         <div class="widget-container fluid-height">
           <div class="box-typical-body">
-            <form action="<?= base_url("transacao/gravar?id_tipo={$id_tipo}&id={$id_transacao}&data_inicio={$data_inicio}&data_fim={$data_fim}")?>" method="post">
+            <form action="<?= base_url("transacao/gravar/{$id_tipo}/{$id_transacao}/{$data_inicio}/{$data_fim}/{$categoria}")?>" method="post">
 				      <div id="dados_cadastrais" class="row">
               		<div class="col-lg-8" id="manusear_despesa">
               				<fieldset class="form-group">
@@ -81,7 +81,7 @@
               		</div>
               	</div>
                 <div>
-                <a id="botao_voltar" class="btn btn-warning btn-sm" href="<?= base_url("transacao?id_tipo={$id_tipo}")?>"><i class="fa fa-arrow-left"></i>&nbsp;Voltar</a>
+                <a id="botao_voltar" class="btn btn-warning btn-sm" href="<?= base_url("transacao/{$id_tipo}")?>"><i class="fa fa-arrow-left"></i>&nbsp;Voltar</a>
                 <button type="submit" class="btn btn-inline btn-success pull-right" id="manusear_despesa">Gravar</button>
                 </div>
       </form>
