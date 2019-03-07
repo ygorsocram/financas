@@ -41,9 +41,9 @@
                       <i class="fas fa-table"></i>
                       Contas
                     <!--th>
-                      <a id="botao_novo_contas" class="btn btn-success btn-sm" href="<?= base_url("conta/manusear_conta?id=0")?>"><i class="font-icon fa fa-plus"></i> Nova Conta</a>
+                      <a id="botao_novo_contas" class="btn btn-success btn-sm" href="<?= base_url("conta/manusear_conta/0")?>"><i class="font-icon fa fa-plus"></i> Nova Conta</a>
                     </th-->
-                      <a id="botao_novo_contas" class="btn btn-success btn-sm float-right" href="<?= base_url("conta/manusear_transferencia?id_tipo=0&id=0")?>"><i class="font-icon fa fa-plus"></i> Transferencia</a>
+                      <a id="botao_novo_contas" class="btn btn-success btn-sm float-right" href="<?= base_url("conta/manusear_transferencia/0/0")?>"><i class="font-icon fa fa-plus"></i> Transferencia</a>
         </div>
                 </div>
         </div>
@@ -69,8 +69,8 @@
                   <td><?= $contas->vlr_restante; ?></td>
             <!--td width="10px" id="funcoes">
               <a href="<?= base_url("conta/acessar_contas")?>"><i class="font-icon fas fa-sign-in-alt" title="Acessar" style="font-size:20px; margin-right: 10px;"></i></a>
-      				<a href="<?= base_url("conta/manusear_contas?id={$contas->id_conta}")?>"><i class="font-icon fab fa-autoprefixer" title="Alterar" style="font-size:20px;"></i></a>
-              <a href="<?= base_url("conta/excluir?id={$contas->id_conta}")?>"><i class="font-icon fa fa-eraser" style="font-size:20px; margin-left: 10px;" title="Excluir"></i></a>
+      				<a href="<?= base_url("conta/manusear_contas/{$contas->id_conta}")?>"><i class="font-icon fab fa-autoprefixer" title="Alterar" style="font-size:20px;"></i></a>
+              <a href="<?= base_url("conta/excluir/{$contas->id_conta}")?>"><i class="font-icon fa fa-eraser" style="font-size:20px; margin-left: 10px;" title="Excluir"></i></a>
             </td-->
           </tr>
           <?php endforeach; ?>

@@ -33,11 +33,8 @@ class Conta extends MY_Controller {
 		$this->load->view('v_rodape');
   }
 
-	public function manusear_transferencia()
+	public function manusear_transferencia($id,$id_tipo)
 	{
-		$id = $_GET['id'];
-		$id_tipo = $_GET['id_tipo'];
-
 		$variaveis['id_transacao'] = $id;
 		$variaveis['id_tipo'] = $id_tipo;
 
@@ -75,11 +72,8 @@ class Conta extends MY_Controller {
 		$this->load->view('v_rodape');
 	}
 
-	public function gravar()
+	public function gravar($id_transacao,$id_tipo)
 	{
-		$id_transacao = $_GET['id'];
-		$id_tipo = $_GET['id_tipo'];
-
 		if (isset($_POST['data_inicio'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
@@ -171,16 +165,9 @@ class Conta extends MY_Controller {
 		$this->load->view('v_rodape');
 	}
 
-	public function excluir()
+	public function excluir($id_transacao,$id_tipo,$data_inicio,$data_fim,$categoria)
 	{
-		$id_transacao = $_GET['id'];
-		$id_tipo = $_GET['id_tipo'];
-
-			if (isset($_GET['data_inicio'])) {
-					$data_inicio = $_GET['data_inicio'];
-					$data_fim = $_GET['data_fim'];
-					$categoria = $_GET['categoria'];
-			}	else {
+			if !(isset($data_inicio) {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
 				$categoria = 0;

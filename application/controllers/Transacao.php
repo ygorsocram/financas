@@ -8,19 +8,14 @@ class Transacao extends MY_Controller {
 	$this->load->model('m_transacao');
 	}
 
-	public function index()
+	public function index($id_tipo,$data_inicio,$data_fim,$categoria)
 	{
-		$id_tipo = $_GET['id_tipo'];
-
-		if (isset($_GET['categoria'])) {
-				$data_inicio = $_GET['data_inicio'];
-				$data_fim = $_GET['data_fim'];
-				$categoria = $_GET['categoria'];
-		}	elseif (isset($_POST['categoria'])) {
+		if !(isset($categoria) {
+			if (isset($_POST['categoria'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
 				$categoria = $this->input->post('categoria');
-		}else {
+			}else {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
 				$categoria = 0;
@@ -59,15 +54,8 @@ class Transacao extends MY_Controller {
 	}
 
 
-	public function manusear()
+	public function manusear($id_tipo,$id,$data_inicio,$data_fim,$categoria)
 	{
-		$id_tipo = $_GET['id_tipo'];
-		$id = $_GET['id'];
-		$data_inicio = $_GET['data_inicio'];
-		$data_fim = $_GET['data_fim'];
-		$categoria = $_GET['categoria'];
-
-
 		$variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
 		$variaveis['id_transacao'] = $id;
 		$variaveis['categorias'] = $this->m_transacao->categorias($id_tipo);
@@ -106,19 +94,14 @@ class Transacao extends MY_Controller {
 			$this->load->view('v_rodape');
 	}
 
-	public function gravar()
+	public function gravar($id_tipo,$id_transacao,$data_inicio,$data_fim,$categoria)
 	{
-		$id_tipo = $_GET['id_tipo'];
-		$id_transacao = $_GET['id'];
-
-		if (isset($_GET['data_inicio'])) {
-				$data_inicio = $_GET['data_inicio'];
-				$data_fim = $_GET['data_fim'];
-		}	else {
+		if !(isset($data_inicio) {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
 				$categoria = 0;
 		}
+
 		$variaveis['data_inicio'] = $data_inicio;
 		$variaveis['data_fim'] = $data_fim;
 		$variaveis['categorias'] = $this->m_transacao->categorias($id_tipo);
@@ -171,16 +154,9 @@ class Transacao extends MY_Controller {
 			$this->load->view('v_rodape');
 	}
 
-	public function excluir()
+	public function excluir($transacao,$id_tipo,$data_inicio,$data_fim,$categoria)
 	{
-		$transacao = $_GET['id'];
-		$id_tipo = $_GET['id_tipo'];
-
-			if (isset($_GET['data_inicio'])) {
-					$data_inicio = $_GET['data_inicio'];
-					$data_fim = $_GET['data_fim'];
-					$categoria = $_GET['categoria'];
-			}	else {
+			if !(isset($data_inicio) {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
 				$categoria = 0;
@@ -212,20 +188,14 @@ class Transacao extends MY_Controller {
 			$this->load->view('v_rodape');
 	}
 
-	public function pagar()
+	public function pagar($transacao,$id_tipo,$data_inicio,$data_fim,$categoria)
 	{
-		$transacao = $_GET['id'];
-		$id_tipo = $_GET['id_tipo'];
-
-		if (isset($_GET['categoria'])) {
-				$data_inicio = $_GET['data_inicio'];
-				$data_fim = $_GET['data_fim'];
-				$categoria = $_GET['categoria'];
-		}	elseif (isset($_POST['categoria'])) {
+		if !(isset($categoria) {
+			if (isset($_POST['categoria'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
 				$categoria = $this->input->post('categoria');
-		}else {
+			}else {
 				$data_inicio = date("Y-m-01");
 				$data_fim = date("Y-m-t");
 				$categoria = 0;
@@ -257,16 +227,10 @@ class Transacao extends MY_Controller {
 			$this->load->view('v_rodape');
 	}
 
-	public function cancelar_pagamento()
+	public function cancelar_pagamento($transacao,$id_tipo,$data_inicio,$data_fim,$categoria)
 	{
-		$transacao = $_GET['id'];
-		$id_tipo = $_GET['id_tipo'];
-
-		if (isset($_GET['categoria'])) {
-				$data_inicio = $_GET['data_inicio'];
-				$data_fim = $_GET['data_fim'];
-				$categoria = $_GET['categoria'];
-		}	elseif (isset($_POST['categoria'])) {
+		if !(isset($categoria) {
+			if (isset($_POST['categoria'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
 				$categoria = $this->input->post('categoria');

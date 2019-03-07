@@ -18,11 +18,8 @@ class Categoria extends MY_Controller {
 		$this->load->view('v_rodape');
 	}
 
-	public function manusear()
+	public function manusear($id_categoria,$id_tipo)
 	{
-		$id_categoria = $_GET['id_categoria'];
-		$id_tipo = $_GET['id_tipo'];
-
 		if ($id_categoria == 0) {
 			$variaveis['nome'] = '';
 			$variaveis['valor_orcamento'] = '';
@@ -43,11 +40,8 @@ class Categoria extends MY_Controller {
 			$this->load->view('v_rodape');
 	}
 
-	public function gravar()
+	public function gravar($id_categoria,$id_tipo)
 	{
-		$id_categoria = $_GET['id'];
-		$id_tipo = $_GET['id_tipo'];
-
 		$nome = $this->input->post('nome');
 		$valor_orcamento = $this->input->post('valor_orcamento');
 		$cor = $this->input->post('cor');
@@ -76,10 +70,8 @@ class Categoria extends MY_Controller {
 		$this->load->view('v_rodape');
 	}
 
-	public function excluir()
+	public function excluir($id_categoria)
 	{
-		$id_categoria = $_GET['id'];
-
 		  $this->m_categoria->excluir($id_categoria);
 
 		$variaveis['categorias_entrada'] = $this->m_categoria->listar_categorias(1);
