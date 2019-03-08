@@ -232,6 +232,40 @@ class Cartao extends MY_Controller {
 
 //inserir outras parcelas
 		if ($parcela>1) {
+			//criar novas faturas
+			$qtd_faturas = $this->m_cartao->recupera_qtd_proximas_faturas($id_cartao,$id_fatura)->row()->qtd_fatura;
+
+			while ($parcela > $qtd_faturas) {
+				$fim = $this->m_cartao->recupera_ultimo_id_fatura($id_cartao)->row()->id_fatura;
+				$data_ultima_fatura = $this->m_cartao->dados_fatura($fim)->row()->dt_vencimento;
+				echo($data_ultima_fatura);
+
+				$arr = explode("-", $data_ultima_fatura);
+				$ano = $arr[0];
+				$mes = $arr[1];
+				$dia =$arr[2];
+
+				if ($mes==12) {
+					$ano++;
+					$mes = '01';
+					$data_proxima_fatura = "$ano-$mes-$dia";
+				} else {
+					$mes ++;
+					$data_proxima_fatura = "$ano-$mes-$dia";
+				}
+				
+				$dados_criacao_fatura = array(
+					'id_cartao' => $id_cartao,
+					'paga' => 'N',
+					'dt_vencimento' => $data_proxima_fatura,
+					'vlr_fatura' =>0,
+					'vlr_fatura_aberto' => 0
+				);
+
+				$this->m_cartao->cadastrar($dados_criacao_fatura,'faturas');
+				$qtd_faturas = $this->m_cartao->recupera_qtd_proximas_faturas($id_cartao,$id_fatura)->row()->qtd_fatura;;
+			}
+			//cria as parcelas
 			$parcela_contador = $parcela;
 			$contador = 1;
 			$faturas = $this->m_cartao->faturas($id_cartao);
