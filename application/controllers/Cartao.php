@@ -79,8 +79,8 @@ class Cartao extends MY_Controller {
   {
 	$arr = explode("-", date("Y-m-01"));
 	$mes = $arr[1]+ 1;
-	$data_inicio = "$arr[0]-$mes/01";
-	$data_fim = "$arr[0]-$mes/28";
+	$data_inicio = "$arr[0]-$mes-01";
+	$data_fim = "$arr[0]-$mes-28";
 	$fatura_atual = $this->m_cartao->fatura_atual($id_cartao,$data_inicio,$data_fim)->row()->id_fatura;
 
 	redirect("cartao/acessar_lancamento/{$fatura_atual}");
