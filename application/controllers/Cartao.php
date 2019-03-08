@@ -75,6 +75,52 @@ class Cartao extends MY_Controller {
 		$this->load->view('v_rodape');
   }
 
+  public function acessar_fatura_atual($id_cartao)
+  {
+	$arr = explode("-", date("Y-m-01"));
+	$mes = $arr[1]+ 1;
+	$data_inicio = "$arr[0]-$mes/01";
+	$data_fim = "$arr[0]-$mes/28";
+	$fatura_atual = $this->m_cartao->fatura_atual($id_cartao,$data_inicio,$data_fim)->row()->id_fatura;
+
+	redirect("cartao/acessar_lancamento/{$fatura_atual}");
+}
+
+  	public function decrementa_fatura($id_cartao,$id_fatura)
+  	{
+		$contador = $id_fatura;
+		
+		while ($contador<>0) {
+			$contador--;
+			$decremento_fatura = $this->m_cartao->recupera_id_fatura($id_cartao,$contador);
+  
+			if ($decremento_fatura->num_rows()<>0) {
+				$id_decremento_fatura = $decremento_fatura->row()->id_fatura;
+				redirect("cartao/acessar_lancamento/{$id_decremento_fatura}");
+			}
+		}
+  
+		redirect("cartao/acessar_lancamento/{$id_fatura}");
+	}
+
+	public function incrementa_fatura($id_cartao,$id_fatura)
+	{
+	  $contador = $id_fatura;
+	  $fim = $this->m_cartao->recupera_ultimo_id_fatura($id_cartao)->row()->id_fatura;
+	  
+	  while ($contador<>$fim) {
+		  $contador++;
+		  $incremento_fatura = $this->m_cartao->recupera_id_fatura($id_cartao,$contador);
+
+		  if ($incremento_fatura->num_rows()<>0) {
+			  $id_incremento_fatura = $incremento_fatura->row()->id_fatura;
+			  redirect("cartao/acessar_lancamento/{$id_incremento_fatura}");
+		  }
+	  }
+
+	  redirect("cartao/acessar_lancamento/{$id_fatura}");
+  }
+
 	public function acessar_lancamento($id_fatura)
 	{
 		$variaveis['lancamentos'] = $this->m_cartao->listagem($id_fatura);

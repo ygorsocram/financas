@@ -27,6 +27,13 @@ div#div_valor {
 
 /* Botões das telas de lancamentos e transacoes */
 
+div#divisor_mes {
+  float: center;
+  margin-left: 285px;
+  margin-right: 200px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
 
 th#botao_valor {
   float:right;
@@ -42,7 +49,7 @@ a#botao_valor {
 div#botao_valor_transacao {
   float: center;
   margin-left: 350px;
-  margin-right: 350px;
+  margin-right: 200px;
   font-size: 20px;
   color: white;
 }
@@ -86,4 +93,10 @@ a#botao_novo_contas {
 
 a#logout {
   float: right;
+}
+
+/* Css somente de lancamentos */
+
+a#listar_faturas {
+  margin-left: 450px;
 }

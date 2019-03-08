@@ -30,7 +30,7 @@
                             <td><?= $cartoes->vlr_limite_restante; ?></td>
       								<td width="10px" id="funcoes">
                         <a href="<?= base_url("cartao/manuseia_dados_cartao/{$cartoes->id_cartao}")?>"><i class="font-icon fab fa-autoprefixer" title="Alterar" style="font-size:20px;"></i></a>
-                        <a href="<?= base_url("cartao/acessar_faturas/{$cartoes->id_cartao}")?>"><i class="font-icon fas fa-sign-in-alt" title="Acessar" style="font-size:20px;"></i></a>
+                        <a href="<?= base_url("cartao/acessar_fatura_atual/{$cartoes->id_cartao}")?>"><i class="font-icon fas fa-sign-in-alt" title="Acessar" style="font-size:20px;"></i></a>
       								</td>
       							</tr>
       							<?php endforeach; ?>

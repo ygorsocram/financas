@@ -17,6 +17,28 @@ class m_cartao extends CI_Model {
 							                                 ORDER BY t.data_cadastro");
 				}
 
+	public function fatura_atual($id_cartao,$data_inicial,$data_final){
+				return $this->db->query("SELECT id_fatura
+											FROM   faturas 
+											 WHERE  id_cartao = $id_cartao
+											 AND dt_vencimento between '$data_inicial' and '$data_final'
+											 ORDER BY id_fatura");
+	}
+
+	public function recupera_id_fatura($id_cartao,$id_fatura){
+				return $this->db->query("SELECT id_fatura
+										FROM   faturas 
+									 	WHERE  id_cartao = $id_cartao
+									 	AND	id_fatura = $id_fatura");
+	}
+
+	public function recupera_ultimo_id_fatura($id_cartao){
+		return $this->db->query("SELECT MAX(id_fatura) as id_fatura
+								FROM   faturas 
+								 WHERE  id_cartao = $id_cartao
+								 ORDER BY id_fatura");
+}
+
 	public function transacao($id_transacao){
 				return $this->db->query("SELECT *
                                  FROM   transacoes t left join faturas f on t.id_fatura_cartao = f.id_fatura

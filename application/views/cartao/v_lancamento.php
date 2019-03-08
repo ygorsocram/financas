@@ -1,26 +1,42 @@
           <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="<?= base_url("cartao/acessar_faturas/{$id_cartao}");?>">Dashboard / Cartão de Crédito / Faturas</a>
-            </li>
-                      <li class="breadcrumb-item active"><?=$pagina?></li>
-                </ol>
+          <div>
+              <ol class="breadcrumb">
+                <td>
+                    <li class="breadcrumb-item">
+                      <a href="<?= base_url("cartao");?>">Dashboard / Cartão de Crédito (<?=$nome_fatura?>)</a>
+                    </li>
+                    <li class="breadcrumb-item active"><?=$pagina?></li>
+        </td>
+                <td id="listar_faturas">
+                    <a id="listar_faturas" class="btn btn-success btn-sm" href="<?= base_url("cartao/acessar_faturas/{$id_cartao}")?>"><i class="font-icon fa fa-plus"></i> Acessar Faturas</a>
+        </td>
+              </ol>
+          </div>
 
             <!-- DataTables Example -->
             <div class="card mb-3">
               <div class="card-header">
                 <div class="row">
                   <div class="col-lg-12">
-                      <i class="fas fa-table"></i>
-                      <?=$pagina?> : <?=$nome_fatura?> - Vencimento :  <?=$dt_vencimento?>
+                    <div id="divisor_mes">
+                      <a href="<?= base_url("cartao/decrementa_fatura/{$id_cartao}/{$id_fatura}")?>"><i class="fas fa-arrow-circle-left"></i></a> 
+                      Vencimento :  <?=$dt_vencimento?>
+                      <a href="<?= base_url("cartao/incrementa_fatura/{$id_cartao}/{$id_fatura}")?>"><i class="fas fa-arrow-circle-right"></i></a> 
+                    </div>
+                  <table>
+                    <td>
                     <div id="botao_valor_transacao" class="btn btn-info btn-sm" href="<?= base_url("cartao/acessar_lancamento/{$id_fatura}")?>" title="Valor Fatura"><?=$valor_fatura?>
                       <a id="botao_valor_transacao" class="btn btn-warning btn-sm" href="<?= base_url("cartao/acessar_lancamento/{$id_fatura}")?>" title="Valor Fatura Aberto"><?=$valor_fatura_aberto?></a>
                    </div>
+                   </td>
+                   <td>
                    <div class ="float-right">
                       <a id="botao_novo_cabecalho" class="btn btn-success btn-sm" href="<?= base_url("cartao/manusear_cartao/0/{$id_cartao}/{$id_fatura}")?>"><i class="font-icon fa fa-plus"></i> Novo Lançamento</a>
                       <a id="botao_novo_cabecalho" class="btn btn-danger btn-sm" href="<?= base_url("cartao/manusear_estorno/0/{$id_cartao}/{$id_fatura}")?>"><i class="font-icon fa fa-minus"></i> Estorno</a>
                       <a id="botao_novo_cabecalho" class="btn btn-primary btn-sm" href="<?= base_url("cartao/manusear_pagar_fatura/0/{$id_cartao}/{$id_fatura}")?>"><i class="font-icon fa fa-minus"></i> Pagar</a>
                     </div>
+                    </td>
+                  </table>
             </div>
                         </div>
             </div>
