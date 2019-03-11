@@ -62,23 +62,13 @@ class Categoria extends MY_Controller {
 				$this->m_categoria->atualizar($data,$id_categoria);
 		}
 
-		$variaveis['categorias_entrada'] = $this->m_categoria->listar_categorias(1);
-		$variaveis['categorias_saida'] = $this->m_categoria->listar_categorias(2);
-
-		$this->load->view('v_cabecalho');
-		$this->load->view('v_categoria', $variaveis);
-		$this->load->view('v_rodape');
+		redirect('categoria/index');
 	}
 
 	public function excluir($id_categoria)
 	{
 		  $this->m_categoria->excluir($id_categoria);
 
-		$variaveis['categorias_entrada'] = $this->m_categoria->listar_categorias(1);
-		$variaveis['categorias_saida'] = $this->m_categoria->listar_categorias(2);
-
-		$this->load->view('v_cabecalho');
-		$this->load->view('v_categoria', $variaveis);
-		$this->load->view('v_rodape');
+		  redirect('categoria/index');
 	}
 }

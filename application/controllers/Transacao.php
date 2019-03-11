@@ -8,9 +8,9 @@ class Transacao extends MY_Controller {
 	$this->load->model('m_transacao');
 	}
 
-	public function index($id_tipo)
+	public function index($id_tipo,$data_inicio,$data_fim,$categoria)
 	{
-		if (!isset($categoria)) {
+		if ($categoria == 0) {
 			if (isset($_POST['categoria'])) {
 				$data_inicio = $this->input->post('data_inicio');
 				$data_fim = $this->input->post('data_fim');
@@ -147,7 +147,7 @@ class Transacao extends MY_Controller {
 
 		  $variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
 		if ($categoria == 0) $variaveis['transacoes'] = $this->m_transacao->listagem($data_inicio,$data_fim,$id_tipo);
-									 else $variaveis['transacoes'] = $this->m_transacao->listagem_com_categoria($data_inicio,$data_fim,$id_tipo,$categoria);
+		else $variaveis['transacoes'] = $this->m_transacao->listagem_com_categoria($data_inicio,$data_fim,$id_tipo,$categoria);
 			$variaveis['id_tipo'] = $id_tipo;
 			$variaveis['categoria'] = $categoria;
 			$this->load->view('v_cabecalho');
@@ -155,38 +155,11 @@ class Transacao extends MY_Controller {
 			$this->load->view('v_rodape');
 	}
 
-	public function excluir($transacao,$id_tipo,$data_inicio,$data_fim,$categoria)
+	public function excluir($id_tipo,$transacao,$data_inicio,$data_fim,$categoria)
 	{
-			if (!isset($data_inicio)) {
-				$data_inicio = date("Y-m-01");
-				$data_fim = date("Y-m-t");
-				$categoria = 0;
-		}
-		$variaveis['data_inicio'] = $data_inicio;
-		$variaveis['data_fim'] = $data_fim;
-		$variaveis['categorias'] = $this->m_transacao->categorias($id_tipo);
-		$variaveis['categoria'] = $categoria;
-
 		$this->m_transacao->excluir($transacao);
 
-		$valor_transacao_total = $this->m_transacao->somatorio_transacao($data_inicio,$data_fim,$id_tipo)->row()->valor;
-		$valor_transacao_pago = $this->m_transacao->somatorio_transacao_paga($data_inicio,$data_fim,$id_tipo)->row()->valor;
-		$variaveis['valor_transacao_total'] = $valor_transacao_total;
-		if($valor_transacao_pago>0) {
- 			$variaveis['valor_transacao_restante'] = $valor_transacao_total - $valor_transacao_pago;
-			$variaveis['valor_transacao_pago'] = $valor_transacao_pago;
- 		} else {
- 			$variaveis['valor_transacao_restante'] = $valor_transacao_total;
-			$variaveis['valor_transacao_pago'] = 0;
- 		}
-
-		  $variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
-		if ($categoria == 0) $variaveis['transacoes'] = $this->m_transacao->listagem($data_inicio,$data_fim,$id_tipo);
-									 else $variaveis['transacoes'] = $this->m_transacao->listagem_com_categoria($data_inicio,$data_fim,$id_tipo,$categoria);
-			$variaveis['id_tipo'] = $id_tipo;
-			$this->load->view('v_cabecalho');
-			$this->load->view('v_transacao', $variaveis);
-			$this->load->view('v_rodape');
+		redirect("transacao/index/$id_tipo/$data_inicio/$data_fim/$categoria");
 	}
 
 	public function pagar($transacao,$id_tipo,$data_inicio,$data_fim,$categoria)

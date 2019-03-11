@@ -69,7 +69,7 @@
                           <?php else: ?>
       									       <a href="<?= base_url("cartao/manusear_cartao/{$lancamentos->id_transacao}/{$id_cartao}/{$id_fatura}")?>"><i class="font-icon fab fa-autoprefixer" title="Alterar" style="font-size:20px;"></i></a>
                           <?php endif ?>
-                        <a href="<?= base_url("cartao/excluir?id={$lancamentos->id_transacao}/{$lancamentos->id_fatura_cartao}/{$id_cartao}")?>"><i class="font-icon fa fa-eraser" style="font-size:20px; margin-left: 10px;" title="Excluir"></i></a>
+                        <a href="<?= base_url("cartao/excluir/{$lancamentos->id_transacao}/{$lancamentos->id_fatura_cartao}/{$id_cartao}")?>"><i class="font-icon fa fa-eraser" style="font-size:20px; margin-left: 10px;" title="Excluir"></i></a>
                      </td>
       							</tr>
       							<?php endforeach; ?>

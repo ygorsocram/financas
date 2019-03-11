@@ -304,18 +304,7 @@ class Cartao extends MY_Controller {
 
       $this->m_cartao->valor_cartao_aberto($id_cartao);
 
-			$variaveis['lancamentos'] = $this->m_cartao->listagem($id_fatura);
-		  $variaveis['pagina'] = 'Lançamentos';
-		  $variaveis['nome_fatura'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->nome;
-		  $variaveis['dt_vencimento'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->dt_vencimento;
-		  $variaveis['id_cartao'] = $id_cartao;
-			$variaveis['id_fatura'] = $id_fatura;
-			$variaveis['valor_fatura'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->vlr_fatura;
-	  	$variaveis['valor_fatura_aberto'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->vlr_fatura_aberto;
-
-			$this->load->view('v_cabecalho');
-			$this->load->view('cartao/v_lancamento', $variaveis);
-			$this->load->view('v_rodape');
+	 redirect("cartao/acessar_lancamento/$id_fatura");
 	}
 
 	public function excluir($transacao,$id_fatura,$id_cartao)
@@ -339,18 +328,7 @@ class Cartao extends MY_Controller {
 		
       $this->m_cartao->valor_cartao_aberto($id_cartao);
 
-			$variaveis['lancamentos'] = $this->m_cartao->listagem($id_fatura);
-		  $variaveis['pagina'] = 'Lançamentos';
-		  $variaveis['nome_fatura'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->nome;
-		  $variaveis['dt_vencimento'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->dt_vencimento;
-		  $variaveis['id_cartao'] = $id_cartao;
-			$variaveis['id_fatura'] = $id_fatura;
-			$variaveis['valor_fatura'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->vlr_fatura;
-		  $variaveis['valor_fatura_aberto'] = $this->m_cartao->fatura_id_cartao($id_fatura)->row()->vlr_fatura_aberto;
-
-			$this->load->view('v_cabecalho');
-			$this->load->view('cartao/v_lancamento', $variaveis);
-			$this->load->view('v_rodape');
+	redirect("cartao/acessar_lancamento/$id_fatura");
 	}
 
 	public function manusear_estorno($id,$id_cartao,$id_fatura)

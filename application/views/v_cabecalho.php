@@ -130,8 +130,8 @@
             <span>Transações</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <a class="dropdown-item" href="<?= base_url('transacao/index/1');?>">Receitas</a>
-            <a class="dropdown-item" href="<?= base_url('transacao/index/2');?>">Despesas</a>
+            <a class="dropdown-item" href="<?= base_url('transacao/index/1/0/0/0');?>">Receitas</a>
+            <a class="dropdown-item" href="<?= base_url('transacao/index/2/0/0/0');?>">Despesas</a>
           </div>
         </li>
         <li class="nav-item">
