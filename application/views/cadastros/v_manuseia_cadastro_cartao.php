@@ -46,6 +46,7 @@
                             <label class="form-label" for="bandeira" id="bandeira">Bandeira*</label>
                             <select class="form-control proximo_campo uppercase" id="bandeira" name="bandeira" onChange="dados(this.value);">
                             <?php foreach($bandeiras -> result() as $bandeiras): ?>
+                            <a><?= $bandeiras->id_bandeira; ?></a>
                               <?php if($bandeira== $bandeiras->id_bandeira):?>
                                   <option value="<?= $bandeiras->id_bandeira; ?>" selected> <?= $bandeiras->nome; ?></option>
                               <?php else: ?>

@@ -83,6 +83,8 @@ class Cartao extends MY_Controller {
 	$data_fim = "$arr[0]-$mes-28";
 	$fatura_atual = $this->m_cartao->fatura_atual($id_cartao,$data_inicio,$data_fim)->row()->id_fatura;
 
+	{}
+
 	redirect("cartao/acessar_lancamento/{$fatura_atual}");
 }
 
@@ -156,10 +158,13 @@ class Cartao extends MY_Controller {
 			$variaveis['observacao'] = '';
 		} else {
 			$transacao = $this->m_cartao->transacao($id);
+			$id_parcela_transacao = $transacao->row()->id_parcela_transacao;
+
+			!($id_parcela_transacao == NULL)? $parcelas = $this->m_cartao->lista_parcela_transacao($id_parcela_transacao)->row()->parcelas : $parcelas = 1;
 
 			$variaveis['nome'] = $transacao->row()->nome;
 			$variaveis['valor'] = $transacao->row()->valor;
-			$variaveis['parcela'] = $this->m_cartao->lista_parcela_transacao($transacao->row()->id_parcela_transacao)->row()->parcelas;
+			$variaveis['parcela'] = $parcelas;
 			$variaveis['data_cadastro'] = $transacao->row()->data_cadastro;
 			$variaveis['categoria'] = $transacao->row()->id_categoria;
 			$variaveis['observacao'] = $transacao->row()->observacao;
@@ -211,7 +216,7 @@ class Cartao extends MY_Controller {
 		if ($id_transacao ==0) {
 				$id_nova_transacao = $this->m_cartao->cadastrar($dados,'transacoes');
 
-				//if ($parcela>1) {
+				if ($parcela>1) {
 					$dados2 = array(
 					'parcelas' => $parcela
 					);
@@ -222,7 +227,7 @@ class Cartao extends MY_Controller {
 						'id_parcela_transacao' => $id_parcela_transacao
 					);
 					$this->m_cartao->atualizar($dados3,'id_transacao',$id_nova_transacao,'transacoes');
-				//}
+				}
 		} else {
 				$this->m_cartao->atualizar($dados,'id_transacao',$id_transacao,'transacoes');
 		}
@@ -238,7 +243,6 @@ class Cartao extends MY_Controller {
 			while ($parcela > $qtd_faturas) {
 				$fim = $this->m_cartao->recupera_ultimo_id_fatura($id_cartao)->row()->id_fatura;
 				$data_ultima_fatura = $this->m_cartao->dados_fatura($fim)->row()->dt_vencimento;
-				echo($data_ultima_fatura);
 
 				$arr = explode("-", $data_ultima_fatura);
 				$ano = $arr[0];
@@ -263,7 +267,7 @@ class Cartao extends MY_Controller {
 				);
 
 				$this->m_cartao->cadastrar($dados_criacao_fatura,'faturas');
-				$qtd_faturas = $this->m_cartao->recupera_qtd_proximas_faturas($id_cartao,$id_fatura)->row()->qtd_fatura;;
+				$qtd_faturas = $this->m_cartao->recupera_qtd_proximas_faturas($id_cartao,$id_fatura)->row()->qtd_fatura;
 			}
 			//cria as parcelas
 			$parcela_contador = $parcela;
