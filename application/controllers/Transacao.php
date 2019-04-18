@@ -162,7 +162,7 @@ class Transacao extends MY_Controller {
 		redirect("transacao/index/$id_tipo/$data_inicio/$data_fim/$categoria");
 	}
 
-	public function pagar($transacao,$id_tipo,$data_inicio,$data_fim,$categoria)
+	public function pagar($id_tipo,$transacao,$data_inicio,$data_fim,$categoria)
 	{
 		if (!isset($categoria)) {
 			if (isset($_POST['categoria'])) {
@@ -194,7 +194,7 @@ class Transacao extends MY_Controller {
 			$variaveis['valor_transacao_pago'] = 0;
  		}
 
-		  $variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
+		 $variaveis['nome_tipo'] = $this->m_transacao->nome_tipo($id_tipo)->row()->nome;
 		if ($categoria == 0) $variaveis['transacoes'] = $this->m_transacao->listagem($data_inicio,$data_fim,$id_tipo);
 									 else $variaveis['transacoes'] = $this->m_transacao->listagem_com_categoria($data_inicio,$data_fim,$id_tipo,$categoria);
 			$variaveis['id_tipo'] = $id_tipo;
