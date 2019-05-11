@@ -29,14 +29,13 @@
                       <a id="botao_valor_transacao" class="btn btn-warning btn-sm" href="<?= base_url("cartao/acessar_lancamento/{$id_fatura}")?>" title="Valor Fatura Aberto"><?=$valor_fatura_aberto?></a>
                    </div>
                    </td>
-                   <td>
+                   </table>
                    <div class ="float-right">
                       <a id="botao_novo_cabecalho" class="btn btn-success btn-sm" href="<?= base_url("cartao/manusear_cartao/0/{$id_cartao}/{$id_fatura}")?>"><i class="font-icon fa fa-plus"></i> Novo Lançamento</a>
                       <a id="botao_novo_cabecalho" class="btn btn-danger btn-sm" href="<?= base_url("cartao/manusear_estorno/0/{$id_cartao}/{$id_fatura}")?>"><i class="font-icon fa fa-minus"></i> Estorno</a>
                       <a id="botao_novo_cabecalho" class="btn btn-primary btn-sm" href="<?= base_url("cartao/manusear_pagar_fatura/0/{$id_cartao}/{$id_fatura}")?>"><i class="font-icon fa fa-minus"></i> Pagar</a>
                     </div>
-                    </td>
-                  </table>
+                  
             </div>
                         </div>
             </div>
