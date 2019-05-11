@@ -188,7 +188,8 @@ class Cartao extends MY_Controller {
 		$categoria = $this->input->post('categoria');
 		$id_fatura = $this->input->post('fatura');
 		$observacao = $this->input->post('observacao');
-		$conta = $this->m_cartao->conta_cartao($id_cartao)->row()->id_conta;
+
+		(isset($_POST['conta']))? $conta = $this->input->post('conta') : $conta = $this->m_cartao->conta_cartao($id_cartao)->row()->id_conta;
 
 		if ($parcela == '') {
 				$parcela = 1;
@@ -365,7 +366,7 @@ class Cartao extends MY_Controller {
 			}
 
 			$this->load->view('v_cabecalho');
-			$this->load->view('cadastros/v_manuseia_entrada_cartao', $variaveis);
+			$this->load->view('cadastros/v_manuseia_estorno', $variaveis);
 			$this->load->view('v_rodape');
 	}
 
@@ -376,6 +377,8 @@ public function manusear_pagar_fatura($id,$id_cartao,$id_fatura)
 	$variaveis['data'] = date("Y-m-d");
 	$variaveis['categorias'] = $this->m_cartao->listar_categorias('3');
 	$variaveis['nome_tela'] = "Pagamento de Fatura";
+	$variaveis['contas'] = $this->m_cartao->contas();
+	$variaveis['id_conta'] = $this->m_cartao->conta_cartao($id_cartao)->row()->id_conta;
 
 	if ($id == 0) {
 		$dados_fatura = $this->m_cartao->fatura_id_cartao($id_fatura);
@@ -386,7 +389,6 @@ public function manusear_pagar_fatura($id,$id_cartao,$id_fatura)
 		$variaveis['categoria'] = '';
 		$variaveis['id_cartao'] = $id_cartao;
 		$variaveis['id_fatura'] = $id_fatura;
-		$variaveis['faturas'] = $this->m_cartao->faturas($id_cartao);
 		$variaveis['observacao'] = "REFERENTE À FATURA {$dados_fatura->row()->nome} COM VENCIMENTO {$dados_fatura->row()->dt_vencimento}";
 	} else {
 		$transacao = $this->m_cartao->transacao($id);
@@ -398,7 +400,6 @@ public function manusear_pagar_fatura($id,$id_cartao,$id_fatura)
 		$variaveis['observacao'] = $transacao->row()->observacao;
 		$variaveis['id_cartao'] = $this->m_cartao->fatura_id_cartao($transacao->row()->id_fatura)->row()->id_cartao;
 		$variaveis['id_fatura'] = $transacao->row()->id_fatura;
-		$variaveis['faturas'] = $this->m_cartao->faturas($id_cartao);
 		}
 
 		$this->load->view('v_cabecalho');

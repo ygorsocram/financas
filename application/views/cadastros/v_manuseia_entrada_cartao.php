@@ -16,6 +16,8 @@
         <div class="widget-container fluid-height">
           <div class="box-typical-body">
             <form action="<?= base_url("cartao/gravar/{$id_transacao}")?>" method="post">
+              <input type="hidden" name="cartao" id="cartao" value=<?="{$id_cartao}"?> />
+              <input type="hidden" name="fatura" id="fatura" value=<?="{$id_fatura}"?> />
 				        <div id="dados_cadastrais" class="row">
               		<div class="col-lg-8" id="manusear_despesa">
               				<fieldset class="form-group">
@@ -53,29 +55,15 @@
 							             </select>
                           </fieldset>
                       </div>
-                      <div class="col-lg-2" id="div_cartao">
+                      <div class="col-lg-3" id="div_conta">
                           <fieldset class="form-group">
-                            <label class="form-label" for="cartao" id="cartao">Cartao*</label>
-                            <select class="form-control proximo_campo uppercase" id="cartao" name="cartao">
-                            <?php foreach($cartoes -> result() as $cartoes): ?>
-                              <?php if($id_cartao== $cartoes->id_cartao):?>
-                                  <option value="<?= $cartoes->id_cartao; ?>" selected> <?= $cartoes->nome; ?></option>
+                            <label class="form-label" for="conta" id="conta">Conta Débito*</label>
+                            <select class="form-control proximo_campo uppercase" id="conta" name="conta">
+                            <?php foreach($contas -> result() as $contas): ?>
+                              <?php if($id_conta== $contas->id_conta):?>
+                                  <option value="<?= $contas->id_conta; ?>" selected> <?= $contas->nome; ?></option>
                               <?php else: ?>
-                                  <option value="<?= $cartoes->id_cartao; ?>"> <?= $cartoes->nome; ?></option>
-                              <?php endif ?>
-                            <?php endforeach; ?>
-							             </select>
-                          </fieldset>
-                      </div>
-                      <div class="col-lg-3" id="div_fatura">
-                          <fieldset class="form-group">
-                            <label class="form-label" for="fatura" id="fatura">Fatura*</label>
-                            <select class="form-control proximo_campo uppercase" id="fatura" name="fatura">
-                            <?php foreach($faturas -> result() as $faturas): ?>
-                              <?php if($id_fatura== $faturas->id_fatura):?>
-                                  <option value="<?= $faturas->id_fatura; ?>" selected> <?= $faturas->nome; ?></option>
-                              <?php else: ?>
-                                  <option value="<?= $faturas->id_fatura; ?>"> <?= $faturas->nome; ?></option>
+                                  <option value="<?= $contas->id_conta; ?>"> <?= $contas->nome; ?></option>
                               <?php endif ?>
                             <?php endforeach; ?>
 							             </select>
