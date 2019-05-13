@@ -406,4 +406,20 @@ public function manusear_pagar_fatura($id,$id_cartao,$id_fatura)
 		$this->load->view('cadastros/v_manuseia_entrada_cartao', $variaveis);
 		$this->load->view('v_rodape');
 }
+
+public function retorna_faturas(){
+	$cartao = $this->input->post('cartao');
+
+	echo($cartao);
+
+	$faturas = $this->m_cartao->faturas($cartao);
+	
+	foreach($faturas as $fatura){
+		$new[] = [
+			'id_fatura' => $fatura->row()->id_fatura,
+			'nome' => $fatura->row()->nome
+		];
+	}
+	echo json_encode ($new);
+}
 }

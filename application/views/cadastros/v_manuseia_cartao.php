@@ -15,7 +15,7 @@
 			<section class="box-typical box-panel mb-4" id="form_despesas">
         <div class="widget-container fluid-height">
           <div class="box-typical-body">
-            <form action="<?= base_url("cartao/gravar/{$id_transacao}")?>" method="post">
+            <form action="<?= base_url("/cartao/retorna_faturas")?>" method="post">
 				      <div id="dados_cadastrais" class="row">
               		<div class="col-lg-6" id="manusear_despesa">
               				<fieldset class="form-group">
@@ -62,7 +62,7 @@
                       </div>
                       <div class="col-lg-2" id="div_cartao">
                           <fieldset class="form-group">
-                            <label class="form-label" for="cartao" id="cartao">Cartao*</label>
+                            <label class="form-label" for="cartao">Cartao*</label>
                             <select class="form-control proximo_campo uppercase" id="cartao" name="cartao">
                             <?php foreach($cartoes -> result() as $cartoes): ?>
                               <?php if($id_cartao== $cartoes->id_cartao):?>
@@ -76,7 +76,7 @@
                       </div>
                       <div class="col-lg-3" id="div_fatura">
                           <fieldset class="form-group">
-                            <label class="form-label" for="fatura" id="fatura">Fatura*</label>
+                            <label class="form-label" for="fatura">Fatura*</label>
                             <select class="form-control proximo_campo uppercase" id="fatura" name="fatura">
                             <?php foreach($faturas -> result() as $faturas): ?>
                               <?php if($id_fatura== $faturas->id_fatura):?>
