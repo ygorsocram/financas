@@ -1,5 +1,4 @@
-var host = window.location.origin;
-monta_faturas();
+var host = window.location.origin+'/financas';
 
 $('#cartao').change(function(){
     monta_faturas();

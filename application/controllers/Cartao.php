@@ -410,14 +410,12 @@ public function manusear_pagar_fatura($id,$id_cartao,$id_fatura)
 public function retorna_faturas(){
 	$cartao = $this->input->post('cartao');
 
-	echo($cartao);
-
 	$faturas = $this->m_cartao->faturas($cartao);
 	
-	foreach($faturas as $fatura){
+	foreach($faturas->result() as $fatura){
 		$new[] = [
-			'id_fatura' => $fatura->row()->id_fatura,
-			'nome' => $fatura->row()->nome
+			'id_fatura' => $fatura->id_fatura,
+			'nome' => $fatura->nome
 		];
 	}
 	echo json_encode ($new);
