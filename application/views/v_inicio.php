@@ -9,9 +9,11 @@
           <div class="card mb-3">
             <div class="card-header">
                     <div>
-                      <a href="<?= base_url("inicio/decrementa_relatorios/{$data_inicio}/{$data_fim}")?>"><i class="fas fa-arrow-circle-left"></i></a> 
+                      <!--input type="hidden" name="data_inicio" id="data_inicio" value= "<?= $data_inicio; ?>">
+                      <input type="hidden" name="data_fim" id="data_fim" value= "<?= $data_fim; ?>"-->
+                      <a href = "<?= base_url("inicio/decrementa_relatorios/{$data_inicio}/{$data_fim}")?>" id="decrementa"><i class="fas fa-arrow-circle-left"></i></a> 
                        <?=$mes_nome?>
-                      <a href="<?= base_url("inicio/incrementa_relatorios/{$data_inicio}/{$data_fim}")?>"><i class="fas fa-arrow-circle-right"></i></a> 
+                      <a href = "<?= base_url("inicio/incrementa_relatorios/{$data_inicio}/{$data_fim}")?>" id="incrementa"><i class="fas fa-arrow-circle-right"></i></a> 
                     </div>
               </div>
           </div>
@@ -78,6 +80,7 @@
         </div>
         <!-- /.container-fluid -->
 
+
 <!-- Morrisjs-->
   <script src="<?= base_url('include');?>/morris/jquery.min.js"></script>
   <script src="<?= base_url('include');?>/morris/raphael-min.js"></script>
@@ -85,6 +88,10 @@
   <script src="<?= base_url('include');?>/morris/prettify.min.js"></script>
   <script src="<?= base_url('include');?>/morris/lib/example.js"></script>
   <script src="<?= base_url('include');?>/vendor/morrisjs/morris.min.js"></script>
+
+    <!--Sistema -->
+  <script src="<?= base_url('include');?>/js/main.js"></script>
+  <!--script src="<?= base_url('include');?>/js/inicio.js"></script-->
 
     <!-- Page level plugin JavaScript-->
     <script src="<?= base_url('include');?>/vendor/chart.js/Chart.min.js"></script>

@@ -25,20 +25,6 @@
                         <input class="form-control proximo_campo" id="valor" name="valor" type="number" value= "<?= $valor; ?>" step="0.01" size="30" required>
                       </fieldset>
                   </div>
-                      <div class="col-lg-3" id="div_conta">
-                          <fieldset class="form-group">
-                            <label class="form-label" for="conta_entrada" id="conta_entrada">Conta Entrada*</label>
-                            <select class="form-control proximo_campo uppercase" id="conta_entrada" name="conta_entrada">
-                            <?php foreach($contas_entrada -> result() as $contas): ?>
-                              <?php if($conta_entrada== $contas->id_conta):?>
-                                  <option value="<?= $contas->id_conta; ?>" selected> <?= $contas->nome; ?></option>
-                              <?php else: ?>
-                                  <option value="<?= $contas->id_conta; ?>"> <?= $contas->nome; ?></option>
-                              <?php endif ?>
-                            <?php endforeach; ?>
-							             </select>
-                          </fieldset>
-                      </div>
                       <div class="col-lg-3" id="div_conta_saida">
                           <fieldset class="form-group">
                             <label class="form-label" for="conta_saida" id="conta_saida">Conta Saída*</label>
@@ -51,6 +37,20 @@
                               <?php endif ?>
                             <?php endforeach; ?>
 							             </select>
+                          </fieldset>
+                      </div>
+                      <div class="col-lg-3" id="div_conta">
+                          <fieldset class="form-group">
+                            <label class="form-label" for="conta_entrada" id="conta_entrada">Conta Entrada*</label>
+                            <select class="form-control proximo_campo uppercase" id="conta_entrada" name="conta_entrada">
+                            <?php foreach($contas_entrada -> result() as $contas): ?>
+                              <?php if($conta_entrada== $contas->id_conta):?>
+                                  <option value="<?= $contas->id_conta; ?>" selected> <?= $contas->nome; ?></option>
+                              <?php else: ?>
+                                  <option value="<?= $contas->id_conta; ?>"> <?= $contas->nome; ?></option>
+                              <?php endif ?>
+                            <?php endforeach; ?>
+                           </select>
                           </fieldset>
                       </div>
               	</div>
