@@ -15,7 +15,7 @@
 			<section class="box-typical box-panel mb-4" id="form_despesas">
         <div class="widget-container fluid-height">
           <div class="box-typical-body">
-            <form action="<?= base_url("transacao/gravar/{$id_tipo}/{$id_transacao}/{$data_inicio}/{$data_fim}/{$categoria}")?>" method="post">
+            <form action="<?= base_url("transacao/gravar/{$id_tipo}/{$id_transacao}")?>" method="post">
 				      <div id="dados_cadastrais" class="row">
               		<div class="col-lg-8" id="manusear_despesa">
               				<fieldset class="form-group">

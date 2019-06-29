@@ -6,23 +6,47 @@ class Conta extends MY_Controller {
 	function __construct(){
 			parent::__construct();
 	$this->load->model('m_conta');
+	$this->load->library('main');
 	}
 
 	public function index()
 	{
-		if (isset($_POST['data_inicio'])) {
-			$data_inicio = $this->input->post('data_inicio');
-			$data_fim = $this->input->post('data_fim');
-		} else {
 			$data_inicio = date("Y-m-01");
 			$data_fim = date("Y-m-t");
-			}
 
+		$this->carrega_lista($data_inicio,$data_fim);
+  }
+
+	public function decrementa_relatorios($data_inicio,$data_fim){
+		$data_retorno = $this->main->altera_data($data_inicio,'sub');
+
+		$data_inicio = $data_retorno["data_inicio"];
+		$data_fim = $data_retorno["data_fim"];
+
+		$this->carrega_lista($data_inicio,$data_fim);
+	}
+
+	public function incrementa_relatorios($data_inicio,$data_fim){
+		$data_retorno = $this->main->altera_data($data_inicio,'add');
+
+		$data_inicio = $data_retorno["data_inicio"];
+		$data_fim = $data_retorno["data_fim"];
+
+		$this->carrega_lista($data_inicio,$data_fim);
+	}
+
+	public function carrega_lista($data_inicio,$data_fim){
 		$contas = $this->m_conta->contas();
 		foreach ($contas -> result() as $contas) {
 				$this->m_conta->atualiza_saldo($contas->id_conta);
 				$this->m_conta->atualiza_pendente($contas->id_conta,$data_inicio,$data_fim);
 		}
+
+		//--inicio nome do mes --//
+		$mes = substr($data_inicio,5,2);
+		$mes_nome = $this->main->mes_nome($mes);
+		$variaveis['mes_nome'] = $mes_nome;
+		//--fim nome do mes --//
 
 		$variaveis['data_inicio'] = $data_inicio;
 		$variaveis['data_fim'] = $data_fim;
@@ -31,19 +55,27 @@ class Conta extends MY_Controller {
 		$this->load->view('v_cabecalho');
 		$this->load->view('v_conta', $variaveis);
 		$this->load->view('v_rodape');
-  }
+	}
 
-	public function manusear_transferencia($id,$id_tipo)
-	{
+	public function fazer_transferencia(){
+		$variaveis['id_transacao'] = 0;
+		$variaveis['id_tipo'] = 0;
+		$variaveis['nome'] = '';
+		$variaveis['valor'] = 0;
+		$variaveis['conta_entrada'] = '';
+		$variaveis['conta_saida'] = '';
+
+		$variaveis['contas_entrada'] = $this->m_conta->contas();
+		$variaveis['contas_saida'] = $this->m_conta->contas();
+
+		$this->load->view('v_cabecalho');
+		$this->load->view('cadastros/v_manuseia_transferencia', $variaveis);
+		$this->load->view('v_rodape');
+	}
+
+	public function alterar_transferencia($id,$id_tipo){
 		$variaveis['id_transacao'] = $id;
 		$variaveis['id_tipo'] = $id_tipo;
-
-		if ($id == 0) {
-			$variaveis['nome'] = '';
-			$variaveis['valor'] = 0;
-			$variaveis['conta_entrada'] = '';
-			$variaveis['conta_saida'] = '';
-		} else {
 			if ($id_tipo==1) {
 			$transacao_entrada = $this->m_conta->transacao($id);
 			$transacao_saida = $this->m_conta->transacao($this->m_conta->transferencia($id,$id_tipo)->row()->id_saida);
@@ -60,9 +92,7 @@ class Conta extends MY_Controller {
 			$variaveis['valor'] = $transacao_saida->row()->valor;
 			$variaveis['conta_entrada'] = $transacao_entrada->row()->id_conta;
 			$variaveis['conta_saida'] = $transacao_saida->row()->id_conta;
-			}
-			}
-
+		}
 
 		$variaveis['contas_entrada'] = $this->m_conta->contas();
 		$variaveis['contas_saida'] = $this->m_conta->contas();
@@ -72,7 +102,7 @@ class Conta extends MY_Controller {
 		$this->load->view('v_rodape');
 	}
 
-	public function gravar($id_transacao,$id_tipo)
+	public function gravar($id_tipo, $id_transacao)
 	{
 		if (isset($_POST['data_inicio'])) {
 				$data_inicio = $this->input->post('data_inicio');
@@ -126,6 +156,7 @@ class Conta extends MY_Controller {
 						$transacao_entrada = $this->m_conta->transacao($this->m_conta->transferencia($id_transacao,$id_tipo)->row()->id_entrada);
 						$transacao_saida = $this->m_conta->transacao($id_transacao);
 			}
+
 					$data1= array(
 						'nome' => strtoupper($nome),
 						'valor' => $valor,
@@ -159,10 +190,8 @@ class Conta extends MY_Controller {
 		$variaveis['data_inicio'] = $data_inicio;
 		$variaveis['data_fim'] = $data_fim;
 		$variaveis['contas'] = $this->m_conta->contas();
-
-		$this->load->view('v_cabecalho');
-		$this->load->view('v_conta', $variaveis);
-		$this->load->view('v_rodape');
+		
+		$this->carrega_lista($data_inicio,$data_fim);
 	}
 
 	public function excluir($id_transacao,$id_tipo,$data_inicio,$data_fim,$categoria)
@@ -191,8 +220,6 @@ class Conta extends MY_Controller {
 
 		$variaveis['contas'] = $this->m_conta->contas();
 
-		$this->load->view('v_cabecalho');
-		$this->load->view('v_conta', $variaveis);
-		$this->load->view('v_rodape');
+		$this->carrega_lista($data_inicio,$data_fim);
 		}
 }

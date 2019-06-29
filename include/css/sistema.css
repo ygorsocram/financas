@@ -58,9 +58,9 @@ a#botao_valor_transacao {
   color: white;
 }
 
-label#data_inicio {
+/*label#data_inicio {
   margin-left: 10px;
-}
+}*/
 
 td#funcoes {
   width: 100px;
@@ -76,8 +76,12 @@ a#botao_novo_cabecalho {
 }
 
 /* Css dos relatórios */
-label#data_inicio_relatorio {
+/*label#data_inicio_relatorio {
   margin-left: 100px;
+}*/
+
+table#tabela_dashboard {
+  float: center;
 }
 
 /* Css da categoria */

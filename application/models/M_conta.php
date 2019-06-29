@@ -141,7 +141,7 @@ class m_conta extends CI_Model {
 					                                 FROM   transferencia_transacao
 																					 WHERE  id_entrada = $id_transacao");
 				} else {
-									return $this->db->query("SELECT id_entrada,id_transferenc
+									return $this->db->query("SELECT id_entrada,id_transferencia
 					                                 FROM   transferencia_transacao
 																					 WHERE  id_saida = $id_transacao");
 				}
