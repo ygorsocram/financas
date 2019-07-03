@@ -1,12 +1,11 @@
-
-        <!-- Sticky Footer -->
-        <footer class="sticky-footer">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Sistema para meu bb que eu amo do fundo do meu coração</span>
-            </div>
-          </div>
-        </footer>
+            <!-- Sticky Footer -->
+            <footer class="sticky-footer">
+              <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                  <span>Sistema para meu bb que eu amo do fundo do meu coração</span>
+                </div>
+              </div>
+            </footer>
 
       </div>
       <!-- /.content-wrapper -->
@@ -29,7 +28,9 @@
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-body">
+            Select "Logout" below if you are ready to end your current session.
+          </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
             <a class="btn btn-primary" href="login.html">Logout</a>

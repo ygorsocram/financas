@@ -6,46 +6,46 @@ class m_conta extends CI_Model {
 	public function contas(){
 
 			return $this->db->query("SELECT id_conta,
-																			nome,
-																			vlr_saldo,
-																			vlr_pendente,
-																			vlr_saldo + vlr_pendente as vlr_restante
-																FROM contas c");
+											nome,
+											vlr_saldo,
+											vlr_pendente,
+											vlr_saldo + vlr_pendente as vlr_restante
+											FROM contas c");
 	}
 
 	public function atualiza_saldo($id_conta){
 		$qvalor_entrada = $this->db->query("SELECT sum(valor) as valor_entrada
-																			 FROM transacoes
-																			 WHERE id_categoria in (SELECT id_categoria
-					   																									FROM categorias
-					   																									WHERE id_tipo = 1)
-																			 AND id_conta = $id_conta
-																			 AND pago = 'S'");
+											FROM transacoes
+											WHERE id_categoria in (SELECT id_categoria
+																	FROM categorias
+					   												WHERE id_tipo = 1)
+																	AND id_conta = $id_conta
+																	AND pago = 'S'");
+
 		$qvalor_saida = $this->db->query("SELECT sum(valor) as valor_saida
-																		 FROM transacoes
-																		 WHERE id_categoria in (SELECT id_categoria
-																							   						FROM categorias
-																							   						WHERE id_tipo = 2
-																							   						AND id_fatura_cartao is null)
-																		 AND id_conta = $id_conta
-																		 AND pago = 'S'");
+										FROM transacoes
+										WHERE id_categoria in (SELECT id_categoria
+													   			FROM categorias
+																WHERE id_tipo = 2
+														   		AND id_fatura_cartao is null)
+										AND id_conta = $id_conta
+										AND pago = 'S'");
 		$qvalor_pagamento = $this->db->query("SELECT sum(valor) as valor_pagamento
-																				FROM transacoes
-																				WHERE id_categoria in (SELECT id_categoria
-																				FROM categorias
-																				WHERE id_tipo = 3)
-																				AND id_conta = $id_conta
-");
+											FROM transacoes
+											WHERE id_categoria in (SELECT id_categoria
+																	FROM categorias
+																	WHERE id_tipo = 3)
+																	AND id_conta = $id_conta");
 
 //verifica se tem linhas senão coloca 0
 		if ($qvalor_entrada->rowCount = 0) $valor_entrada = 0;
-																else $valor_entrada = $qvalor_entrada->row()->valor_entrada;
+		else $valor_entrada = $qvalor_entrada->row()->valor_entrada;
 
 		if ($qvalor_saida->rowCount = 0) $valor_saida = 0;
-																else $valor_saida = $qvalor_saida->row()->valor_saida;
+		else $valor_saida = $qvalor_saida->row()->valor_saida;
 
 		if ($qvalor_pagamento->rowCount = 0) $valor_pagamento = 0;
-																else $valor_pagamento = $qvalor_pagamento->row()->valor_pagamento;
+		else $valor_pagamento = $qvalor_pagamento->row()->valor_pagamento;
 
 		$total = $valor_entrada - $valor_saida - $valor_pagamento;
 
@@ -131,19 +131,19 @@ class m_conta extends CI_Model {
 
 	public function transacao($id_transacao){
 				return $this->db->query("SELECT *
-                                 FROM   transacoes t left join faturas f on t.id_fatura_cartao = f.id_fatura
-																 WHERE  id_transacao = $id_transacao");
+                                 		FROM   transacoes t left join faturas f on t.id_fatura_cartao = f.id_fatura
+										WHERE  id_transacao = $id_transacao");
 	}
 
 	public function transferencia($id_transacao,$id_tipo){
 				if ($id_tipo==1) {
-									return $this->db->query("SELECT id_saida,id_transferencia
-					                                 FROM   transferencia_transacao
-																					 WHERE  id_entrada = $id_transacao");
+					return $this->db->query("SELECT id_saida,id_transferencia
+					                        FROM   transferencia_transacao
+											WHERE  id_entrada = $id_transacao");
 				} else {
-									return $this->db->query("SELECT id_entrada,id_transferencia
-					                                 FROM   transferencia_transacao
-																					 WHERE  id_saida = $id_transacao");
+					return $this->db->query("SELECT id_entrada,id_transferencia
+					                        FROM   transferencia_transacao
+											WHERE  id_saida = $id_transacao");
 				}
 	}
 }

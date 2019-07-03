@@ -1,161 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-
+  
   <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>Finanças</title>
 
-    <title>Finanças</title>
+      <!-- Bootstrap core CSS-->
+      <link href="<?= base_url('include');?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Bootstrap core CSS-->
-    <link href="<?= base_url('include');?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom fonts for this template-->
+      <link href="<?= base_url('include');?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-    <!-- Custom fonts for this template-->
-    <link href="<?= base_url('include');?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+      <!-- Page level plugin CSS-->
+      <link href="<?= base_url('include');?>/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 
-    <!-- Page level plugin CSS-->
-    <link href="<?= base_url('include');?>/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+      <!-- Custom styles for this template-->
+      <link href="<?= base_url('include');?>/css/sb-admin.css" rel="stylesheet">
+      <link href="<?= base_url('include');?>/css/sistema.css" rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="<?= base_url('include');?>/css/sb-admin.css" rel="stylesheet">
-    <link href="<?= base_url('include');?>/css/sistema.css" rel="stylesheet">
+      <!-- Morris Charts CSS -->
+      <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.css">
+      <link rel="stylesheet" href="<?= base_url('include');?>/morris/morris.css">
 
-    <!-- Morris Charts CSS -->
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.min.css">
-  <link rel="stylesheet" href="<?= base_url('include');?>/morris/morris.css">
-
-  </head>
+    </head>
 
   <body id="page-top">
-
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
-      <a class="navbar-brand mr-1" href="<?= base_url('inicio');?>">Finanças</a>
-
+          <a class="navbar-brand mr-1" href="<?= base_url('inicio');?>">Finanças</a>
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-        <i class="fas fa-bars"></i>
-      </button>
+            <i class="fas fa-bars"></i>
+          </button>
 
-      <!-- Navbar Search
-      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="button">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>-->
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="#">Activity Log</a>
 
-      <!-- Navbar
-      <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-bell fa-fw"></i>
-            <span class="badge badge-danger">9+</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-envelope fa-fw"></i>
-            <span class="badge badge-danger">7</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-circle fa-fw"></i>
-          </a>-->
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#">Settings</a>
-            <a class="dropdown-item" href="#">Activity Log</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-          </div>
-        </li>
-      </ul>
+              <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+              </div>
+      </nav>
 
-    </nav>
+      <div id="wrapper">
 
-    <div id="wrapper">
+          <!-- Sidebar -->
+          <ul class="sidebar navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="<?= base_url('Inicio');?>">
+                  <i class="fas fa-fw fa-tachometer-alt"></i>
+                  <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('cartao');?>">
+                  <i class="far fa-credit-card"></i>
+                  <span>Cartões de Créditos</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-money-check-alt"></i>
+                  <span>Transações</span>
+                </a>
+          
+                <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                  <a class="dropdown-item" href="<?= base_url('transacao/index/1');?>">Receitas</a>
+                  <a class="dropdown-item" href="<?= base_url('transacao/index/2');?>">Despesas</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  href="<?= base_url('conta');?>">
+                  <i class="fas fa-university"></i>
+                  <span>Contas</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('relatorio');?>">
+                  <i class="fas fa-chart-bar"></i>
+                  <span>Relatórios</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('categoria');?>">
+                  <i class="fas fa-tags"></i>
+                  <span>Categorias</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('login/logout');?>">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span>Sair do sistema</span>
+                </a>
+            </li>
+          </ul>
 
-      <!-- Sidebar -->
-      <ul class="sidebar navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="<?= base_url('Inicio');?>">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
-        <!--<li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="login.html">Login</a>
-            <a class="dropdown-item" href="register.html">Register</a>
-            <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-            <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header">Other Pages:</h6>
-            <a class="dropdown-item" href="404.html">404 Page</a>
-            <a class="dropdown-item" href="blank.html">Blank Page</a>
-          </div>
-        </li>-->
-        <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('cartao');?>">
-            <i class="far fa-credit-card"></i>
-            <span>Cartões de Créditos</span></a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-money-check-alt"></i>
-            <span>Transações</span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <a class="dropdown-item" href="<?= base_url('transacao/index/1');?>">Receitas</a>
-            <a class="dropdown-item" href="<?= base_url('transacao/index/2');?>">Despesas</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"  href="<?= base_url('conta');?>">
-            <i class="fas fa-university"></i>
-            <span>Contas</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('relatorio');?>">
-            <i class="fas fa-chart-bar"></i>
-            <span>Relatórios</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('categoria');?>">
-            <i class="fas fa-tags"></i>
-            <span>Categorias</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('login/logout');?>">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Sair do sistema</span></a>
-        </li>
-      </ul>
-
-      <div id="content-wrapper">
-
-        <div class="container-fluid">
+          <div id="content-wrapper">
+            <div class="container-fluid">
