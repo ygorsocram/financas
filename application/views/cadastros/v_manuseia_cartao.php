@@ -15,7 +15,13 @@
 			<section class="box-typical box-panel mb-4" id="form_despesas">
         <div class="widget-container fluid-height">
           <div class="box-typical-body">
+            <?php if($id_transacao== 0):?>
             <form action="<?= base_url("/cartao/gravar/{$id_transacao}")?>" method="post">
+            <?php else: ?>
+            <form action="<?= base_url("/cartao/atualizar_lancamento/{$id_transacao}")?>" method="post">
+            <?php endif ?>
+              <input id="id_fatura_antiga" name="id_fatura_antiga"  value= "">
+              <input id="id_cartao_antigo" name="id_cartao_antigo"  value= "">
 				      <div id="dados_cadastrais" class="row">
               		<div class="col-lg-6" id="manusear_despesa">
               				<fieldset class="form-group">

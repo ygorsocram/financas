@@ -214,23 +214,20 @@ class Cartao extends MY_Controller {
 			'observacao' => strtoupper($observacao)
 			);
 
-		if ($id_transacao ==0) {
-				$id_nova_transacao = $this->m_cartao->cadastrar($dados,'transacoes');
+		$id_nova_transacao = $this->m_cartao->cadastrar($dados,'transacoes');
 
-				if ($parcela>1) {
-					$dados2 = array(
-					'parcelas' => $parcela
+		if ($parcela>1) {
+			$dados2 = array(
+			'parcelas' => $parcela
+			);
+
+			$id_parcela_transacao = $this->m_cartao->cadastrar($dados2,'parcela_transacao');
+
+			$dados3 = array(
+				'id_parcela_transacao' => $id_parcela_transacao
 					);
-					$id_parcela_transacao = $this->m_cartao->cadastrar($dados2,'parcela_transacao');
 
-
-					$dados3 = array(
-						'id_parcela_transacao' => $id_parcela_transacao
-					);
-					$this->m_cartao->atualizar($dados3,'id_transacao',$id_nova_transacao,'transacoes');
-				}
-		} else {
-				$this->m_cartao->atualizar($dados,'id_transacao',$id_transacao,'transacoes');
+			$this->m_cartao->atualizar($dados3,'id_transacao',$id_nova_transacao,'transacoes');
 		}
 
 		$this->m_cartao->valor_fatura($id_fatura);
@@ -310,6 +307,47 @@ class Cartao extends MY_Controller {
       $this->m_cartao->valor_cartao_aberto($id_cartao);
 
 	 redirect("cartao/acessar_lancamento/$id_fatura");
+	}
+
+	public function atualizar_lancamento($id_transacao){
+		$id_cartao = $this->input->post('cartao');
+		$nome = strtoupper($this->input->post('nome'));
+		$valor = $this->input->post('valor');
+		$parcela = $this->input->post('parcela');
+		$data = $this->input->post('data');
+		$categoria = $this->input->post('categoria');
+		$id_fatura = $this->input->post('fatura');
+		$observacao = $this->input->post('observacao');
+		$id_fatura_antiga = $this->input->post('id_fatura_antiga');
+
+		(isset($_POST['conta']))? $conta = $this->input->post('conta') : $conta = $this->m_cartao->conta_cartao($id_cartao)->row()->id_conta;
+			
+		$dados= array(
+			'nome' => $nome,
+			'valor' => $valor,
+			'data_cadastro' => $data,
+			'id_categoria' => $categoria,
+			'id_conta' => $conta,
+			'id_fatura_cartao' => $id_fatura,
+			'observacao' => strtoupper($observacao)
+			);
+
+		$this->m_cartao->atualizar($dados,'id_transacao',$id_transacao,'transacoes');
+
+
+		$this->m_cartao->valor_fatura($id_fatura);
+    	$this->m_cartao->valor_fatura_aberto($id_fatura);
+
+		if($id_fatura_antiga>0){
+			$id_fatura_antiga = $this->input->post('id_fatura_antiga');
+
+			$this->m_cartao->valor_fatura($id_fatura_antiga);
+    		$this->m_cartao->valor_fatura_aberto($id_fatura_antiga);
+		} 
+
+		$this->m_cartao->valor_cartao_aberto($id_cartao);
+
+	 	redirect("cartao/acessar_lancamento/$id_fatura");	
 	}
 
 	public function excluir($transacao,$id_fatura,$id_cartao)
@@ -409,6 +447,7 @@ public function manusear_pagar_fatura($id,$id_cartao,$id_fatura)
 
 public function retorna_faturas(){
 	$cartao = $this->input->post('cartao');
+	echo($cartao);
 
 	$faturas = $this->m_cartao->faturas($cartao);
 	

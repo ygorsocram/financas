@@ -1,6 +1,9 @@
 var host = window.location.origin+'/financas';
+var id_fatura_antiga_valor = $('#fatura').val();
+var id_cartao_antigo_valor = $('#cartao').val();
 
 $('#cartao').change(function(){
+    document.getElementById("id_cartao_antigo").value = id_cartao_antigo_valor;
     monta_faturas();
 });
 
@@ -19,3 +22,7 @@ function monta_faturas(){
         }
     });
 }
+
+$('#fatura').change(function(){
+    document.getElementById("id_fatura_antiga").value = id_fatura_antiga_valor;
+});

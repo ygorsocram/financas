@@ -57,7 +57,7 @@
     <!-- Demo scripts for this page-->
     <script src="<?= base_url('include');?>/js/demo/datatables-demo.js"></script>
 
-    <!--script src="<?= base_url('include');?>/js/altera_cartao.js"></script-->
+    <script src="<?= base_url('include');?>/js/cartao.js"></script>
 
   </body>
 
